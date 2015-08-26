@@ -75,6 +75,8 @@
 {
     if (self.navigationController)
     {
+        //如果viewController没有嵌入到NavigationController中，则self.navigationController为nil
+        //所以这里需要保存self.navigationController的值，以便在手势处理函数中使用
         self.navigationCtrl = self.navigationController;
     }
     UIView *view = self.navigationCtrl.view;
