@@ -10,7 +10,11 @@
 #import "secondViewController.h"
 #import "ZCSAnimatorTransitioning.h"
 
-@interface firstViewController ()
+@interface firstViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+@property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray *tableGroupType;
+@property (strong, nonatomic) NSArray *tableGroupName;
 
 @end
 
@@ -20,7 +24,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor orangeColor];
-    self.navigationItem.title = @"第一个";
+    self.navigationItem.title = @"知识点总结";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"second"
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
@@ -28,7 +32,7 @@
 
     //设置下一个ViewController返回按钮的title和Image
     UIBarButtonItem *backBarBtn = [[UIBarButtonItem alloc] init];
-    backBarBtn.title = @"first";
+    backBarBtn.title = @"总结";
     self.navigationItem.backBarButtonItem = backBarBtn;
     
     //重新设置delegate并实现gestureRecognizerShouldBegin:
@@ -38,7 +42,11 @@
     //定时器总结
     //[self demoNSTimer];
     //[self demoCADisplayLink];
-    [self demoGCDTimer];
+    //[self demoGCDTimer];
+    
+    //创建tableView
+    [self initTableViewData];
+    [self initTableView];
 }
 
 
@@ -60,6 +68,25 @@
         return NO;
     }
     return  YES;
+}
+
+- (void)initTableViewData
+{
+    _tableGroupName = [NSArray arrayWithObjects:@"动画总结", nil];
+    _tableGroupType = [NSMutableArray arrayWithCapacity:1];
+    //动画总结
+    NSArray *animation = [NSArray arrayWithObjects:@"基础动画",@"关键帧动画",@"组动画",@"过渡动画",@"综合案例", nil];
+    [_tableGroupType addObject:animation];
+}
+
+- (void)initTableView
+{
+    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    //_tableView.separatorColor = [UIColor blueColor];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    [self.view addSubview:_tableView];
 }
 
 #pragma mark - 定时器总结
@@ -117,7 +144,8 @@
     
     dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
     
-    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, period * NSEC_PER_SEC, 0);
+    ////每3秒触发一次，精度为1S
+    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, period * NSEC_PER_SEC, 1 * NSEC_PER_SEC);
     
     dispatch_source_set_event_handler(timer, ^{
         NSLog(@"GCDTimer running !");
@@ -172,6 +200,67 @@
 {
     NSLog(@"displayLinkTimer running ...");
     [timer invalidate];//解除定时器
+}
+
+#pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.tableGroupType.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSArray *array = [self.tableGroupType objectAtIndex:section];
+    return array.count;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [self.tableGroupName objectAtIndex:section];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *TABLEVIEW_CELL_ID = @"tableview_cell_id";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TABLEVIEW_CELL_ID];
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:TABLEVIEW_CELL_ID];
+    }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;//cell右边小箭头
+    NSArray *array = [self.tableGroupType objectAtIndex:indexPath.section];
+    cell.textLabel.text = [array objectAtIndex:indexPath.row];
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];//取消选中状态
+    NSLog(@"Select Row At ( %d - %d )",indexPath.section,indexPath.row);
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return indexPath;//返回nil则表示不允许选中该项
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 50;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+//    UIView *view = [[UIView alloc] init];
+//    view.backgroundColor = [UIColor blueColor];
+    return nil;
 }
 /*
 #pragma mark - Navigation
