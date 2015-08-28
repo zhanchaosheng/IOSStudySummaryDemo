@@ -9,6 +9,7 @@
 #import "firstViewController.h"
 #import "secondViewController.h"
 #import "ZCSAnimatorTransitioning.h"
+#import "BaseAnimationViewController.h"
 
 @interface firstViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -32,7 +33,7 @@
 
     //设置下一个ViewController返回按钮的title和Image
     UIBarButtonItem *backBarBtn = [[UIBarButtonItem alloc] init];
-    backBarBtn.title = @"总结";
+    backBarBtn.title = @"首页";
     self.navigationItem.backBarButtonItem = backBarBtn;
     
     //重新设置delegate并实现gestureRecognizerShouldBegin:
@@ -235,11 +236,6 @@
 }
 
 #pragma mark - UITableViewDelegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];//取消选中状态
-    NSLog(@"Select Row At ( %d - %d )",indexPath.section,indexPath.row);
-}
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -261,6 +257,25 @@
 //    UIView *view = [[UIView alloc] init];
 //    view.backgroundColor = [UIColor blueColor];
     return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];//取消选中状态
+    NSLog(@"Select Row At ( %ld - %ld )",(long)indexPath.section,(long)indexPath.row);
+    if (indexPath.section == 0)//动画总结
+    {
+        switch (indexPath.row) {
+            case 0: {//基础动画
+                BaseAnimationViewController *baseAnimation = [[BaseAnimationViewController alloc] init];
+                [self.navigationController pushViewController:baseAnimation animated:YES];
+                break;
+            }
+                
+            default:
+                break;
+        }
+    }
 }
 /*
 #pragma mark - Navigation
