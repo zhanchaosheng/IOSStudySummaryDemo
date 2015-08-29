@@ -10,6 +10,7 @@
 #import "secondViewController.h"
 #import "ZCSAnimatorTransitioning.h"
 #import "BaseAnimationViewController.h"
+#import "KeyFrameAnimationViewController.h"
 
 @interface firstViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -228,8 +229,8 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:TABLEVIEW_CELL_ID];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;//cell右边小箭头
     }
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;//cell右边小箭头
     NSArray *array = [self.tableGroupType objectAtIndex:indexPath.section];
     cell.textLabel.text = [array objectAtIndex:indexPath.row];
     return cell;
@@ -271,7 +272,11 @@
                 [self.navigationController pushViewController:baseAnimation animated:YES];
                 break;
             }
-                
+            case 1: {//关键帧动画
+                KeyFrameAnimationViewController *keyFrameAnimation = [[KeyFrameAnimationViewController alloc] init];
+                [self.navigationController pushViewController:keyFrameAnimation animated:YES];
+                break;
+            }
             default:
                 break;
         }

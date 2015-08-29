@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1AA5B9BA1B90A3630021B9D0 /* BaseAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA5B9B91B90A3630021B9D0 /* BaseAnimationViewController.m */; };
+		1ABDE6921B91DEC8007F1DBA /* KeyFrameAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDE6911B91DEC8007F1DBA /* KeyFrameAnimationViewController.m */; };
 		647F8B841B8B032400DF3A4F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 647F8B731B8B032400DF3A4F /* AppDelegate.m */; };
 		647F8B851B8B032400DF3A4F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 647F8B741B8B032400DF3A4F /* LaunchScreen.xib */; };
 		647F8B861B8B032400DF3A4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 647F8B761B8B032400DF3A4F /* Main.storyboard */; };
@@ -37,6 +38,8 @@
 		1AA5B9B81B90A3630021B9D0 /* BaseAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseAnimationViewController.h; sourceTree = "<group>"; };
 		1AA5B9B91B90A3630021B9D0 /* BaseAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseAnimationViewController.m; sourceTree = "<group>"; };
 		1AA5B9BB1B90A4040021B9D0 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		1ABDE6901B91DEC8007F1DBA /* KeyFrameAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyFrameAnimationViewController.h; sourceTree = "<group>"; };
+		1ABDE6911B91DEC8007F1DBA /* KeyFrameAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyFrameAnimationViewController.m; sourceTree = "<group>"; };
 		647F8B721B8B032400DF3A4F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		647F8B731B8B032400DF3A4F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		647F8B751B8B032400DF3A4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -86,6 +89,8 @@
 			children = (
 				1AA5B9B81B90A3630021B9D0 /* BaseAnimationViewController.h */,
 				1AA5B9B91B90A3630021B9D0 /* BaseAnimationViewController.m */,
+				1ABDE6901B91DEC8007F1DBA /* KeyFrameAnimationViewController.h */,
+				1ABDE6911B91DEC8007F1DBA /* KeyFrameAnimationViewController.m */,
 			);
 			name = Animation;
 			sourceTree = "<group>";
@@ -295,6 +300,7 @@
 				647F8B8C1B8B032400DF3A4F /* UIView+ZCSAssociatedObjc.m in Sources */,
 				647F8B881B8B032400DF3A4F /* firstViewController.m in Sources */,
 				647F8B8B1B8B032400DF3A4F /* main.m in Sources */,
+				1ABDE6921B91DEC8007F1DBA /* KeyFrameAnimationViewController.m in Sources */,
 				1AA5B9BA1B90A3630021B9D0 /* BaseAnimationViewController.m in Sources */,
 				647F8B871B8B032400DF3A4F /* customView.m in Sources */,
 			);
