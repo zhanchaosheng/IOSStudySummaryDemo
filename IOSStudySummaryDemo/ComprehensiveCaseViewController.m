@@ -30,7 +30,8 @@
     NSArray *btnArray = [NSArray arrayWithObjects:@"Path菜单",@"钉钉菜单",@"点赞", nil];
     UISegmentedControl *segmentedCtrl = [[UISegmentedControl alloc] initWithItems:btnArray];
     segmentedCtrl.frame = CGRectMake(20, SCREEN_HEIGHT - 55, SCREEN_WIDTH - 140, 50);
-    segmentedCtrl.momentary = YES;//设置点击后是否恢复原样
+    //segmentedCtrl.momentary = YES;//设置点击后是否恢复原样
+    segmentedCtrl.selectedSegmentIndex = 0;
     [segmentedCtrl addTarget:self
                       action:@selector(segmentCtrlHandle:)
             forControlEvents:UIControlEventValueChanged];
@@ -137,7 +138,7 @@
 
 - (void)itemButtonTappedAtIndex:(NSUInteger)index
 {
-    NSLog(@"You tap at index : %ld", index);
+    NSLog(@"You tap at index : %ld", (unsigned long)index);
 }
 
 #pragma mark - 仿造钉钉菜单动画
