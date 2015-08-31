@@ -79,7 +79,7 @@
     self.bloomRadius = 105.0f;
     
     // Configure the view's center, it will change after the frame folded or bloomed
-    //景铭修改过了，原来
+    //
     self.foldCenter = CGPointMake(self.bloomSize.width / 2, self.bloomSize.height - 125.5f);
     //self.foldCenter = CGPointMake(self.bloomSize.width / 2, self.bloomSize.height - 225.5f);
     self.bloomCenter = CGPointMake(self.bloomSize.width / 2, self.bloomSize.height / 2);
