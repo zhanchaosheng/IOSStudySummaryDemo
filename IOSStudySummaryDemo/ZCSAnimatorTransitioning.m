@@ -26,7 +26,7 @@
 {
     if (operation == UINavigationControllerOperationPush)
     {
-        //return self;//返回实现了UIViewControllerAnimatedTransitioning协议的实例
+        return self;//返回实现了UIViewControllerAnimatedTransitioning协议的实例
     }
     else if (operation == UINavigationControllerOperationPop)
     {

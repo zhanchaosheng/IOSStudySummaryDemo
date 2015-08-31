@@ -21,7 +21,7 @@
     self.navigationItem.title = @"关键帧动画";
     
     _demoView = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, SCREEN_HEIGHT/2-100, 100, 100)];
-    _demoView.backgroundColor = [UIColor blueColor];
+    _demoView.backgroundColor = [UIColor orangeColor];
     [self.view addSubview:_demoView];
     
     //创建分段控件

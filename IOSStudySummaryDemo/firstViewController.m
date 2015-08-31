@@ -11,6 +11,9 @@
 #import "ZCSAnimatorTransitioning.h"
 #import "BaseAnimationViewController.h"
 #import "KeyFrameAnimationViewController.h"
+#import "GroupAnimationViewController.h"
+#import "TransitionAnimationViewController.h"
+#import "ComprehensiveCaseViewController.h"
 
 @interface firstViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -27,7 +30,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor orangeColor];
     self.navigationItem.title = @"知识点总结";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"second"
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next"
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
                                                                              action:@selector(rightBarButtonClicked:)];
@@ -238,27 +241,27 @@
 
 #pragma mark - UITableViewDelegate
 
-- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
-
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return indexPath;//返回nil则表示不允许选中该项
-}
+//- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return YES;
+//}
+//
+//- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return indexPath;//返回nil则表示不允许选中该项
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 50;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-//    UIView *view = [[UIView alloc] init];
-//    view.backgroundColor = [UIColor blueColor];
-    return nil;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+////    UIView *view = [[UIView alloc] init];
+////    view.backgroundColor = [UIColor blueColor];
+//    return nil;
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -275,6 +278,21 @@
             case 1: {//关键帧动画
                 KeyFrameAnimationViewController *keyFrameAnimation = [[KeyFrameAnimationViewController alloc] init];
                 [self.navigationController pushViewController:keyFrameAnimation animated:YES];
+                break;
+            }
+            case 2: {//组动画
+                GroupAnimationViewController *groupAnimation = [[GroupAnimationViewController alloc] init];
+                [self.navigationController pushViewController:groupAnimation animated:YES];
+                break;
+            }
+            case 3: {//过渡动画
+                TransitionAnimationViewController *transitionAnimation = [[TransitionAnimationViewController alloc] init];
+                [self.navigationController pushViewController:transitionAnimation animated:YES];
+                break;
+            }
+            case 4: {//综合动画例子
+                ComprehensiveCaseViewController *comprehensiveCase = [[ComprehensiveCaseViewController alloc] init];
+                [self.navigationController pushViewController:comprehensiveCase animated:YES];
                 break;
             }
             default:
