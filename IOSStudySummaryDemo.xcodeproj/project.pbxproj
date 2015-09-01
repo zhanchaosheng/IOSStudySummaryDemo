@@ -52,6 +52,7 @@
 		64D073081B942A6500108C45 /* Like-Blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64D072F51B942A6500108C45 /* Like-Blue@2x.png */; };
 		64D073091B942A6500108C45 /* Like@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64D072F61B942A6500108C45 /* Like@2x.png */; };
 		64D0730A1B942A6500108C45 /* Sparkle.png in Resources */ = {isa = PBXBuildFile; fileRef = 64D072F71B942A6500108C45 /* Sparkle.png */; };
+		64D25EF01B9599B700C05F15 /* myAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D25EEF1B9599B700C05F15 /* myAnnotation.m */; };
 		64FF767F1B8C45EC0017E09F /* ZCSAnimatorTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FF767E1B8C45EC0017E09F /* ZCSAnimatorTransitioning.m */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +134,8 @@
 		64D072F51B942A6500108C45 /* Like-Blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Like-Blue@2x.png"; sourceTree = "<group>"; };
 		64D072F61B942A6500108C45 /* Like@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Like@2x.png"; sourceTree = "<group>"; };
 		64D072F71B942A6500108C45 /* Sparkle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sparkle.png; sourceTree = "<group>"; };
+		64D25EEE1B9599B700C05F15 /* myAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myAnnotation.h; sourceTree = "<group>"; };
+		64D25EEF1B9599B700C05F15 /* myAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myAnnotation.m; sourceTree = "<group>"; };
 		64FF767D1B8C45EC0017E09F /* ZCSAnimatorTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCSAnimatorTransitioning.h; sourceTree = "<group>"; };
 		64FF767E1B8C45EC0017E09F /* ZCSAnimatorTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCSAnimatorTransitioning.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -219,6 +222,8 @@
 				647F8B831B8B032400DF3A4F /* ZCSViewCallBackProtocol.h */,
 				64FF767D1B8C45EC0017E09F /* ZCSAnimatorTransitioning.h */,
 				64FF767E1B8C45EC0017E09F /* ZCSAnimatorTransitioning.m */,
+				64D25EEE1B9599B700C05F15 /* myAnnotation.h */,
+				64D25EEF1B9599B700C05F15 /* myAnnotation.m */,
 			);
 			name = Ex;
 			sourceTree = "<group>";
@@ -472,6 +477,7 @@
 				647F8B841B8B032400DF3A4F /* AppDelegate.m in Sources */,
 				647F8B941B8B07B800DF3A4F /* secondViewController.m in Sources */,
 				647F8B8C1B8B032400DF3A4F /* UIView+ZCSAssociatedObjc.m in Sources */,
+				64D25EF01B9599B700C05F15 /* myAnnotation.m in Sources */,
 				647F8B881B8B032400DF3A4F /* firstViewController.m in Sources */,
 				647F8B8B1B8B032400DF3A4F /* main.m in Sources */,
 				64D072D21B94295C00108C45 /* DWBubbleMenuButton.m in Sources */,

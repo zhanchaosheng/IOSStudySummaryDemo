@@ -8,16 +8,18 @@
 
 #import "secondViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
+#import "myAnnotation.h"
 
 
-@interface secondViewController ()<CLLocationManagerDelegate>
+@interface secondViewController ()<CLLocationManagerDelegate,MKMapViewDelegate>
 
 @property (weak, nonatomic) ZCSAnimatorTransitioning *delegate;
 @property (weak, nonatomic) UINavigationController *navigationCtrl;
 
 @property (strong, nonatomic) CLLocationManager *locationManger;//位置管理器
 @property (strong, nonatomic) CLLocation *previousPoint;//最后一次从位置管理器接收的位置
-@property (assign, nonatomic) CLLocationDistance totalMovementDistance;//位置移动的总距离
+@property (strong, nonatomic) MKMapView *mkMapView;
 
 @end
 
@@ -31,6 +33,85 @@
         self.delegate = delegate;
     }
     return self;
+}
+
+- (void)initMkMapView {
+    //初始一个纬度，经度
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(39.928168, 116.39328);
+    self.previousPoint = [[CLLocation alloc] initWithLatitude:coordinate.latitude
+                                                    longitude:coordinate.longitude];
+    //配置地图显示区域的缩放级别
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.02, 0.02);
+    //确定一个区域
+    MKCoordinateRegion region = MKCoordinateRegionMake(coordinate, span);
+    
+    self.mkMapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-60)];
+    self.mkMapView.delegate = self;
+    //地图类型
+    //MKMapTypeStandard = 0,  标准
+    //MKMapTypeSatellite,  卫星
+    //MKMapTypeHybrid    混合
+    self.mkMapView.mapType = MKMapTypeStandard;
+    self.mkMapView.showsUserLocation = YES;
+    [self.mkMapView setRegion:[self.mkMapView regionThatFits:region] animated:YES];//设置MKMapView对象的显示区域
+    //添加大头针
+    myAnnotation *annotation = [[myAnnotation alloc] initWithCoordinate:coordinate];
+    annotation.title = @"北京";
+    annotation.subtitle = @"故宫博物馆";
+    [self.mkMapView addAnnotation:annotation];
+    
+    //长按手势 插上大头针
+    UILongPressGestureRecognizer* longPressGesture = [[UILongPressGestureRecognizer alloc]initWithTarget:self
+                                                                                                  action:@selector(longPress:)];
+    [self.mkMapView addGestureRecognizer:longPressGesture];
+    
+    [self.view addSubview:self.mkMapView];
+}
+
+- (void)longPress:(UILongPressGestureRecognizer *)gesture
+{
+    //只有长按第一次响应时才插上大头针
+    if (gesture.state == UIGestureRecognizerStateBegan)
+    {
+        CGPoint point = [gesture locationInView:self.mkMapView];
+        CLLocationCoordinate2D coordinate = [self.mkMapView convertPoint:point
+                                              toCoordinateFromView:self.mkMapView];
+        myAnnotation *annotation = [[myAnnotation alloc] initWithCoordinate:coordinate];
+        annotation.title = @"位置";
+        annotation.subtitle = [NSString stringWithFormat:@"纬度：%g\u00B0，经度：%g\u00B0",
+                               coordinate.latitude,coordinate.longitude];// \u00B0 是 °的Unicode码
+        [self.mkMapView addAnnotation:annotation];
+    }
+}
+
+- (void)initCLLocationManger {
+    //定位服务是否开启
+    if ([CLLocationManager locationServicesEnabled])
+    {
+        self.locationManger = [[CLLocationManager alloc] init];
+        self.locationManger.delegate = self;//设置代理
+        self.locationManger.desiredAccuracy = kCLLocationAccuracyBestForNavigation;//设置精度
+        self.locationManger.distanceFilter = 10;//距离筛选器，即位置偏移超过10M才会通知代理
+        
+        //IOS 8.0以上定位服务需要设置授权
+        //if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+        if ([self.locationManger respondsToSelector:@selector(requestWhenInUseAuthorization)])
+        {
+            //申请应用程序使用期间授权
+            [self.locationManger requestWhenInUseAuthorization];
+            
+            //申请永久授权,
+            //[self.locationManger requestAlwaysAuthorization];
+            
+            //另外还要在info.plist里加入对应加上下面两个key,Value可以为空
+            //NSLocationWhenInUseDescription，允许在前台获取GPS的描述
+            //NSLocationAlwaysUsageDescription，允许在后台获取GPS的描述
+        }
+    }
+    else
+    {
+        NSLog(@"定位服务没有开启!");
+    }
 }
 
 - (void)viewDidLoad {
@@ -76,34 +157,12 @@
                       action:@selector(segmentCtrlHandle:)
             forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:segmentedCtrl];
-    //创建位置管理器并启动
-    //定位服务是否开启
-    if ([CLLocationManager locationServicesEnabled])
-    {
-        self.locationManger = [[CLLocationManager alloc] init];
-        self.locationManger.delegate = self;//设置代理
-        self.locationManger.desiredAccuracy = kCLLocationAccuracyBestForNavigation;//设置精度
-        self.locationManger.distanceFilter = 10;//距离筛选器，即位置偏移超过1M才会通知代理
-        
-        //IOS 8.0以上定位服务需要设置授权
-        //if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-        if ([self.locationManger respondsToSelector:@selector(requestWhenInUseAuthorization)])
-        {
-            //申请应用程序使用期间授权
-            [self.locationManger requestWhenInUseAuthorization];
-            
-            //申请永久授权,
-            //[self.locationManger requestAlwaysAuthorization];
-            
-            //另外还要在info.plist里加入对应加上下面两个key,Value可以为空
-            //NSLocationWhenInUseDescription，允许在前台获取GPS的描述
-            //NSLocationAlwaysUsageDescription，允许在后台获取GPS的描述
-        }
-    }
-    else
-    {
-        NSLog(@"定位服务没有开启!");
-    }
+    
+    //创建地图视图
+    [self initMkMapView];
+    
+    //创建位置管理器
+    [self initCLLocationManger];
  }
 
 - (void)didReceiveMemoryWarning {
@@ -179,6 +238,18 @@
 {
     CLLocation *newLocation = [locations lastObject];
     
+    //得到位置后更新地图视图
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.02, 0.02);
+    MKCoordinateRegion region = MKCoordinateRegionMake(newLocation.coordinate, span);
+    //[self.mkMapView setRegion:region animated:YES];
+    [self.mkMapView setRegion:[self.mkMapView regionThatFits:region] animated:YES];
+    //添加大头针
+    myAnnotation *annotation = [[myAnnotation alloc] initWithCoordinate:newLocation.coordinate];
+    annotation.title = @"当前位置";
+    annotation.subtitle = [NSString stringWithFormat:@"纬度：%g\u00B0，经度：%g\u00B0",
+                           newLocation.coordinate.latitude,newLocation.coordinate.longitude];
+    [self.mkMapView addAnnotation:annotation];
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH-mm-ss"];
     NSString *getTimerString = [dateFormatter stringFromDate:newLocation.timestamp];
@@ -199,32 +270,26 @@
     NSString *verticalAccuracyString = [NSString stringWithFormat:@"%gm",newLocation.verticalAccuracy];
     NSLog(@"垂直精度：%@",verticalAccuracyString);
     
-    if (newLocation.horizontalAccuracy < 0 ||
-        newLocation.verticalAccuracy < 0)
-    {
-        NSLog(@"无效的精度!");
-        return;
-    }
-    if (newLocation.horizontalAccuracy > 100 ||
-        newLocation.verticalAccuracy > 50)
-    {
-        NSLog(@"不使用过大的精度!");
-        return;
-    }
-    if (self.previousPoint == nil)
-    {
-        self.totalMovementDistance = 0;
-    }
-    else
-    {
-        //计算两次位置之间的距离
-        self.totalMovementDistance += [newLocation distanceFromLocation:self.previousPoint];
-    }
+//    if (newLocation.horizontalAccuracy < 0 ||
+//        newLocation.verticalAccuracy < 0)
+//    {
+//        NSLog(@"无效的精度!");
+//        return;
+//    }
+//    if (newLocation.horizontalAccuracy > 100 ||
+//        newLocation.verticalAccuracy > 50)
+//    {
+//        NSLog(@"不使用过大的精度!");
+//        return;
+//    }
+    
+    //计算两次位置之间的距离
+    CLLocationDistance totalMovementDistance = [newLocation distanceFromLocation:self.previousPoint];
+
     self.previousPoint = newLocation;
     
-    NSString *distanceString = [NSString stringWithFormat:@"%gm",self.totalMovementDistance];
-    NSLog(@"移动总距离：%@",distanceString);
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"移动总距离"
+    NSString *distanceString = [NSString stringWithFormat:@"%gm",totalMovementDistance];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"两次位置之间的距离"
                                                     message:distanceString
                                                    delegate:nil
                                           cancelButtonTitle:@"确定"
@@ -251,7 +316,8 @@
 /**
  * 定位服务授权发生变化
  */
-- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+- (void)locationManager:(CLLocationManager *)manager
+    didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
     switch (status) {
         case kCLAuthorizationStatusNotDetermined:
@@ -264,6 +330,42 @@
             break;
     }
 }
+
+#pragma mark - MKMapViewDelegate
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    //如果是所在地 跳过   固定写法
+    if ([annotation isKindOfClass:[mapView.userLocation class]])
+    {
+        return nil;
+    }
+    MKPinAnnotationView* pinView = (MKPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"ID"];
+    if (pinView == nil)
+    {
+        pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"ID"];
+    }
+    
+    pinView.canShowCallout = YES;//能显示Call信息 上面那些图字
+    pinView.pinColor = MKPinAnnotationColorPurple;//只有三种
+    //大头针颜色
+    //MKPinAnnotationColorRed = 0,
+    //MKPinAnnotationColorGreen,
+    //MKPinAnnotationColorPurple
+    pinView.animatesDrop = YES;//显示动画  从天上落下
+    
+    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    view.backgroundColor = [UIColor orangeColor];
+    view.layer.masksToBounds = YES;
+    view.layer.cornerRadius = 5.0f;
+    pinView.leftCalloutAccessoryView = view;
+    
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    pinView.rightCalloutAccessoryView = button;
+    
+    return pinView;
+}
+
+
 /*
 #pragma mark - Navigation
 

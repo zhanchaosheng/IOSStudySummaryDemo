@@ -16,3 +16,7 @@ CAGradientLayer颜色渐变层、CGAffineTransform仿射变换、关联对象、
 3、动画组：同时执行、连续执行
 4、过渡动画：共有、私有
 5、综合案例：仿path菜单、仿钉钉菜单、仿Facebook点赞按钮
+
+至2015-9-1：
+位置定位服务和显示 
+CLLocationManger+MKMapView
