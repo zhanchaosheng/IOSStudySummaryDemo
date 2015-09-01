@@ -36,9 +36,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor purpleColor];
+    self.view.backgroundColor = [UIColor colorWithRed:69./255 green:62./255 blue:55./255 alpha:1.0];
     self.navigationItem.title = @"位置管理";
-    
     //自定义leftBarButtonItem按钮后，左边缘右滑返回失效
     UIBarButtonItem *firstLeftBarBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                                                                           target:self
@@ -72,15 +71,39 @@
     UISegmentedControl *segmentedCtrl = [[UISegmentedControl alloc] initWithItems:btnArray];
     segmentedCtrl.frame = CGRectMake(30, SCREEN_HEIGHT - 55, SCREEN_WIDTH - 60, 50);
     segmentedCtrl.momentary = YES;//设置点击后是否恢复原样
+    segmentedCtrl.tintColor = [UIColor colorWithRed:225./255 green:186./255 blue:136./255 alpha:1.0];
     [segmentedCtrl addTarget:self
                       action:@selector(segmentCtrlHandle:)
             forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:segmentedCtrl];
     //创建位置管理器并启动
-    self.locationManger = [[CLLocationManager alloc] init];
-    self.locationManger.delegate = self;//设置代理
-    self.locationManger.desiredAccuracy = kCLLocationAccuracyBestForNavigation;//设置精度
-    //self.locationManger.distanceFilter = 1;//距离筛选器，即位置偏移超过1M才会通知代理
+    //定位服务是否开启
+    if ([CLLocationManager locationServicesEnabled])
+    {
+        self.locationManger = [[CLLocationManager alloc] init];
+        self.locationManger.delegate = self;//设置代理
+        self.locationManger.desiredAccuracy = kCLLocationAccuracyBestForNavigation;//设置精度
+        self.locationManger.distanceFilter = 10;//距离筛选器，即位置偏移超过1M才会通知代理
+        
+        //IOS 8.0以上定位服务需要设置授权
+        //if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+        if ([self.locationManger respondsToSelector:@selector(requestWhenInUseAuthorization)])
+        {
+            //申请应用程序使用期间授权
+            [self.locationManger requestWhenInUseAuthorization];
+            
+            //申请永久授权,
+            //[self.locationManger requestAlwaysAuthorization];
+            
+            //另外还要在info.plist里加入对应加上下面两个key,Value可以为空
+            //NSLocationWhenInUseDescription，允许在前台获取GPS的描述
+            //NSLocationAlwaysUsageDescription，允许在后台获取GPS的描述
+        }
+    }
+    else
+    {
+        NSLog(@"定位服务没有开启!");
+    }
  }
 
 - (void)didReceiveMemoryWarning {
@@ -148,8 +171,11 @@
     }
 }
 #pragma mark - CLLocationManagerDelegate
+/**
+ * 定位服务通知位置信息
+ */
 - (void)locationManager:(CLLocationManager *)manager
-     didUpdateLocations:(NSArray<CLLocation *> *)locations
+     didUpdateLocations:(NSArray *)locations
 {
     CLLocation *newLocation = [locations lastObject];
     
@@ -206,6 +232,9 @@
     [alert show];
 }
 
+/**
+ * 定位服务出错
+ */
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error
 {
@@ -216,6 +245,24 @@
                                           cancelButtonTitle:@"确定"
                                           otherButtonTitles:nil];
     [alert show];
+    [self.locationManger stopUpdatingLocation];
+}
+
+/**
+ * 定位服务授权发生变化
+ */
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    switch (status) {
+        case kCLAuthorizationStatusNotDetermined:
+            if ([self.locationManger respondsToSelector:@selector(requestWhenInUseAuthorization)])
+            {
+                [self.locationManger requestWhenInUseAuthorization];
+            }
+            break;
+        default:
+            break;
+    }
 }
 /*
 #pragma mark - Navigation
