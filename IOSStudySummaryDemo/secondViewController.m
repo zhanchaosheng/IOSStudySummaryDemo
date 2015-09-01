@@ -112,6 +112,17 @@
     {
         NSLog(@"定位服务没有开启!");
     }
+    
+    //创建分段控件
+    NSArray *btnArray = [NSArray arrayWithObjects:@"开启位置管理器",@"停止位置管理器", nil];
+    UISegmentedControl *segmentedCtrl = [[UISegmentedControl alloc] initWithItems:btnArray];
+    segmentedCtrl.frame = CGRectMake(30, SCREEN_HEIGHT - 55, SCREEN_WIDTH - 60, 50);
+    segmentedCtrl.momentary = YES;//设置点击后是否恢复原样
+    segmentedCtrl.tintColor = [UIColor colorWithRed:225./255 green:186./255 blue:136./255 alpha:1.0];
+    [segmentedCtrl addTarget:self
+                      action:@selector(segmentCtrlHandle:)
+            forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:segmentedCtrl];
 }
 
 - (void)viewDidLoad {
@@ -147,22 +158,11 @@
                                                                           action:@selector(handlePanGestureRecongnizer:)];
     [self.view addGestureRecognizer:pan];
     
-    //创建分段控件
-    NSArray *btnArray = [NSArray arrayWithObjects:@"开启位置管理器",@"停止位置管理器", nil];
-    UISegmentedControl *segmentedCtrl = [[UISegmentedControl alloc] initWithItems:btnArray];
-    segmentedCtrl.frame = CGRectMake(30, SCREEN_HEIGHT - 55, SCREEN_WIDTH - 60, 50);
-    segmentedCtrl.momentary = YES;//设置点击后是否恢复原样
-    segmentedCtrl.tintColor = [UIColor colorWithRed:225./255 green:186./255 blue:136./255 alpha:1.0];
-    [segmentedCtrl addTarget:self
-                      action:@selector(segmentCtrlHandle:)
-            forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:segmentedCtrl];
+    //创建位置管理器
+    [self initCLLocationManger];
     
     //创建地图视图
     [self initMkMapView];
-    
-    //创建位置管理器
-    [self initCLLocationManger];
  }
 
 - (void)didReceiveMemoryWarning {
@@ -243,12 +243,15 @@
     MKCoordinateRegion region = MKCoordinateRegionMake(newLocation.coordinate, span);
     //[self.mkMapView setRegion:region animated:YES];
     [self.mkMapView setRegion:[self.mkMapView regionThatFits:region] animated:YES];
+    //添加大头针之前先删除之前的
+    [self.mkMapView removeAnnotations:self.mkMapView.annotations];
     //添加大头针
     myAnnotation *annotation = [[myAnnotation alloc] initWithCoordinate:newLocation.coordinate];
-    annotation.title = @"当前位置";
+    annotation.title = @"定位位置";
     annotation.subtitle = [NSString stringWithFormat:@"纬度：%g\u00B0，经度：%g\u00B0",
-                           newLocation.coordinate.latitude,newLocation.coordinate.longitude];
+                           newLocation.coordinate.latitude,newLocation.coordinate.longitude];    //CLGeocoder解析地址信息
     [self.mkMapView addAnnotation:annotation];
+    
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH-mm-ss"];
@@ -283,13 +286,12 @@
 //        return;
 //    }
     
-    //计算两次位置之间的距离
-    CLLocationDistance totalMovementDistance = [newLocation distanceFromLocation:self.previousPoint];
-
-    self.previousPoint = newLocation;
+    //newLocation中的坐标映射到MKMapView控件上时，会发现这个点跟本不是我们所在的位置，而是离我们百米左右的某个地方
+    //计算它们之间的距离
+    CLLocationDistance totalMovementDistance = [newLocation distanceFromLocation:self.mkMapView.userLocation.location];
     
     NSString *distanceString = [NSString stringWithFormat:@"%gm",totalMovementDistance];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"两次位置之间的距离"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"定位位置与当前位置的偏差距离"
                                                     message:distanceString
                                                    delegate:nil
                                           cancelButtonTitle:@"确定"
@@ -365,6 +367,37 @@
     return pinView;
 }
 
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    //初始化MKMapView时，将属性showsUserLocation设置为YES，MKMapView会启动内置的位置监听服务，
+    //当用户位置变化时，调用delegate的回调函数
+    //CLGeocoder解析设备当前位置地址信息
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:userLocation.location
+                   completionHandler:^(NSArray *placemarks, NSError *error) {
+                       if (!error)
+                       {
+                           for (CLPlacemark *placemark in placemarks)
+                           {
+                               NSDictionary *placeDict = placemark.addressDictionary;
+                               NSLog(@"%@",[placeDict objectForKey:@"Name"]);
+                               //self.mkMapView.userLocation.title = @"当前位置";
+                               userLocation.subtitle = [NSString stringWithFormat:@"%@",
+                                                                       [placeDict objectForKey:@"Name"]];
+                               break;
+                           }
+                       }
+                       else
+                       {
+                           NSLog(@"定位位置信息解析失败!");
+                       }
+                   }];
+    
+    //得到位置后更新地图视图
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.02, 0.02);
+    MKCoordinateRegion region = MKCoordinateRegionMake(userLocation.location.coordinate, span);
+    [self.mkMapView setRegion:[self.mkMapView regionThatFits:region] animated:YES];
+}
 
 /*
 #pragma mark - Navigation
