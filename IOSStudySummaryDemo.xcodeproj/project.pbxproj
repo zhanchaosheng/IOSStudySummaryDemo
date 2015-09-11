@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1AA5B9BA1B90A3630021B9D0 /* BaseAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA5B9B91B90A3630021B9D0 /* BaseAnimationViewController.m */; };
 		1ABDE6921B91DEC8007F1DBA /* KeyFrameAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDE6911B91DEC8007F1DBA /* KeyFrameAnimationViewController.m */; };
+		643E11611B96D47400925B3C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643E11601B96D47400925B3C /* MapKit.framework */; };
+		643E11631B96D48100925B3C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643E11621B96D48100925B3C /* CoreLocation.framework */; };
 		647F8B841B8B032400DF3A4F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 647F8B731B8B032400DF3A4F /* AppDelegate.m */; };
 		647F8B851B8B032400DF3A4F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 647F8B741B8B032400DF3A4F /* LaunchScreen.xib */; };
 		647F8B861B8B032400DF3A4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 647F8B761B8B032400DF3A4F /* Main.storyboard */; };
@@ -72,6 +74,8 @@
 		1AA5B9BB1B90A4040021B9D0 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		1ABDE6901B91DEC8007F1DBA /* KeyFrameAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyFrameAnimationViewController.h; sourceTree = "<group>"; };
 		1ABDE6911B91DEC8007F1DBA /* KeyFrameAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyFrameAnimationViewController.m; sourceTree = "<group>"; };
+		643E11601B96D47400925B3C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		643E11621B96D48100925B3C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		647F8B721B8B032400DF3A4F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		647F8B731B8B032400DF3A4F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		647F8B751B8B032400DF3A4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -145,6 +149,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				643E11631B96D48100925B3C /* CoreLocation.framework in Frameworks */,
+				643E11611B96D47400925B3C /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +252,8 @@
 		64A821A91B85883F0085B37D = {
 			isa = PBXGroup;
 			children = (
+				643E11621B96D48100925B3C /* CoreLocation.framework */,
+				643E11601B96D47400925B3C /* MapKit.framework */,
 				647F8B711B8B032400DF3A4F /* IOSStudySummaryDemo */,
 				64A821CE1B8588400085B37D /* IOSStudySummaryDemoTests */,
 				64A821B31B85883F0085B37D /* Products */,
@@ -613,6 +621,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/IOSStudySummaryDemo/PrefixHeader.pch";
 				INFOPLIST_FILE = IOSStudySummaryDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -626,6 +635,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/IOSStudySummaryDemo/PrefixHeader.pch";
 				INFOPLIST_FILE = IOSStudySummaryDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

@@ -10,6 +10,15 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 #import "myAnnotation.h"
+//#import <objc/message.h>
+
+
+//使用IOS的私有类MKLocationManager来把newLocation（原始地理位置），转换为中国地理位置（也叫火星坐标）
+//@interface MKLocationManager
+//+ (id)sharedLocationManager; //创建并获取MKLocationManager实例
+//- (BOOL)chinaShiftEnabled;   //判断IOS系统是否支持计算偏移
+//- (CLLocation*)_applyChinaLocationShift:(CLLocation*)arg; //传入原始位置，计算偏移后的位置
+//@end
 
 
 @interface secondViewController ()<CLLocationManagerDelegate,MKMapViewDelegate>
@@ -237,6 +246,27 @@
      didUpdateLocations:(NSArray *)locations
 {
     CLLocation *newLocation = [locations lastObject];
+    
+//    //调用私有API纠正偏差，即将原始地理位置转换到中国地理位置
+//    id mkLocationMgr = objc_msgSend(NSClassFromString(@"MKLocationManager"), NSSelectorFromString(@"sharedLocationManager"));
+//    SEL _selector = NSSelectorFromString(@"chinaShiftEnabled");
+//    if ([mkLocationMgr respondsToSelector:_selector])
+//    {
+//        //需要将项目 - Project - Build Settings - Enable Strict Checking of objc_msgSend Calls设置为NO，否则会报错
+//        if (objc_msgSend(mkLocationMgr, _selector))
+//        {
+//            SEL theSelector = NSSelectorFromString(@"_applyChinaLocationShift:");
+//            if ([mkLocationMgr respondsToSelector:theSelector])
+//            {
+//                newLocation = objc_msgSend(mkLocationMgr,theSelector,newLocation);
+//                if (newLocation == nil)// 很重要，计算location好像是要联网的，软件刚启动时前几次计算会返回nil。
+//                {
+//                    return;
+//                }
+//            }
+//        }
+//    }
+    
     
     //得到位置后更新地图视图
     MKCoordinateSpan span = MKCoordinateSpanMake(0.02, 0.02);
