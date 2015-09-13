@@ -34,6 +34,10 @@
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
                                                                              action:@selector(rightBarButtonClicked:)];
+    //UIViewController本身也有editing属性和setEditing:animated:方法，
+    //在当前视图控制器由导航控制器控制且导航栏中包含editButtonItem时，
+    //若UIViewController的editing为NO，则显示为”Edit”,若editing为YES,则显示为”Done”
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
     //设置下一个ViewController返回按钮的title和Image
     UIBarButtonItem *backBarBtn = [[UIBarButtonItem alloc] init];
@@ -60,6 +64,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+    //修改tableView进入编辑模式
+    [self.tableView setEditing:editing animated:animated];
+}
+
 - (void)rightBarButtonClicked:(UIBarButtonItem *)sender
 {
     secondViewController *secondViewCtrl = [[secondViewController alloc] initWithDelegate:(ZCSAnimatorTransitioning *)self.navigationController.delegate];
@@ -80,7 +91,7 @@
     _tableGroupName = [NSArray arrayWithObjects:@"动画总结", nil];
     _tableGroupType = [NSMutableArray arrayWithCapacity:1];
     //动画总结
-    NSArray *animation = [NSArray arrayWithObjects:@"基础动画",@"关键帧动画",@"组动画",@"过渡动画",@"综合案例", nil];
+    NSMutableArray *animation = [NSMutableArray arrayWithObjects:@"基础动画",@"关键帧动画",@"组动画",@"过渡动画",@"综合案例", nil];
     [_tableGroupType addObject:animation];
 }
 
@@ -215,7 +226,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *array = [self.tableGroupType objectAtIndex:section];
+    NSMutableArray *array = [self.tableGroupType objectAtIndex:section];
     return array.count;
 }
 
@@ -234,12 +245,80 @@
                                       reuseIdentifier:TABLEVIEW_CELL_ID];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;//cell右边小箭头
     }
-    NSArray *array = [self.tableGroupType objectAtIndex:indexPath.section];
+    NSMutableArray *array = [self.tableGroupType objectAtIndex:indexPath.section];
     cell.textLabel.text = [array objectAtIndex:indexPath.row];
     return cell;
 }
 
+//询问每个indexPath是否可编辑
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSMutableArray *array = [self.tableGroupType objectAtIndex:indexPath.section];
+    if (editingStyle == UITableViewCellEditingStyleDelete)//实现轻扫删除行
+    {
+        [array removeObjectAtIndex:indexPath.row];
+        
+        //告诉tableView动画删除指定行
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath]
+                              withRowAnimation:UITableViewRowAnimationFade];
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert)
+    {
+        //告诉tableView动画插入行
+        [array insertObject:@"这是插入的" atIndex:indexPath.row];
+        [self.tableView insertRowsAtIndexPaths:@[indexPath]
+                              withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+//实现拖动排序
+
+//询问每一行是否可显示重排序控件
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 2)
+    {
+        return NO;
+    }
+    return YES;
+}
+
+//当tableView的dataSource实现以下这个方法后，tableView进入编辑模式后就会在右侧显示“重排序”控件
+- (void)tableView:(UITableView *)tableView
+moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
+      toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    NSMutableArray *array = [self.tableGroupType objectAtIndex:sourceIndexPath.section];
+    NSString *object = [array objectAtIndex:sourceIndexPath.row];
+    [array removeObjectAtIndex:sourceIndexPath.row];
+    [array insertObject:object atIndex:destinationIndexPath.row];
+}
+
+
+
 #pragma mark - UITableViewDelegate
+//询问EditingStyle，这里返回删除(UITableViewCellEditingStyleDelete)或者插入(UITableViewCellEditingStyleInsert)
+//若不实现此方法，则默认为删除模式
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
+           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0)
+    {
+        return UITableViewCellEditingStyleInsert;
+    }
+    else if (indexPath.row == 2)
+    {
+        return UITableViewCellEditingStyleDelete;
+    }
+    return UITableViewCellEditingStyleNone;
+}
 
 //- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 //{
@@ -267,36 +346,35 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];//取消选中状态
     NSLog(@"Select Row At ( %ld - %ld )",(long)indexPath.section,(long)indexPath.row);
+    
     if (indexPath.section == 0)//动画总结
     {
-        switch (indexPath.row) {
-            case 0: {//基础动画
-                BaseAnimationViewController *baseAnimation = [[BaseAnimationViewController alloc] init];
-                [self.navigationController pushViewController:baseAnimation animated:YES];
-                break;
-            }
-            case 1: {//关键帧动画
-                KeyFrameAnimationViewController *keyFrameAnimation = [[KeyFrameAnimationViewController alloc] init];
-                [self.navigationController pushViewController:keyFrameAnimation animated:YES];
-                break;
-            }
-            case 2: {//组动画
-                GroupAnimationViewController *groupAnimation = [[GroupAnimationViewController alloc] init];
-                [self.navigationController pushViewController:groupAnimation animated:YES];
-                break;
-            }
-            case 3: {//过渡动画
-                TransitionAnimationViewController *transitionAnimation = [[TransitionAnimationViewController alloc] init];
-                [self.navigationController pushViewController:transitionAnimation animated:YES];
-                break;
-            }
-            case 4: {//综合动画例子
-                ComprehensiveCaseViewController *comprehensiveCase = [[ComprehensiveCaseViewController alloc] init];
-                [self.navigationController pushViewController:comprehensiveCase animated:YES];
-                break;
-            }
-            default:
-                break;
+        NSMutableArray *subArray = [self.tableGroupType objectAtIndex:indexPath.section];
+        NSString *subObject = [subArray objectAtIndex:indexPath.row];
+        if ([subObject isEqualToString:@"基础动画"])
+        {
+            BaseAnimationViewController *baseAnimation = [[BaseAnimationViewController alloc] init];
+            [self.navigationController pushViewController:baseAnimation animated:YES];
+        }
+        else if ([subObject isEqualToString:@"关键帧动画"])
+        {
+            KeyFrameAnimationViewController *keyFrameAnimation = [[KeyFrameAnimationViewController alloc] init];
+            [self.navigationController pushViewController:keyFrameAnimation animated:YES];
+        }
+        else if ([subObject isEqualToString:@"组动画"])
+        {
+            GroupAnimationViewController *groupAnimation = [[GroupAnimationViewController alloc] init];
+            [self.navigationController pushViewController:groupAnimation animated:YES];
+        }
+        else if ([subObject isEqualToString:@"过渡动画"])
+        {
+            TransitionAnimationViewController *transitionAnimation = [[TransitionAnimationViewController alloc] init];
+            [self.navigationController pushViewController:transitionAnimation animated:YES];
+        }
+        else if ([subObject isEqualToString:@"综合案例"])
+        {
+            ComprehensiveCaseViewController *comprehensiveCase = [[ComprehensiveCaseViewController alloc] init];
+            [self.navigationController pushViewController:comprehensiveCase animated:YES];
         }
     }
 }
