@@ -14,6 +14,7 @@
 #import "GroupAnimationViewController.h"
 #import "TransitionAnimationViewController.h"
 #import "ComprehensiveCaseViewController.h"
+#import "DownloadViewController.h"
 
 @interface firstViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -88,11 +89,14 @@
 
 - (void)initTableViewData
 {
-    _tableGroupName = [NSArray arrayWithObjects:@"动画总结", nil];
+    _tableGroupName = [NSArray arrayWithObjects:@"动画总结",@"网络传输总结",nil];
     _tableGroupType = [NSMutableArray arrayWithCapacity:1];
     //动画总结
     NSMutableArray *animation = [NSMutableArray arrayWithObjects:@"基础动画",@"关键帧动画",@"组动画",@"过渡动画",@"综合案例", nil];
     [_tableGroupType addObject:animation];
+    //网络传输总结
+    NSMutableArray *netWork = [NSMutableArray arrayWithObjects:@"上传",@"下载",nil];
+    [_tableGroupType addObject:netWork];
 }
 
 - (void)initTableView
@@ -375,6 +379,20 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
         {
             ComprehensiveCaseViewController *comprehensiveCase = [[ComprehensiveCaseViewController alloc] init];
             [self.navigationController pushViewController:comprehensiveCase animated:YES];
+        }
+    }
+    else if (indexPath.section == 1)
+    {
+        NSMutableArray *subArray = [self.tableGroupType objectAtIndex:indexPath.section];
+        NSString *subObject = [subArray objectAtIndex:indexPath.row];
+        if ([subObject isEqualToString:@"上传"])
+        {
+            
+        }
+        else if ([subObject isEqualToString:@"下载"])
+        {
+            DownloadViewController *newworkDownload = [[DownloadViewController alloc] init];
+            [self.navigationController pushViewController:newworkDownload animated:YES];
         }
     }
 }
