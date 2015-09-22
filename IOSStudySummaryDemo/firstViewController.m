@@ -15,6 +15,7 @@
 #import "TransitionAnimationViewController.h"
 #import "ComprehensiveCaseViewController.h"
 #import "DownloadViewController.h"
+#import "PhotoBrowserController.h"
 
 @interface firstViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -89,7 +90,7 @@
 
 - (void)initTableViewData
 {
-    _tableGroupName = [NSArray arrayWithObjects:@"动画总结",@"网络传输总结",nil];
+    _tableGroupName = [NSArray arrayWithObjects:@"动画总结",@"网络传输总结",@"图片展示总结",nil];
     _tableGroupType = [NSMutableArray arrayWithCapacity:1];
     //动画总结
     NSMutableArray *animation = [NSMutableArray arrayWithObjects:@"基础动画",@"关键帧动画",@"组动画",@"过渡动画",@"综合案例", nil];
@@ -97,6 +98,9 @@
     //网络传输总结
     NSMutableArray *netWork = [NSMutableArray arrayWithObjects:@"上传",@"下载",nil];
     [_tableGroupType addObject:netWork];
+    //图片展示总结
+    NSMutableArray *photoShow = [NSMutableArray arrayWithObjects:@"图片浏览器", nil];
+    [_tableGroupType addObject:photoShow];
 }
 
 - (void)initTableView
@@ -393,6 +397,16 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
         {
             DownloadViewController *newworkDownload = [[DownloadViewController alloc] init];
             [self.navigationController pushViewController:newworkDownload animated:YES];
+        }
+    }
+    else if (indexPath.section == 2)
+    {
+        NSMutableArray *subArray = [self.tableGroupType objectAtIndex:indexPath.section];
+        NSString *subObject = [subArray objectAtIndex:indexPath.row];
+        if ([subObject isEqualToString:@"图片浏览器"])
+        {
+            PhotoBrowserController *photoBrowser = [[PhotoBrowserController alloc] init];
+            [self.navigationController pushViewController:photoBrowser animated:YES];
         }
     }
 }

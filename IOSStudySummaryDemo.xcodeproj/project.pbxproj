@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A9CC75E1BB19359000979AB /* PhotoBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9CC75D1BB19359000979AB /* PhotoBrowserController.m */; settings = {ASSET_TAGS = (); }; };
 		1AA5B9BA1B90A3630021B9D0 /* BaseAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA5B9B91B90A3630021B9D0 /* BaseAnimationViewController.m */; };
 		1ABDE6921B91DEC8007F1DBA /* KeyFrameAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDE6911B91DEC8007F1DBA /* KeyFrameAnimationViewController.m */; };
 		1AC886EB1BA852A700DE373A /* DownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC886EA1BA852A700DE373A /* DownloadViewController.m */; };
@@ -72,12 +73,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A9CC75C1BB19359000979AB /* PhotoBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserController.h; sourceTree = "<group>"; };
+		1A9CC75D1BB19359000979AB /* PhotoBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserController.m; sourceTree = "<group>"; };
 		1AA5B9B81B90A3630021B9D0 /* BaseAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseAnimationViewController.h; sourceTree = "<group>"; };
 		1AA5B9B91B90A3630021B9D0 /* BaseAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseAnimationViewController.m; sourceTree = "<group>"; };
 		1AA5B9BB1B90A4040021B9D0 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		1ABDE6901B91DEC8007F1DBA /* KeyFrameAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyFrameAnimationViewController.h; sourceTree = "<group>"; };
 		1ABDE6911B91DEC8007F1DBA /* KeyFrameAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyFrameAnimationViewController.m; sourceTree = "<group>"; };
-		1AC886E91BA852A700DE373A /* DownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadViewController.h; sourceTree = "<group>"; };
+		1AC886E91BA852A700DE373A /* DownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadViewController.h; path = /Users/cusen/Desktop/AppWorkshop/IOSStudySummaryDemo/IOSStudySummaryDemo/NetWorkTransfer/DownloadViewController.h; sourceTree = "<absolute>"; };
 		1AC886EA1BA852A700DE373A /* DownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadViewController.m; sourceTree = "<group>"; };
 		1AC886EC1BA86A9800DE373A /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 		1AC886EE1BA86AAC00DE373A /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
@@ -171,6 +174,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A9CC7581BB18E5C000979AB /* PhotoShow */ = {
+			isa = PBXGroup;
+			children = (
+				1A9CC75C1BB19359000979AB /* PhotoBrowserController.h */,
+				1A9CC75D1BB19359000979AB /* PhotoBrowserController.m */,
+			);
+			name = PhotoShow;
+			path = /Users/cusen/Desktop/AppWorkshop/IOSStudySummaryDemo/IOSStudySummaryDemo/PhotoShow;
+			sourceTree = "<absolute>";
+		};
 		1AA5B9B71B90A2FC0021B9D0 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,7 +199,8 @@
 				64D072C61B9428A700108C45 /* ComprehensiveCaseViewController.m */,
 			);
 			name = Animation;
-			sourceTree = "<group>";
+			path = /Users/cusen/Desktop/AppWorkshop/IOSStudySummaryDemo/IOSStudySummaryDemo/Animation;
+			sourceTree = "<absolute>";
 		};
 		1AC886E81BA8523400DE373A /* NetWorkTransfer */ = {
 			isa = PBXGroup;
@@ -195,7 +209,8 @@
 				1AC886EA1BA852A700DE373A /* DownloadViewController.m */,
 			);
 			name = NetWorkTransfer;
-			sourceTree = "<group>";
+			path = /Users/cusen/Desktop/AppWorkshop/IOSStudySummaryDemo/IOSStudySummaryDemo/NetWorkTransfer;
+			sourceTree = "<absolute>";
 		};
 		647F8B711B8B032400DF3A4F /* IOSStudySummaryDemo */ = {
 			isa = PBXGroup;
@@ -222,6 +237,7 @@
 		647F8B8F1B8B035E00DF3A4F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1A9CC7581BB18E5C000979AB /* PhotoShow */,
 				1AC886E81BA8523400DE373A /* NetWorkTransfer */,
 				1AA5B9B71B90A2FC0021B9D0 /* Animation */,
 				647F8B811B8B032400DF3A4F /* ViewController.h */,
@@ -515,6 +531,7 @@
 				64D072C41B94030700108C45 /* TransitionAnimationViewController.m in Sources */,
 				1AA5B9BA1B90A3630021B9D0 /* BaseAnimationViewController.m in Sources */,
 				64D072CE1B94290100108C45 /* MCFireworksView.m in Sources */,
+				1A9CC75E1BB19359000979AB /* PhotoBrowserController.m in Sources */,
 				64D072CD1B94290100108C45 /* MCFireworksButton.m in Sources */,
 				64D072C11B93F6CA00108C45 /* GroupAnimationViewController.m in Sources */,
 				64D072C71B9428A700108C45 /* ComprehensiveCaseViewController.m in Sources */,
