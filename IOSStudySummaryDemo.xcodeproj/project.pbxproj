@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A9CC75E1BB19359000979AB /* PhotoBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9CC75D1BB19359000979AB /* PhotoBrowserController.m */; settings = {ASSET_TAGS = (); }; };
-		1AA5B9BA1B90A3630021B9D0 /* BaseAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA5B9B91B90A3630021B9D0 /* BaseAnimationViewController.m */; };
-		1ABDE6921B91DEC8007F1DBA /* KeyFrameAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDE6911B91DEC8007F1DBA /* KeyFrameAnimationViewController.m */; };
-		1AC886EB1BA852A700DE373A /* DownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC886EA1BA852A700DE373A /* DownloadViewController.m */; };
 		1AC886ED1BA86A9800DE373A /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC886EC1BA86A9800DE373A /* start.png */; };
 		1AC886EF1BA86AAC00DE373A /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC886EE1BA86AAC00DE373A /* pause.png */; };
 		643E11611B96D47400925B3C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643E11601B96D47400925B3C /* MapKit.framework */; };
@@ -27,9 +23,6 @@
 		647F8B8D1B8B032400DF3A4F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 647F8B821B8B032400DF3A4F /* ViewController.m */; };
 		647F8B941B8B07B800DF3A4F /* secondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 647F8B931B8B07B800DF3A4F /* secondViewController.m */; };
 		64A821D21B8588400085B37D /* IOSStudySummaryDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A821D11B8588400085B37D /* IOSStudySummaryDemoTests.m */; };
-		64D072C11B93F6CA00108C45 /* GroupAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D072C01B93F6CA00108C45 /* GroupAnimationViewController.m */; };
-		64D072C41B94030700108C45 /* TransitionAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D072C31B94030700108C45 /* TransitionAnimationViewController.m */; };
-		64D072C71B9428A700108C45 /* ComprehensiveCaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D072C61B9428A700108C45 /* ComprehensiveCaseViewController.m */; };
 		64D072CD1B94290100108C45 /* MCFireworksButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D072CA1B94290100108C45 /* MCFireworksButton.m */; };
 		64D072CE1B94290100108C45 /* MCFireworksView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D072CC1B94290100108C45 /* MCFireworksView.m */; };
 		64D072D21B94295C00108C45 /* DWBubbleMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D072D11B94295C00108C45 /* DWBubbleMenuButton.m */; };
@@ -59,6 +52,13 @@
 		64D073091B942A6500108C45 /* Like@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64D072F61B942A6500108C45 /* Like@2x.png */; };
 		64D0730A1B942A6500108C45 /* Sparkle.png in Resources */ = {isa = PBXBuildFile; fileRef = 64D072F71B942A6500108C45 /* Sparkle.png */; };
 		64D25EF01B9599B700C05F15 /* myAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D25EEF1B9599B700C05F15 /* myAnnotation.m */; };
+		64D869FC1BB23FDF002E8799 /* BaseAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D869F31BB23FDF002E8799 /* BaseAnimationViewController.m */; };
+		64D869FD1BB23FDF002E8799 /* ComprehensiveCaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D869F51BB23FDF002E8799 /* ComprehensiveCaseViewController.m */; };
+		64D869FE1BB23FDF002E8799 /* GroupAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D869F71BB23FDF002E8799 /* GroupAnimationViewController.m */; };
+		64D869FF1BB23FDF002E8799 /* KeyFrameAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D869F91BB23FDF002E8799 /* KeyFrameAnimationViewController.m */; };
+		64D86A001BB23FDF002E8799 /* TransitionAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D869FB1BB23FDF002E8799 /* TransitionAnimationViewController.m */; };
+		64D86A041BB24023002E8799 /* PhotoBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D86A031BB24023002E8799 /* PhotoBrowserController.m */; };
+		64D86A081BB2403C002E8799 /* DownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D86A071BB2403C002E8799 /* DownloadViewController.m */; };
 		64FF767F1B8C45EC0017E09F /* ZCSAnimatorTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FF767E1B8C45EC0017E09F /* ZCSAnimatorTransitioning.m */; };
 /* End PBXBuildFile section */
 
@@ -73,15 +73,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1A9CC75C1BB19359000979AB /* PhotoBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserController.h; sourceTree = "<group>"; };
-		1A9CC75D1BB19359000979AB /* PhotoBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserController.m; sourceTree = "<group>"; };
-		1AA5B9B81B90A3630021B9D0 /* BaseAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseAnimationViewController.h; sourceTree = "<group>"; };
-		1AA5B9B91B90A3630021B9D0 /* BaseAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseAnimationViewController.m; sourceTree = "<group>"; };
 		1AA5B9BB1B90A4040021B9D0 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		1ABDE6901B91DEC8007F1DBA /* KeyFrameAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyFrameAnimationViewController.h; sourceTree = "<group>"; };
-		1ABDE6911B91DEC8007F1DBA /* KeyFrameAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyFrameAnimationViewController.m; sourceTree = "<group>"; };
-		1AC886E91BA852A700DE373A /* DownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadViewController.h; path = /Users/cusen/Desktop/AppWorkshop/IOSStudySummaryDemo/IOSStudySummaryDemo/NetWorkTransfer/DownloadViewController.h; sourceTree = "<absolute>"; };
-		1AC886EA1BA852A700DE373A /* DownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadViewController.m; sourceTree = "<group>"; };
 		1AC886EC1BA86A9800DE373A /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 		1AC886EE1BA86AAC00DE373A /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		643E11601B96D47400925B3C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -108,12 +100,6 @@
 		64A821CB1B8588400085B37D /* IOSStudySummaryDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IOSStudySummaryDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A821D01B8588400085B37D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64A821D11B8588400085B37D /* IOSStudySummaryDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IOSStudySummaryDemoTests.m; sourceTree = "<group>"; };
-		64D072BF1B93F6CA00108C45 /* GroupAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupAnimationViewController.h; sourceTree = "<group>"; };
-		64D072C01B93F6CA00108C45 /* GroupAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupAnimationViewController.m; sourceTree = "<group>"; };
-		64D072C21B94030700108C45 /* TransitionAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionAnimationViewController.h; sourceTree = "<group>"; };
-		64D072C31B94030700108C45 /* TransitionAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitionAnimationViewController.m; sourceTree = "<group>"; };
-		64D072C51B9428A700108C45 /* ComprehensiveCaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComprehensiveCaseViewController.h; sourceTree = "<group>"; };
-		64D072C61B9428A700108C45 /* ComprehensiveCaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComprehensiveCaseViewController.m; sourceTree = "<group>"; };
 		64D072C91B94290100108C45 /* MCFireworksButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFireworksButton.h; sourceTree = "<group>"; };
 		64D072CA1B94290100108C45 /* MCFireworksButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFireworksButton.m; sourceTree = "<group>"; };
 		64D072CB1B94290100108C45 /* MCFireworksView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFireworksView.h; sourceTree = "<group>"; };
@@ -150,6 +136,20 @@
 		64D072F71B942A6500108C45 /* Sparkle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sparkle.png; sourceTree = "<group>"; };
 		64D25EEE1B9599B700C05F15 /* myAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myAnnotation.h; sourceTree = "<group>"; };
 		64D25EEF1B9599B700C05F15 /* myAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myAnnotation.m; sourceTree = "<group>"; };
+		64D869F21BB23FDF002E8799 /* BaseAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseAnimationViewController.h; sourceTree = "<group>"; };
+		64D869F31BB23FDF002E8799 /* BaseAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseAnimationViewController.m; sourceTree = "<group>"; };
+		64D869F41BB23FDF002E8799 /* ComprehensiveCaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComprehensiveCaseViewController.h; sourceTree = "<group>"; };
+		64D869F51BB23FDF002E8799 /* ComprehensiveCaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComprehensiveCaseViewController.m; sourceTree = "<group>"; };
+		64D869F61BB23FDF002E8799 /* GroupAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupAnimationViewController.h; sourceTree = "<group>"; };
+		64D869F71BB23FDF002E8799 /* GroupAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupAnimationViewController.m; sourceTree = "<group>"; };
+		64D869F81BB23FDF002E8799 /* KeyFrameAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyFrameAnimationViewController.h; sourceTree = "<group>"; };
+		64D869F91BB23FDF002E8799 /* KeyFrameAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyFrameAnimationViewController.m; sourceTree = "<group>"; };
+		64D869FA1BB23FDF002E8799 /* TransitionAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionAnimationViewController.h; sourceTree = "<group>"; };
+		64D869FB1BB23FDF002E8799 /* TransitionAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitionAnimationViewController.m; sourceTree = "<group>"; };
+		64D86A021BB24023002E8799 /* PhotoBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserController.h; sourceTree = "<group>"; };
+		64D86A031BB24023002E8799 /* PhotoBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserController.m; sourceTree = "<group>"; };
+		64D86A061BB2403C002E8799 /* DownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadViewController.h; sourceTree = "<group>"; };
+		64D86A071BB2403C002E8799 /* DownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadViewController.m; sourceTree = "<group>"; };
 		64FF767D1B8C45EC0017E09F /* ZCSAnimatorTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCSAnimatorTransitioning.h; sourceTree = "<group>"; };
 		64FF767E1B8C45EC0017E09F /* ZCSAnimatorTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCSAnimatorTransitioning.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -174,44 +174,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1A9CC7581BB18E5C000979AB /* PhotoShow */ = {
-			isa = PBXGroup;
-			children = (
-				1A9CC75C1BB19359000979AB /* PhotoBrowserController.h */,
-				1A9CC75D1BB19359000979AB /* PhotoBrowserController.m */,
-			);
-			name = PhotoShow;
-			path = /Users/cusen/Desktop/AppWorkshop/IOSStudySummaryDemo/IOSStudySummaryDemo/PhotoShow;
-			sourceTree = "<absolute>";
-		};
-		1AA5B9B71B90A2FC0021B9D0 /* Animation */ = {
-			isa = PBXGroup;
-			children = (
-				1AA5B9B81B90A3630021B9D0 /* BaseAnimationViewController.h */,
-				1AA5B9B91B90A3630021B9D0 /* BaseAnimationViewController.m */,
-				1ABDE6901B91DEC8007F1DBA /* KeyFrameAnimationViewController.h */,
-				1ABDE6911B91DEC8007F1DBA /* KeyFrameAnimationViewController.m */,
-				64D072BF1B93F6CA00108C45 /* GroupAnimationViewController.h */,
-				64D072C01B93F6CA00108C45 /* GroupAnimationViewController.m */,
-				64D072C21B94030700108C45 /* TransitionAnimationViewController.h */,
-				64D072C31B94030700108C45 /* TransitionAnimationViewController.m */,
-				64D072C51B9428A700108C45 /* ComprehensiveCaseViewController.h */,
-				64D072C61B9428A700108C45 /* ComprehensiveCaseViewController.m */,
-			);
-			name = Animation;
-			path = /Users/cusen/Desktop/AppWorkshop/IOSStudySummaryDemo/IOSStudySummaryDemo/Animation;
-			sourceTree = "<absolute>";
-		};
-		1AC886E81BA8523400DE373A /* NetWorkTransfer */ = {
-			isa = PBXGroup;
-			children = (
-				1AC886E91BA852A700DE373A /* DownloadViewController.h */,
-				1AC886EA1BA852A700DE373A /* DownloadViewController.m */,
-			);
-			name = NetWorkTransfer;
-			path = /Users/cusen/Desktop/AppWorkshop/IOSStudySummaryDemo/IOSStudySummaryDemo/NetWorkTransfer;
-			sourceTree = "<absolute>";
-		};
 		647F8B711B8B032400DF3A4F /* IOSStudySummaryDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,15 +199,15 @@
 		647F8B8F1B8B035E00DF3A4F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1A9CC7581BB18E5C000979AB /* PhotoShow */,
-				1AC886E81BA8523400DE373A /* NetWorkTransfer */,
-				1AA5B9B71B90A2FC0021B9D0 /* Animation */,
-				647F8B811B8B032400DF3A4F /* ViewController.h */,
-				647F8B821B8B032400DF3A4F /* ViewController.m */,
 				647F8B7A1B8B032400DF3A4F /* firstViewController.h */,
-				647F8B7B1B8B032400DF3A4F /* firstViewController.m */,
 				647F8B921B8B07B800DF3A4F /* secondViewController.h */,
+				647F8B811B8B032400DF3A4F /* ViewController.h */,
+				647F8B7B1B8B032400DF3A4F /* firstViewController.m */,
 				647F8B931B8B07B800DF3A4F /* secondViewController.m */,
+				647F8B821B8B032400DF3A4F /* ViewController.m */,
+				64D869F11BB23FDF002E8799 /* Animation */,
+				64D86A051BB2403C002E8799 /* NetWorkTransfer */,
+				64D86A011BB24023002E8799 /* PhotoShow */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -390,6 +352,41 @@
 			path = image;
 			sourceTree = "<group>";
 		};
+		64D869F11BB23FDF002E8799 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				64D869F21BB23FDF002E8799 /* BaseAnimationViewController.h */,
+				64D869F31BB23FDF002E8799 /* BaseAnimationViewController.m */,
+				64D869F41BB23FDF002E8799 /* ComprehensiveCaseViewController.h */,
+				64D869F51BB23FDF002E8799 /* ComprehensiveCaseViewController.m */,
+				64D869F61BB23FDF002E8799 /* GroupAnimationViewController.h */,
+				64D869F71BB23FDF002E8799 /* GroupAnimationViewController.m */,
+				64D869F81BB23FDF002E8799 /* KeyFrameAnimationViewController.h */,
+				64D869F91BB23FDF002E8799 /* KeyFrameAnimationViewController.m */,
+				64D869FA1BB23FDF002E8799 /* TransitionAnimationViewController.h */,
+				64D869FB1BB23FDF002E8799 /* TransitionAnimationViewController.m */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		64D86A011BB24023002E8799 /* PhotoShow */ = {
+			isa = PBXGroup;
+			children = (
+				64D86A021BB24023002E8799 /* PhotoBrowserController.h */,
+				64D86A031BB24023002E8799 /* PhotoBrowserController.m */,
+			);
+			path = PhotoShow;
+			sourceTree = "<group>";
+		};
+		64D86A051BB2403C002E8799 /* NetWorkTransfer */ = {
+			isa = PBXGroup;
+			children = (
+				64D86A061BB2403C002E8799 /* DownloadViewController.h */,
+				64D86A071BB2403C002E8799 /* DownloadViewController.m */,
+			);
+			path = NetWorkTransfer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -518,24 +515,24 @@
 			files = (
 				64D072DA1B9429BF00108C45 /* DCPathButton.m in Sources */,
 				647F8B8D1B8B032400DF3A4F /* ViewController.m in Sources */,
+				64D869FC1BB23FDF002E8799 /* BaseAnimationViewController.m in Sources */,
+				64D869FE1BB23FDF002E8799 /* GroupAnimationViewController.m in Sources */,
 				64FF767F1B8C45EC0017E09F /* ZCSAnimatorTransitioning.m in Sources */,
 				647F8B841B8B032400DF3A4F /* AppDelegate.m in Sources */,
 				647F8B941B8B07B800DF3A4F /* secondViewController.m in Sources */,
+				64D869FF1BB23FDF002E8799 /* KeyFrameAnimationViewController.m in Sources */,
 				647F8B8C1B8B032400DF3A4F /* UIView+ZCSAssociatedObjc.m in Sources */,
+				64D86A041BB24023002E8799 /* PhotoBrowserController.m in Sources */,
+				64D86A081BB2403C002E8799 /* DownloadViewController.m in Sources */,
 				64D25EF01B9599B700C05F15 /* myAnnotation.m in Sources */,
 				647F8B881B8B032400DF3A4F /* firstViewController.m in Sources */,
-				1AC886EB1BA852A700DE373A /* DownloadViewController.m in Sources */,
 				647F8B8B1B8B032400DF3A4F /* main.m in Sources */,
+				64D86A001BB23FDF002E8799 /* TransitionAnimationViewController.m in Sources */,
 				64D072D21B94295C00108C45 /* DWBubbleMenuButton.m in Sources */,
-				1ABDE6921B91DEC8007F1DBA /* KeyFrameAnimationViewController.m in Sources */,
-				64D072C41B94030700108C45 /* TransitionAnimationViewController.m in Sources */,
-				1AA5B9BA1B90A3630021B9D0 /* BaseAnimationViewController.m in Sources */,
 				64D072CE1B94290100108C45 /* MCFireworksView.m in Sources */,
-				1A9CC75E1BB19359000979AB /* PhotoBrowserController.m in Sources */,
 				64D072CD1B94290100108C45 /* MCFireworksButton.m in Sources */,
-				64D072C11B93F6CA00108C45 /* GroupAnimationViewController.m in Sources */,
-				64D072C71B9428A700108C45 /* ComprehensiveCaseViewController.m in Sources */,
 				64D072DC1B9429BF00108C45 /* DCPathItemButton.m in Sources */,
+				64D869FD1BB23FDF002E8799 /* ComprehensiveCaseViewController.m in Sources */,
 				64D072DB1B9429BF00108C45 /* DCPathCenterButton.m in Sources */,
 				647F8B871B8B032400DF3A4F /* customView.m in Sources */,
 			);
