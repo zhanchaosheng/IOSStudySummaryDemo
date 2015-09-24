@@ -10,51 +10,105 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <MobileCoreServices/UTCoreTypes.h>
 
-@interface PhotoBrowserController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface PhotoBrowserController ()
+<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UIScrollViewDelegate>
 //UIImagePickerController是UINavigationController的子类，所以这里一定要继承UINavigationControllerDelegate，否则编译器会警告
+
+@property (strong, nonatomic) UIScrollView *scrollView;
 @property (strong, nonatomic) UIImageView *imageView; //显示图片
 @property (strong, nonatomic) MPMoviePlayerController *moviePlayerController;
 @property (strong, nonatomic) UIImage *image;
 @property (strong, nonatomic) NSURL *movieURL;
 @property (copy, nonatomic) NSString *lastChosenMediaType;
+@property (nonatomic, assign) BOOL bCameraEnable;
+
 @end
 
 @implementation PhotoBrowserController
 
 - (void)initView
 {
-    //图片来源：照片库或摄像头
-    NSArray *btnArray = [NSArray arrayWithObjects:@"照片库",@"摄像头",nil];
-    UISegmentedControl *segmentedCtrl = [[UISegmentedControl alloc] initWithItems:btnArray];
-    segmentedCtrl.frame = CGRectMake(5, SCREEN_HEIGHT - 55, SCREEN_WIDTH - 10, 50);
-    segmentedCtrl.momentary = YES;//设置点击后是否恢复原样
-    [segmentedCtrl addTarget:self
-                      action:@selector(segmentCtrlHandle:)
-            forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:segmentedCtrl];
-    
     //判断设备是否有摄像头
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
-        [segmentedCtrl setEnabled:NO forSegmentAtIndex:1];
+        self.bCameraEnable = NO;
     }
     
     //图片显示视图
-    _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,20,SCREEN_WIDTH,SCREEN_HEIGHT-80)];
+    _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH,SCREEN_HEIGHT-64)];
     _imageView.backgroundColor = [UIColor grayColor];
-    [self.view addSubview:_imageView];
+    
+    //初始化scrollView
+    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
+    _scrollView.pagingEnabled = YES;
+    _scrollView.showsHorizontalScrollIndicator = NO;
+    _scrollView.showsVerticalScrollIndicator = NO;
+    _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT-64);
+    //如果scrollView的父视图被导航条控制则必须设置以下属性
+    self.scrollView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
+    _scrollView.backgroundColor = [UIColor grayColor];
+    [_scrollView addSubview:_imageView];
+    _scrollView.delegate = self;
+    _scrollView.minimumZoomScale = 1.0;
+    _scrollView.maximumZoomScale = 2.0;
+    _scrollView.zoomScale = 1.0;
+    [self.view addSubview:_scrollView];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"图片浏览器";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
+                                                                                           target:self
+                                                                                           action:@selector(rightBarBtnClicked:)];
     [self initView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)rightBarBtnClicked:(UIBarButtonItem *)sender
+{
+    UIActionSheet *actionSheet;
+    if (self.bCameraEnable)
+    {
+        actionSheet = [[UIActionSheet alloc] initWithTitle:@"照片源选择"
+                                                  delegate:self
+                                         cancelButtonTitle:@"取消"
+                                    destructiveButtonTitle:nil
+                                         otherButtonTitles:@"照片库",@"摄像头",nil];
+    }
+    else
+    {
+        actionSheet = [[UIActionSheet alloc] initWithTitle:@"照片源选择"
+                                                  delegate:self
+                                         cancelButtonTitle:@"取消"
+                                    destructiveButtonTitle:nil
+                                         otherButtonTitles:@"照片库",nil];
+    }
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            //用户将从现有的媒体库中选择照片或视频。照片将被返回到委托。
+            [self pickMediaFromSource:UIImagePickerControllerSourceTypePhotoLibrary];
+            break;
+        case 1:
+            //用户使用内置摄像头拍照或录像
+            if (self.bCameraEnable)
+            {
+                [self pickMediaFromSource:UIImagePickerControllerSourceTypeCamera];
+            }
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -64,19 +118,6 @@
     [self updateDisplay];
 }
 
-- (void)segmentCtrlHandle:(UISegmentedControl *)sender
-{
-    if (sender.selectedSegmentIndex == 0)
-    {
-        //用户将从现有的媒体库中选择照片或视频。照片将被返回到委托。
-        [self pickMediaFromSource:UIImagePickerControllerSourceTypePhotoLibrary];
-    }
-    else
-    {
-        //用户使用内置摄像头拍照或录像
-        [self pickMediaFromSource:UIImagePickerControllerSourceTypeCamera];
-    }
-}
 //UIImagePickerControllerSourceType:
 // UIImagePickerControllerSourceTypePhotoLibrary 用户将从现有的媒体库中选择照片或视频。照片将被返回到委托
 // UIImagePickerControllerSourceTypeCamera 用户使用内置摄像头拍照或录像
@@ -189,6 +230,16 @@
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
+#pragma mark - UIScrollViewDelegate
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    for (UIImageView *iv in [scrollView subviews])
+    {
+        self.imageView = iv;
+        break;
+    }
+    return self.imageView;
+}
 /*
 #pragma mark - Navigation
 
