@@ -29,29 +29,32 @@
 - (void)initView
 {
     //判断设备是否有摄像头
-    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
-        self.bCameraEnable = NO;
+        self.bCameraEnable = YES;
     }
-    
     //图片显示视图
-    _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH,SCREEN_HEIGHT-64)];
-    _imageView.backgroundColor = [UIColor grayColor];
+    self.imageView = [[UIImageView alloc] initWithFrame:
+                      CGRectMake(0,0,SCREEN_WIDTH,SCREEN_HEIGHT-64)];
+    self.imageView.backgroundColor = [UIColor yellowColor];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;//图片自适应
     
     //初始化scrollView
-    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
+    _scrollView = [[UIScrollView alloc] initWithFrame:
+                   CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
     _scrollView.pagingEnabled = YES;
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.showsVerticalScrollIndicator = NO;
     _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT-64);
     //如果scrollView的父视图被导航条控制则必须设置以下属性
     self.scrollView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
-    _scrollView.backgroundColor = [UIColor grayColor];
-    [_scrollView addSubview:_imageView];
+    _scrollView.backgroundColor = [UIColor whiteColor];
     _scrollView.delegate = self;
     _scrollView.minimumZoomScale = 1.0;
     _scrollView.maximumZoomScale = 2.0;
     _scrollView.zoomScale = 1.0;
+    
+    [_scrollView addSubview:_imageView];
     [self.view addSubview:_scrollView];
 }
 
@@ -216,7 +219,7 @@
             chosenImage = info[UIImagePickerControllerOriginalImage];
         }
         
-        self.image = [self shrinkImage:chosenImage toSize:self.imageView.bounds.size];
+        self.image = chosenImage;//[self shrinkImage:chosenImage toSize:self.imageView.bounds.size];
     }
     else if ([self.lastChosenMediaType isEqualToString:(NSString *)kUTTypeMovie])
     {
@@ -233,12 +236,17 @@
 #pragma mark - UIScrollViewDelegate
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
-    for (UIImageView *iv in [scrollView subviews])
-    {
-        self.imageView = iv;
-        break;
-    }
     return self.imageView;
+}
+
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView
+{
+    CGFloat xcenter = scrollView.center.x;
+    CGFloat ycenter = scrollView.center.y;
+    xcenter = scrollView.contentSize.width > scrollView.frame.size.width ? scrollView.contentSize.width/2 : xcenter;
+    ycenter = scrollView.contentSize.height > scrollView.frame.size.height ? scrollView.contentSize.height/2 : ycenter;
+    
+    self.imageView.center = CGPointMake(xcenter, ycenter);
 }
 /*
 #pragma mark - Navigation
