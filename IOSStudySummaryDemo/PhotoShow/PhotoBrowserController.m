@@ -9,13 +9,14 @@
 #import "PhotoBrowserController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <MobileCoreServices/UTCoreTypes.h>
+#import "ZCSPhotoShowView.h"
 
 @interface PhotoBrowserController ()
 <UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UIScrollViewDelegate>
 //UIImagePickerController是UINavigationController的子类，所以这里一定要继承UINavigationControllerDelegate，否则编译器会警告
 
 @property (strong, nonatomic) UIScrollView *scrollView;
-@property (strong, nonatomic) UIImageView *imageView; //显示图片
+@property (strong, nonatomic) ZCSPhotoShowView *imageShowView; //显示图片
 @property (strong, nonatomic) MPMoviePlayerController *moviePlayerController;
 @property (strong, nonatomic) UIImage *image;
 @property (strong, nonatomic) NSURL *movieURL;
@@ -33,11 +34,10 @@
     {
         self.bCameraEnable = YES;
     }
-    //图片显示视图
-    self.imageView = [[UIImageView alloc] initWithFrame:
-                      CGRectMake(0,0,SCREEN_WIDTH,SCREEN_HEIGHT-64)];
-    self.imageView.backgroundColor = [UIColor yellowColor];
-    self.imageView.contentMode = UIViewContentModeScaleAspectFit;//图片自适应
+    //图片显示视图、可缩放
+    self.imageShowView = [[ZCSPhotoShowView alloc] initWithFrame:
+                          CGRectMake(0,0,SCREEN_WIDTH,SCREEN_HEIGHT-64)];
+    //self.imageShowView.backgroundColor = [UIColor yellowColor];
     
     //初始化scrollView
     _scrollView = [[UIScrollView alloc] initWithFrame:
@@ -54,7 +54,7 @@
     _scrollView.maximumZoomScale = 2.0;
     _scrollView.zoomScale = 1.0;
     
-    [_scrollView addSubview:_imageView];
+    [_scrollView addSubview:self.imageShowView];
     [self.view addSubview:_scrollView];
 }
 
@@ -155,8 +155,8 @@
     //判断选择返回的mediaType类型
     if ([self.lastChosenMediaType isEqualToString:(NSString *)kUTTypeImage])
     {
-        self.imageView.image = self.image;
-        self.imageView.hidden = NO;
+        [self.imageShowView setImage:self.image];
+        self.imageShowView.hidden = NO;
         self.moviePlayerController.view.hidden = YES;
     }
     else if ([self.lastChosenMediaType isEqualToString:(NSString *)kUTTypeMovie])
@@ -165,16 +165,15 @@
         self.moviePlayerController = [[MPMoviePlayerController alloc] initWithContentURL:self.movieURL];
         [self.moviePlayerController play];
         UIView *movieView = self.moviePlayerController.view;
-        movieView.frame = self.imageView.frame;
+        movieView.frame = CGRectMake(0,0,SCREEN_WIDTH,SCREEN_HEIGHT-64);
         movieView.clipsToBounds = YES;
         [self.view addSubview:movieView];
-        self.imageView.hidden = YES;
+        self.imageShowView.hidden = YES;
     }
 }
 
-- (UIImage *)shrinkImage:(UIImage *)original toSize:(CGSize)size
+- (CGRect)matchRectWithImage:(UIImage *)original toSize:(CGSize)size
 {
-    UIGraphicsBeginImageContextWithOptions(size, YES, 0);
     CGFloat originalAspect = original.size.width / original.size.height;
     CGFloat targetAspect = size.width / size.height;
     CGRect targetRect;
@@ -196,8 +195,14 @@
     {
         targetRect = CGRectMake(0, 0, size.width, size.height);
     }
-    
-    [original drawInRect:targetRect];
+    return targetRect;
+}
+
+//使图片按长宽比例不变恰当显示在视图中
+- (UIImage *)shrinkImage:(UIImage *)original toSize:(CGSize)size
+{
+    UIGraphicsBeginImageContextWithOptions(size, YES, 0);
+    [original drawInRect:[self matchRectWithImage:original toSize:size]];
     UIImage *final = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return final;
@@ -233,21 +238,7 @@
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
-#pragma mark - UIScrollViewDelegate
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
-{
-    return self.imageView;
-}
 
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView
-{
-    CGFloat xcenter = scrollView.center.x;
-    CGFloat ycenter = scrollView.center.y;
-    xcenter = scrollView.contentSize.width > scrollView.frame.size.width ? scrollView.contentSize.width/2 : xcenter;
-    ycenter = scrollView.contentSize.height > scrollView.frame.size.height ? scrollView.contentSize.height/2 : ycenter;
-    
-    self.imageView.center = CGPointMake(xcenter, ycenter);
-}
 /*
 #pragma mark - Navigation
 

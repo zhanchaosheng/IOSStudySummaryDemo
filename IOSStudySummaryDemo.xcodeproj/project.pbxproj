@@ -11,6 +11,7 @@
 		1AC886EF1BA86AAC00DE373A /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC886EE1BA86AAC00DE373A /* pause.png */; };
 		643E11611B96D47400925B3C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643E11601B96D47400925B3C /* MapKit.framework */; };
 		643E11631B96D48100925B3C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643E11621B96D48100925B3C /* CoreLocation.framework */; };
+		64765D361BB52FB2000AD9E1 /* ZCSPhotoShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64765D351BB52FB2000AD9E1 /* ZCSPhotoShowView.m */; };
 		647F8B841B8B032400DF3A4F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 647F8B731B8B032400DF3A4F /* AppDelegate.m */; };
 		647F8B851B8B032400DF3A4F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 647F8B741B8B032400DF3A4F /* LaunchScreen.xib */; };
 		647F8B861B8B032400DF3A4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 647F8B761B8B032400DF3A4F /* Main.storyboard */; };
@@ -78,6 +79,8 @@
 		1AC886EE1BA86AAC00DE373A /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		643E11601B96D47400925B3C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		643E11621B96D48100925B3C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		64765D341BB52FB2000AD9E1 /* ZCSPhotoShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCSPhotoShowView.h; sourceTree = "<group>"; };
+		64765D351BB52FB2000AD9E1 /* ZCSPhotoShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCSPhotoShowView.m; sourceTree = "<group>"; };
 		647F8B721B8B032400DF3A4F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		647F8B731B8B032400DF3A4F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		647F8B751B8B032400DF3A4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -374,6 +377,8 @@
 			children = (
 				64D86A021BB24023002E8799 /* PhotoBrowserController.h */,
 				64D86A031BB24023002E8799 /* PhotoBrowserController.m */,
+				64765D341BB52FB2000AD9E1 /* ZCSPhotoShowView.h */,
+				64765D351BB52FB2000AD9E1 /* ZCSPhotoShowView.m */,
 			);
 			path = PhotoShow;
 			sourceTree = "<group>";
@@ -523,6 +528,7 @@
 				64D869FF1BB23FDF002E8799 /* KeyFrameAnimationViewController.m in Sources */,
 				647F8B8C1B8B032400DF3A4F /* UIView+ZCSAssociatedObjc.m in Sources */,
 				64D86A041BB24023002E8799 /* PhotoBrowserController.m in Sources */,
+				64765D361BB52FB2000AD9E1 /* ZCSPhotoShowView.m in Sources */,
 				64D86A081BB2403C002E8799 /* DownloadViewController.m in Sources */,
 				64D25EF01B9599B700C05F15 /* myAnnotation.m in Sources */,
 				647F8B881B8B032400DF3A4F /* firstViewController.m in Sources */,
