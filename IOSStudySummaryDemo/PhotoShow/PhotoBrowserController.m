@@ -165,7 +165,7 @@
         self.moviePlayerController = [[MPMoviePlayerController alloc] initWithContentURL:self.movieURL];
         [self.moviePlayerController play];
         UIView *movieView = self.moviePlayerController.view;
-        movieView.frame = CGRectMake(0,0,SCREEN_WIDTH,SCREEN_HEIGHT-64);
+        movieView.frame = CGRectMake(0,64,SCREEN_WIDTH,SCREEN_HEIGHT-64);
         movieView.clipsToBounds = YES;
         [self.view addSubview:movieView];
         self.imageShowView.hidden = YES;

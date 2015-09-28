@@ -17,11 +17,12 @@
 #import "DownloadViewController.h"
 #import "PhotoBrowserController.h"
 
-@interface firstViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface firstViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *tableGroupType;
 @property (strong, nonatomic) NSArray *tableGroupName;
+@property (strong, nonatomic) UIActivityIndicatorView *refreshView;
 
 @end
 
@@ -54,6 +55,9 @@
     //[self demoNSTimer];
     //[self demoCADisplayLink];
     //[self demoGCDTimer];
+    
+    //创建下拉刷新视图
+    //[self initRefreshView];
     
     //创建tableView
     [self initTableViewData];
@@ -110,7 +114,20 @@
     //_tableView.separatorColor = [UIColor blueColor];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    [self initRefreshView];
     [self.view addSubview:_tableView];
+}
+
+- (void)initRefreshView
+{
+    _refreshView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH-30)/2, 64, 30, 30)];
+    _refreshView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    _refreshView.hidesWhenStopped = NO;
+    //_refreshView.color = [UIColor greenColor];
+    UIView *tableBgView = [[UIView alloc] initWithFrame:self.tableView.bounds];
+    tableBgView.backgroundColor = [UIColor whiteColor];
+    [tableBgView addSubview:_refreshView];
+    self.tableView.backgroundView = tableBgView;
 }
 
 #pragma mark - 定时器总结
@@ -224,6 +241,31 @@
 {
     NSLog(@"displayLinkTimer running ...");
     [timer invalidate];//解除定时器
+}
+
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (scrollView.contentOffset.y < -95)
+    {
+        if (![self.refreshView isAnimating])
+        {
+            self.tableView.contentInset = UIEdgeInsetsMake(95, 0, 0, 0);
+            [self.refreshView startAnimating];
+            NSLog(@"下拉刷新开始!");
+            [self performSelector:@selector(stopRefreshView) withObject:nil afterDelay:5.0];
+        }
+    }
+}
+
+- (void)stopRefreshView
+{
+    if ([_refreshView isAnimating])
+    {
+        [_refreshView stopAnimating];
+        self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+        NSLog(@"下拉刷新结束!");
+    }
 }
 
 #pragma mark - UITableViewDataSource
