@@ -33,7 +33,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor orangeColor];
     self.navigationItem.title = @"知识点总结";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next"
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"定位"
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
                                                                              action:@selector(rightBarButtonClicked:)];
