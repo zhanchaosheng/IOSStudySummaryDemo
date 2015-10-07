@@ -2,6 +2,8 @@
 //  PhotoBrowserController.m
 //  IOSStudySummaryDemo
 //
+//  说明：使用UIImagePickerController从相册或摄像头选择一张图片或视频进行显示，其中图片的展示使用UIScrollView实现缩放
+//
 //  Created by Cusen on 15/9/22.
 //  Copyright © 2015年 huawei. All rights reserved.
 //

@@ -16,6 +16,7 @@
 #import "ComprehensiveCaseViewController.h"
 #import "DownloadViewController.h"
 #import "PhotoBrowserController.h"
+#import "PictureShowController.h"
 
 @interface firstViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
@@ -94,7 +95,7 @@
 
 - (void)initTableViewData
 {
-    _tableGroupName = [NSArray arrayWithObjects:@"动画总结",@"网络传输总结",@"图片展示总结",nil];
+    _tableGroupName = [NSArray arrayWithObjects:@"动画总结",@"网络传输总结",@"相册总结",nil];
     _tableGroupType = [NSMutableArray arrayWithCapacity:1];
     //动画总结
     NSMutableArray *animation = [NSMutableArray arrayWithObjects:@"基础动画",@"关键帧动画",@"组动画",@"过渡动画",@"综合案例", nil];
@@ -102,8 +103,8 @@
     //网络传输总结
     NSMutableArray *netWork = [NSMutableArray arrayWithObjects:@"上传",@"下载",nil];
     [_tableGroupType addObject:netWork];
-    //图片展示总结
-    NSMutableArray *photoShow = [NSMutableArray arrayWithObjects:@"图片浏览器", nil];
+    //相册总结
+    NSMutableArray *photoShow = [NSMutableArray arrayWithObjects:@"图片浏览器",@"照片展示",nil];
     [_tableGroupType addObject:photoShow];
 }
 
@@ -449,6 +450,11 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
         {
             PhotoBrowserController *photoBrowser = [[PhotoBrowserController alloc] init];
             [self.navigationController pushViewController:photoBrowser animated:YES];
+        }
+        else if ([subObject isEqualToString:@"照片展示"])
+        {
+            PictureShowController *pictureShow = [[PictureShowController alloc] init];
+            [self.navigationController pushViewController:pictureShow animated:YES];
         }
     }
 }

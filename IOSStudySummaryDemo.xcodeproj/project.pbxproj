@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A1790521BC2BBB900925B96 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A1790511BC2BBB800925B96 /* AssetsLibrary.framework */; };
+		1A7343EB1BC3A0C500988302 /* PictureCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7343EA1BC3A0C500988302 /* PictureCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		1A8F167C1BBF8501006B17E1 /* PictureShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8F167B1BBF8501006B17E1 /* PictureShowController.m */; settings = {ASSET_TAGS = (); }; };
 		1AC886ED1BA86A9800DE373A /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC886EC1BA86A9800DE373A /* start.png */; };
 		1AC886EF1BA86AAC00DE373A /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC886EE1BA86AAC00DE373A /* pause.png */; };
 		643E11611B96D47400925B3C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643E11601B96D47400925B3C /* MapKit.framework */; };
@@ -74,6 +77,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A1790511BC2BBB800925B96 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		1A7343E91BC3A0C500988302 /* PictureCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureCollectionViewCell.h; sourceTree = "<group>"; };
+		1A7343EA1BC3A0C500988302 /* PictureCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureCollectionViewCell.m; sourceTree = "<group>"; };
+		1A8F167A1BBF8501006B17E1 /* PictureShowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureShowController.h; sourceTree = "<group>"; };
+		1A8F167B1BBF8501006B17E1 /* PictureShowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureShowController.m; sourceTree = "<group>"; };
 		1AA5B9BB1B90A4040021B9D0 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		1AC886EC1BA86A9800DE373A /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 		1AC886EE1BA86AAC00DE373A /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
@@ -162,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A1790521BC2BBB900925B96 /* AssetsLibrary.framework in Frameworks */,
 				643E11631B96D48100925B3C /* CoreLocation.framework in Frameworks */,
 				643E11611B96D47400925B3C /* MapKit.framework in Frameworks */,
 			);
@@ -177,6 +186,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A1790531BC2BBD100925B96 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				1A1790511BC2BBB800925B96 /* AssetsLibrary.framework */,
+				643E11621B96D48100925B3C /* CoreLocation.framework */,
+				643E11601B96D47400925B3C /* MapKit.framework */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
 		647F8B711B8B032400DF3A4F /* IOSStudySummaryDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,10 +222,10 @@
 			isa = PBXGroup;
 			children = (
 				647F8B7A1B8B032400DF3A4F /* firstViewController.h */,
-				647F8B921B8B07B800DF3A4F /* secondViewController.h */,
-				647F8B811B8B032400DF3A4F /* ViewController.h */,
 				647F8B7B1B8B032400DF3A4F /* firstViewController.m */,
+				647F8B921B8B07B800DF3A4F /* secondViewController.h */,
 				647F8B931B8B07B800DF3A4F /* secondViewController.m */,
+				647F8B811B8B032400DF3A4F /* ViewController.h */,
 				647F8B821B8B032400DF3A4F /* ViewController.m */,
 				64D869F11BB23FDF002E8799 /* Animation */,
 				64D86A051BB2403C002E8799 /* NetWorkTransfer */,
@@ -250,8 +269,7 @@
 		64A821A91B85883F0085B37D = {
 			isa = PBXGroup;
 			children = (
-				643E11621B96D48100925B3C /* CoreLocation.framework */,
-				643E11601B96D47400925B3C /* MapKit.framework */,
+				1A1790531BC2BBD100925B96 /* Framework */,
 				647F8B711B8B032400DF3A4F /* IOSStudySummaryDemo */,
 				64A821CE1B8588400085B37D /* IOSStudySummaryDemoTests */,
 				64A821B31B85883F0085B37D /* Products */,
@@ -379,6 +397,10 @@
 				64D86A031BB24023002E8799 /* PhotoBrowserController.m */,
 				64765D341BB52FB2000AD9E1 /* ZCSPhotoShowView.h */,
 				64765D351BB52FB2000AD9E1 /* ZCSPhotoShowView.m */,
+				1A8F167A1BBF8501006B17E1 /* PictureShowController.h */,
+				1A8F167B1BBF8501006B17E1 /* PictureShowController.m */,
+				1A7343E91BC3A0C500988302 /* PictureCollectionViewCell.h */,
+				1A7343EA1BC3A0C500988302 /* PictureCollectionViewCell.m */,
 			);
 			path = PhotoShow;
 			sourceTree = "<group>";
@@ -524,11 +546,13 @@
 				64D869FE1BB23FDF002E8799 /* GroupAnimationViewController.m in Sources */,
 				64FF767F1B8C45EC0017E09F /* ZCSAnimatorTransitioning.m in Sources */,
 				647F8B841B8B032400DF3A4F /* AppDelegate.m in Sources */,
+				1A7343EB1BC3A0C500988302 /* PictureCollectionViewCell.m in Sources */,
 				647F8B941B8B07B800DF3A4F /* secondViewController.m in Sources */,
 				64D869FF1BB23FDF002E8799 /* KeyFrameAnimationViewController.m in Sources */,
 				647F8B8C1B8B032400DF3A4F /* UIView+ZCSAssociatedObjc.m in Sources */,
 				64D86A041BB24023002E8799 /* PhotoBrowserController.m in Sources */,
 				64765D361BB52FB2000AD9E1 /* ZCSPhotoShowView.m in Sources */,
+				1A8F167C1BBF8501006B17E1 /* PictureShowController.m in Sources */,
 				64D86A081BB2403C002E8799 /* DownloadViewController.m in Sources */,
 				64D25EF01B9599B700C05F15 /* myAnnotation.m in Sources */,
 				647F8B881B8B032400DF3A4F /* firstViewController.m in Sources */,
