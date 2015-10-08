@@ -95,7 +95,7 @@
 
 - (void)initTableViewData
 {
-    _tableGroupName = [NSArray arrayWithObjects:@"动画总结",@"网络传输总结",@"相册总结",nil];
+    _tableGroupName = [NSArray arrayWithObjects:@"动画总结",@"网络传输总结",@"相册框架总结",nil];
     _tableGroupType = [NSMutableArray arrayWithCapacity:1];
     //动画总结
     NSMutableArray *animation = [NSMutableArray arrayWithObjects:@"基础动画",@"关键帧动画",@"组动画",@"过渡动画",@"综合案例", nil];

@@ -2,7 +2,7 @@
 //  PictureShowController.m
 //  IOSStudySummaryDemo
 //
-//  说明：使用AssetsLibrary、PhotoKit（IOS8）访问相册遍历照片，使用UICollectionView将照片按时刻展示出来
+//  说明：使用AssetsLibrary、PhotoKit（IOS8）访问相册遍历照片，使用UICollectionView将照片展示出来
 //
 //  Created by Cusen on 15/10/3.
 //  Copyright © 2015年 huawei. All rights reserved.
@@ -11,14 +11,18 @@
 #import "PictureShowController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "PictureCollectionViewCell.h"
+#import <Photos/Photos.h>
 
 
 @interface PictureShowController ()
-<UIActionSheetDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
+<UIActionSheetDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate>
 @property (strong,nonatomic) ALAssetsLibrary *assetLibrary;
 @property (strong,nonatomic) UICollectionView *collectionView;
 @property (strong,nonatomic) NSMutableArray *assetUrlArray;
 @property (strong,nonatomic) NSMutableArray *assetNameArray;
+@property (assign,nonatomic) BOOL bFetchByPhotoKit;
+@property (strong,nonatomic) PHFetchResult *assetsFetchResults;
+@property (strong,nonatomic) PHImageManager *phImageMgr;
 @end
 
 @implementation PictureShowController
@@ -27,6 +31,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"照片展示";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"框架选择"
+                                                                              style:UIBarButtonItemStylePlain
+                                                                             target:self
+                                                                             action:@selector(libSelectBtnClicked:)];
     
     //初始化照片显示界面
     [self initView];
@@ -46,9 +54,6 @@
     
     //设置相册变化通知
     [self addAssetsLibraryChangedNotification];
-    
-    //遍历照片
-    [self enumPictures];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,7 +77,33 @@
     [self.collectionView registerClass:[PictureCollectionViewCell class]
             forCellWithReuseIdentifier:@"PictureCollectionViewCell"];
 }
+- (void)libSelectBtnClicked:(UIBarButtonItem *)sender
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"相册框架选择"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"取消"
+                                             destructiveButtonTitle:nil
+                                                  otherButtonTitles:@"AssetsLibrary",@"PhotoKit",nil];
+    [actionSheet showInView:self.view];
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            //使用AssetsLibrary获取照片
+            self.bFetchByPhotoKit = NO;
+            [self enumPictures];
+            break;
+        case 1:
+            self.bFetchByPhotoKit = YES;
+            [self fetchPictureByPhotoKit];
+            break;
+        default:
+            break;
+    }
+}
 
+#pragma mark - AssetsLibrary
 //遍历照片
 - (void)enumPictures
 {
@@ -135,10 +166,23 @@
 {
     NSLog(@"本地相册有变化!");
 }
+#pragma mark - PhotoKit
+- (void)fetchPictureByPhotoKit
+{
+    // 获取所有资源的集合，并按资源的创建时间排序
+    PHFetchOptions *options = [[PHFetchOptions alloc] init];
+    options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
+    self.assetsFetchResults = [PHAsset fetchAssetsWithOptions:options];
+    [self.collectionView reloadData];
+}
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    if (self.bFetchByPhotoKit)
+    {
+        return self.assetsFetchResults.count;
+    }
     return self.assetUrlArray.count;
 }
 
@@ -150,20 +194,42 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PictureCollectionViewCell *myCell = (PictureCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"PictureCollectionViewCell" forIndexPath:indexPath];
-    
-    NSURL *assetUrl = [self.assetUrlArray objectAtIndex:indexPath.row];
-    NSString *assetName = [self.assetNameArray objectAtIndex:indexPath.row];
-    if (assetUrl && assetName)
+    if (self.bFetchByPhotoKit)
     {
-        myCell.nameLabel.text = assetName;
-        //加载图片
-        [self.assetLibrary assetForURL:assetUrl
-                           resultBlock:^(ALAsset *asset) {
-                               myCell.imageView.image = [UIImage imageWithCGImage:asset.thumbnail];
-                           }
-                          failureBlock:^(NSError *error) {
-                              NSLog(@"%@",error);
-                          }];
+        PHAsset *asset = self.assetsFetchResults[indexPath.row];
+        if (asset)
+        {
+            PHImageRequestOptions *requestOpt = [[PHImageRequestOptions alloc] init];
+            requestOpt.deliveryMode = PHImageRequestOptionsDeliveryModeFastFormat;
+            if (self.phImageMgr == nil)
+            {
+                self.phImageMgr = [[PHImageManager alloc] init];
+            }
+            [self.phImageMgr requestImageForAsset:asset
+                                       targetSize:PHImageManagerMaximumSize
+                                      contentMode:PHImageContentModeDefault
+                                          options:requestOpt
+                                    resultHandler:^(UIImage *result, NSDictionary *info) {
+                                        myCell.imageView.image = result;
+                                    }];
+        }
+    }
+    else
+    {
+        NSURL *assetUrl = [self.assetUrlArray objectAtIndex:indexPath.row];
+        NSString *assetName = [self.assetNameArray objectAtIndex:indexPath.row];
+        if (assetUrl && assetName)
+        {
+            //myCell.nameLabel.text = assetName;
+            //加载图片
+            [self.assetLibrary assetForURL:assetUrl
+                               resultBlock:^(ALAsset *asset) {
+                                   myCell.imageView.image = [UIImage imageWithCGImage:asset.thumbnail];
+                               }
+                              failureBlock:^(NSError *error) {
+                                  NSLog(@"%@",error);
+                              }];
+        }
     }
     
     return myCell;
@@ -191,26 +257,26 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGRect rect = self.view.bounds;
-    CGFloat cellWidth = (rect.size.width-20)/4;
+    CGFloat cellWidth = (rect.size.width-5)/4;
     return CGSizeMake(cellWidth, 55+15);
 }
 
 //定义每个UICollectionView 的间距（返回UIEdgeInsets：上、左、下、右）
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(5, 5, 5, 5);
+    return UIEdgeInsetsMake(1, 1, 1, 1);
 }
 
 //定义每个UICollectionView 纵向的间距（同一行相邻cell之间的距离）
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 0;
+    return 1;
 }
 
 //定义每个UICollectionView 横向的间距（同一列相邻cell之间的距离）
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 5;
+    return 1;
 }
 
 /*
