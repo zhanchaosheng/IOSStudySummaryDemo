@@ -17,6 +17,7 @@
 #import "DownloadViewController.h"
 #import "PhotoBrowserController.h"
 #import "PictureShowController.h"
+#import "CoreTextViewController.h"
 
 @interface firstViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
@@ -95,7 +96,7 @@
 
 - (void)initTableViewData
 {
-    _tableGroupName = [NSArray arrayWithObjects:@"动画总结",@"网络传输总结",@"相册框架总结",nil];
+    _tableGroupName = [NSArray arrayWithObjects:@"动画总结",@"网络传输总结",@"相册框架总结",@"CoreText",nil];
     _tableGroupType = [NSMutableArray arrayWithCapacity:1];
     //动画总结
     NSMutableArray *animation = [NSMutableArray arrayWithObjects:@"基础动画",@"关键帧动画",@"组动画",@"过渡动画",@"综合案例", nil];
@@ -106,6 +107,9 @@
     //相册总结
     NSMutableArray *photoShow = [NSMutableArray arrayWithObjects:@"图片浏览器",@"照片展示",nil];
     [_tableGroupType addObject:photoShow];
+    //coreText
+    NSMutableArray *coreText = [NSMutableArray arrayWithObjects:@"基于coreText的排版引擎", nil];
+    [_tableGroupType addObject:coreText];
 }
 
 - (void)initTableView
@@ -455,6 +459,14 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
         {
             PictureShowController *pictureShow = [[PictureShowController alloc] init];
             [self.navigationController pushViewController:pictureShow animated:YES];
+        }
+    }
+    else if (indexPath.section == 3)
+    {
+        if (indexPath.row == 0)
+        {
+            CoreTextViewController *coreText = [[CoreTextViewController alloc] init];
+            [self.navigationController pushViewController:coreText animated:YES];
         }
     }
 }
