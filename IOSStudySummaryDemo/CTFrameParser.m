@@ -40,9 +40,10 @@
                                   config:(CTFrameParserConfig *)config
                                   height:(CGFloat)height
 {
-    
+    //创建绘制的区域，CoreText 本身支持各种文字排版的区域，我们这里简单地将 UIView 的整个界面作为排版的区域。
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathAddRect(path, NULL, CGRectMake(0, 0, config.width, height));
+    //CGPathAddEllipseInRect(path, NULL, rect);//椭圆区域
     
     CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
     CFRelease(path);
@@ -81,11 +82,19 @@
 #pragma mark - 基于排版模板
 + (CoreTextData *)parseTemplateFile:(NSString *)path config:(CTFrameParserConfig*)config
 {
-    NSAttributedString *content = [self loadTemplateFile:path config:config];
-    return [self parseAttributedContent:content config:config];
+    NSMutableArray *imageArray = [NSMutableArray array]; //用于保存图片信息
+    
+    NSAttributedString *content = [self loadTemplateFile:path
+                                                  config:config
+                                              imageArray:imageArray];
+    CoreTextData *data = [self parseAttributedContent:content config:config];
+    data.imageArray = imageArray;
+    return data;
 }
 
-+ (NSAttributedString *)loadTemplateFile:(NSString *)path config:(CTFrameParserConfig*)config
++ (NSAttributedString *)loadTemplateFile:(NSString *)path
+                                  config:(CTFrameParserConfig*)config
+                              imageArray:(NSMutableArray *)imageArray
 {
     NSData *data = [NSData dataWithContentsOfFile:path];
     NSMutableAttributedString *result = [[NSMutableAttributedString alloc] init];
@@ -104,6 +113,18 @@
                     NSAttributedString *as =
                     [self parseAttributedContentFromNSDictionary:dict
                                                           config:config];
+                    [result appendAttributedString:as];
+                }
+                else if ([type isEqualToString:@"img"])
+                {
+                    //创建 CoreTextImageData
+                    CoreTextImageData *imagedata = [[CoreTextImageData alloc] init];
+                    imagedata.name = dict[@"name"];
+                    imagedata.position = [result length];
+                    [imageArray addObject:imagedata];
+                    //创建空白占位符，并且设置它的CTRunDelegate信息
+                    NSAttributedString *as = [self parseImageDataFromNSDictionary:dict
+                                                                           config:config];
                     [result appendAttributedString:as];
                 }
             }
@@ -152,6 +173,45 @@
     {
         return nil;
     }
+}
+
+static CGFloat ascentCallback(void *ref)
+{
+    return [(NSNumber*)[(__bridge NSDictionary*)ref objectForKey:@"height"] floatValue];
+}
+
+static CGFloat descentCallback(void *ref)
+{
+    return 0;
+}
+
+static CGFloat widthCallback(void* ref)
+{
+    return [(NSNumber*)[(__bridge NSDictionary*)ref objectForKey:@"width"] floatValue];
+}
+
++ (NSAttributedString *)parseImageDataFromNSDictionary:(NSDictionary *)dict
+                                                config:(CTFrameParserConfig*)config
+{
+    CTRunDelegateCallbacks callbacks;
+    memset(&callbacks, 0, sizeof(CTRunDelegateCallbacks));
+    callbacks.version = kCTRunDelegateVersion1;
+    callbacks.getAscent = ascentCallback;
+    callbacks.getDescent = descentCallback;
+    callbacks.getWidth = widthCallback;
+    CTRunDelegateRef delegate = CTRunDelegateCreate(&callbacks, (__bridge void *)(dict));
+    
+    // 使用 0xFFFC 作为空白的占位符,并且设置其CTRunDelegate信息
+    unichar objectReplacementChar = 0xFFFC;
+    NSString * content = [NSString stringWithCharacters:&objectReplacementChar length:1];
+    NSDictionary * attributes = [self attributesWithConfig:config];
+    NSMutableAttributedString * space =
+    [[NSMutableAttributedString alloc] initWithString:content
+                                           attributes:attributes];
+    CFAttributedStringSetAttribute((CFMutableAttributedStringRef)space,
+                                   CFRangeMake(0, 1), kCTRunDelegateAttributeName, delegate);
+    CFRelease(delegate);
+    return space;
 }
 
 + (CoreTextData *)parseAttributedContent:(NSAttributedString *)content config:(CTFrameParserConfig*)config
