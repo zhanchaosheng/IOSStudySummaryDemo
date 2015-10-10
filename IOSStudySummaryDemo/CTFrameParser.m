@@ -83,18 +83,22 @@
 + (CoreTextData *)parseTemplateFile:(NSString *)path config:(CTFrameParserConfig*)config
 {
     NSMutableArray *imageArray = [NSMutableArray array]; //用于保存图片信息
+    NSMutableArray *linkArray = [NSMutableArray array]; //用于保存连接信息
     
     NSAttributedString *content = [self loadTemplateFile:path
                                                   config:config
-                                              imageArray:imageArray];
+                                              imageArray:imageArray
+                                               linkArray:linkArray];
     CoreTextData *data = [self parseAttributedContent:content config:config];
     data.imageArray = imageArray;
+    data.linkArray = linkArray;
     return data;
 }
 
 + (NSAttributedString *)loadTemplateFile:(NSString *)path
                                   config:(CTFrameParserConfig*)config
                               imageArray:(NSMutableArray *)imageArray
+                               linkArray:(NSMutableArray *)linkArray
 {
     NSData *data = [NSData dataWithContentsOfFile:path];
     NSMutableAttributedString *result = [[NSMutableAttributedString alloc] init];
@@ -126,6 +130,21 @@
                     NSAttributedString *as = [self parseImageDataFromNSDictionary:dict
                                                                            config:config];
                     [result appendAttributedString:as];
+                }
+                else if ([type isEqualToString:@"link"])
+                {
+                    NSUInteger startPos = result.length;
+                    NSAttributedString *as = [self parseAttributedContentFromNSDictionary:dict
+                                                                                   config:config];
+                    [result appendAttributedString:as];
+                    // 创建 CoreTextLinkData
+                    NSUInteger length = result.length - startPos;
+                    NSRange linkRange = NSMakeRange(startPos, length);
+                    CoreTextLinkData *linkData = [[CoreTextLinkData alloc] init];
+                    linkData.title = dict[@"content"];
+                    linkData.url = dict[@"url"];
+                    linkData.range = linkRange;
+                    [linkArray addObject:linkData];
                 }
             }
         }
@@ -168,6 +187,10 @@
     else if ([name isEqualToString:@"black"])
     {
         return [UIColor blackColor];
+    }
+    else if ([name isEqualToString:@"purple"])
+    {
+        return [UIColor purpleColor];
     }
     else
     {

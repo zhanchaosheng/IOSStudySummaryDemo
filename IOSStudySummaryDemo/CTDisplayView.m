@@ -7,6 +7,7 @@
 //
 
 #import "CTDisplayView.h"
+#import "CoreTextUtils.h"
 
 @implementation CTDisplayView
 
@@ -40,5 +41,39 @@
     
 }
 
+//添加点击支持,除了下面的方法也可以增加UITapGestureRecognizer手势实现
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.data == nil)
+    {
+        return;
+    }
+    UITouch *touch = [touches anyObject];
+    CGPoint touchPoint = [touch locationInView:self];
+    
+    //检测是否点中图片
+    for (CoreTextImageData * imageData in self.data.imageArray)
+    {
+        // 翻转坐标系，因为 imageData 中的坐标是 CoreText 的坐标系
+        CGRect imageRect = imageData.imagePosition;
+        CGPoint imagePosition = imageRect.origin;
+        imagePosition.y = self.bounds.size.height - imageRect.origin.y - imageRect.size.height;
+        CGRect rect = CGRectMake(imagePosition.x, imagePosition.y, imageRect.size.width, imageRect.size.height);
+        // 检测点击位置 Point 是否在 rect 之内
+        if (CGRectContainsPoint(rect, touchPoint))
+        {
+            // 在这里处理点击后的逻辑
+            NSLog(@"图片%@被点击了",imageData.name);
+            break;
+        }
+    }
+    
+    //检测是否点中连接
+    CoreTextLinkData *linkData = [CoreTextUtils touchLinkInView:self atPoint:touchPoint data:self.data];
+    if (linkData)
+    {
+        NSLog(@"连接被点击了:%@",linkData.url);
+    }
+}
 
 @end

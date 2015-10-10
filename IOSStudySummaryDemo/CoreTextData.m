@@ -47,7 +47,7 @@
     NSArray *lines = (NSArray *)CTFrameGetLines(self.ctFrame);
     NSUInteger lineCount = [lines count];
     CGPoint lineOrigins[lineCount];
-    CTFrameGetLineOrigins(self.ctFrame, CFRangeMake(0, 0), lineOrigins);
+    CTFrameGetLineOrigins(self.ctFrame, CFRangeMake(0, 0), lineOrigins);//获得每一行的 origin 坐标
     
     int imgIndex = 0;
     CoreTextImageData * imageData = self.imageArray[0];
@@ -112,5 +112,7 @@
 
 
 @implementation CoreTextImageData
+@end
 
+@implementation CoreTextLinkData
 @end

@@ -9,24 +9,29 @@
   "size" : 16,
   "type" : "txt"
   },
+ { "color" : "purple",
+ "content" : " 这是一个链接 ",
+ "url" : "http://www.baidu.com",
+ "type" : "link"
+ },
   { "color" : "red",
   "content" : " 内容、颜色、字体 ",
   "size" : 22,
   "type" : "txt"
-  },
+ },
+ {
+ "type" : "img",
+ "width" : 50,
+ "height" : 50,
+ "name" : "pause.png"
+ },
   { "color" : "black",
   "content" : " 大小等信息。\n",
   "size" : 16,
   "type" : "txt"
   },
-  {
-  "type" : "img",
-  "width" : 100,
-  "height" : 100,
-  "name" : "pause.png"
-  },
   { "color" : "default",
-  "content" : " 我在开发猿题库应用时，自己定义了一个基于 UBB 的排版模版，但是实现该排版文件的解析器要花费大量的篇幅，考虑到这并不是本章的重点，所以我们以一个较简单的排版文件来讲解其思想。",
+  "content" : " 在实际开发应用时，常常会自定义一个排版模版，而模板和图片通常会通过服务器端下载，这样可以很方便的更改界面的布局排版。",
   "type" : "txt"
   }
 ]

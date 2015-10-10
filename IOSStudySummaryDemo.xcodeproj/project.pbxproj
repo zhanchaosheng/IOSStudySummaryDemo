@@ -26,6 +26,7 @@
 		647F8B8C1B8B032400DF3A4F /* UIView+ZCSAssociatedObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 647F8B801B8B032400DF3A4F /* UIView+ZCSAssociatedObjc.m */; };
 		647F8B8D1B8B032400DF3A4F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 647F8B821B8B032400DF3A4F /* ViewController.m */; };
 		647F8B941B8B07B800DF3A4F /* secondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 647F8B931B8B07B800DF3A4F /* secondViewController.m */; };
+		648F30AB1BC9014200F1C7BD /* CoreTextUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 648F30AA1BC9014200F1C7BD /* CoreTextUtils.m */; };
 		64A821D21B8588400085B37D /* IOSStudySummaryDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A821D11B8588400085B37D /* IOSStudySummaryDemoTests.m */; };
 		64C63FE91BC7A07400ACF83A /* CoreTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C63FE81BC7A07400ACF83A /* CoreTextViewController.m */; };
 		64C63FEC1BC7A0E300ACF83A /* CTFrameParserConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C63FEB1BC7A0E300ACF83A /* CTFrameParserConfig.m */; };
@@ -114,6 +115,8 @@
 		647F8B831B8B032400DF3A4F /* ZCSViewCallBackProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCSViewCallBackProtocol.h; sourceTree = "<group>"; };
 		647F8B921B8B07B800DF3A4F /* secondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = secondViewController.h; sourceTree = "<group>"; };
 		647F8B931B8B07B800DF3A4F /* secondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = secondViewController.m; sourceTree = "<group>"; };
+		648F30A91BC9014200F1C7BD /* CoreTextUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTextUtils.h; sourceTree = "<group>"; };
+		648F30AA1BC9014200F1C7BD /* CoreTextUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextUtils.m; sourceTree = "<group>"; };
 		64A821B21B85883F0085B37D /* IOSStudySummaryDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSStudySummaryDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A821CB1B8588400085B37D /* IOSStudySummaryDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IOSStudySummaryDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A821D01B8588400085B37D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -339,6 +342,8 @@
 				64C63FF41BC7A71F00ACF83A /* CoreTextData.m */,
 				64C63FF81BC7AB8300ACF83A /* CTDisplayView.h */,
 				64C63FF91BC7AB8300ACF83A /* CTDisplayView.m */,
+				648F30A91BC9014200F1C7BD /* CoreTextUtils.h */,
+				648F30AA1BC9014200F1C7BD /* CoreTextUtils.m */,
 			);
 			name = CoreText;
 			sourceTree = "<group>";
@@ -591,6 +596,7 @@
 				64D869FE1BB23FDF002E8799 /* GroupAnimationViewController.m in Sources */,
 				64C63FF21BC7A6D000ACF83A /* CTFrameParser.m in Sources */,
 				64FF767F1B8C45EC0017E09F /* ZCSAnimatorTransitioning.m in Sources */,
+				648F30AB1BC9014200F1C7BD /* CoreTextUtils.m in Sources */,
 				647F8B841B8B032400DF3A4F /* AppDelegate.m in Sources */,
 				1A7343EB1BC3A0C500988302 /* PictureCollectionViewCell.m in Sources */,
 				647F8B941B8B07B800DF3A4F /* secondViewController.m in Sources */,

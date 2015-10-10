@@ -14,15 +14,26 @@
 @property (assign, nonatomic) CTFrameRef ctFrame;
 @property (assign, nonatomic) CGFloat height;
 @property (strong, nonatomic) NSArray *imageArray;
+@property (strong, nonatomic) NSArray *linkArray;
 
 @end
 
 
-
+//图片信息
 @interface CoreTextImageData : NSObject
 
 @property (copy, nonatomic) NSString *name;
 @property (assign, nonatomic) NSUInteger position;
 @property (assign, nonatomic) CGRect imagePosition;
+
+@end
+
+
+//连接信息
+@interface CoreTextLinkData : NSObject
+
+@property (strong, nonatomic) NSString * title;
+@property (strong, nonatomic) NSString * url;
+@property (assign, nonatomic) NSRange range;
 
 @end
