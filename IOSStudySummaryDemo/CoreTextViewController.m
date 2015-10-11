@@ -22,7 +22,7 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"CoreText排版引擎";
     CTDisplayView * displayView = [[CTDisplayView alloc] initWithFrame:
-                                   CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT)];
+                                   CGRectMake(4, 68, SCREEN_WIDTH-8, SCREEN_HEIGHT-68)];
     
 //    CTFrameParserConfig *config = [[CTFrameParserConfig alloc] init];
 //    config.textColor = [UIColor redColor];

@@ -96,7 +96,7 @@
 
 - (void)initTableViewData
 {
-    _tableGroupName = [NSArray arrayWithObjects:@"动画总结",@"网络传输总结",@"相册框架总结",@"CoreText",nil];
+    _tableGroupName = [NSArray arrayWithObjects:@"动画总结",@"网络传输总结",@"相册框架总结",@"排版引擎总结",nil];
     _tableGroupType = [NSMutableArray arrayWithCapacity:1];
     //动画总结
     NSMutableArray *animation = [NSMutableArray arrayWithObjects:@"基础动画",@"关键帧动画",@"组动画",@"过渡动画",@"综合案例", nil];
@@ -108,7 +108,7 @@
     NSMutableArray *photoShow = [NSMutableArray arrayWithObjects:@"图片浏览器",@"照片展示",nil];
     [_tableGroupType addObject:photoShow];
     //coreText
-    NSMutableArray *coreText = [NSMutableArray arrayWithObjects:@"基于coreText的排版引擎", nil];
+    NSMutableArray *coreText = [NSMutableArray arrayWithObjects:@"基于coreText的排版引擎",@"基于UIWebView的混合编程", nil];
     [_tableGroupType addObject:coreText];
 }
 
@@ -461,12 +461,16 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
             [self.navigationController pushViewController:pictureShow animated:YES];
         }
     }
-    else if (indexPath.section == 3)
+    else if (indexPath.section == 3)//排版引擎总结
     {
-        if (indexPath.row == 0)
+        if (indexPath.row == 0)//coreText
         {
             CoreTextViewController *coreText = [[CoreTextViewController alloc] init];
             [self.navigationController pushViewController:coreText animated:YES];
+        }
+        else if (indexPath.row == 1)//UIWebView
+        {
+            
         }
     }
 }
