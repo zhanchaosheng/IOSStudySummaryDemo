@@ -2,6 +2,11 @@
 //  WebViewController.m
 //  IOSStudySummaryDemo
 //
+//  通过 UIWebView 的 loadRequest 加载网页，或者 loadHTMLString:baseURL: 加载经过模板渲染的HTML网页。
+//  理解 objective-C 和 javascript 互相调用的方法：
+//  OC -> (同步调用) UIWebView的stringByEvaluatingJavaScriptFromString: -> JS
+//  JS ->  (异步调用) 用iFrame加载特殊URL触发delegate回调 -> OC
+//
 //  Created by Cusen on 15/10/12.
 //  Copyright (c) 2015年 huawei. All rights reserved.
 //
@@ -63,9 +68,20 @@
         NSURL *url = [NSURL URLWithString:webUrl];
         NSURLRequest *request = [NSURLRequest requestWithURL:url
                                                  cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                             timeoutInterval:5];
+                                             timeoutInterval:30];
         [self.webView loadRequest:request];
     }
+}
+
+//通过模板渲染加载HTML网页，得到我们想要的排版布局和内容并显示出来
+- (void)loadWebViewFromHTML
+{
+    NSString *path = [[NSBundle mainBundle] bundlePath];
+    NSURL *baseUrl = [NSURL fileURLWithPath:path];
+    NSString *htmlString;
+    //通过模板渲染得到内容
+    //NSString *htmlString = [self htmlContent];
+    [self.webView loadHTMLString:htmlString baseURL:baseUrl];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -77,6 +93,25 @@
 }
 
 #pragma mark - UIWebViewDelegate
+//即将请求网络时调用该函数
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request
+ navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSURL *url = [request URL];
+    NSLog(@"%@",url);
+    //javascript调objective-c，是在UIWebView中发起一次特殊的网络请求(例如以gap://开头的地址)，触发调用delegate函数，如本函数
+    if ([[url scheme] isEqualToString:@"gap:"])//这里识别出是特殊网络请求
+    {
+        //这里做javascript调objective-c的事情
+        //...
+        //做完后调用以下方法调回javascript,该方法是让webView同步执行一段javascript代码，然后得到执行结果返回
+        NSString *ret = [webView stringByEvaluatingJavaScriptFromString:@"alert('done')"];
+        NSLog(@"%@",ret);
+        return NO;
+    }
+    return YES;
+}
+
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     //加载开始
