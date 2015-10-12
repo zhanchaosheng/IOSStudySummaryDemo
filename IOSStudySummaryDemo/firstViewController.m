@@ -18,6 +18,7 @@
 #import "PhotoBrowserController.h"
 #import "PictureShowController.h"
 #import "CoreTextViewController.h"
+#import "WebViewController.h"
 
 @interface firstViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
@@ -470,7 +471,8 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
         }
         else if (indexPath.row == 1)//UIWebView
         {
-            
+            WebViewController *webView = [[WebViewController alloc] init];
+            [self.navigationController pushViewController:webView animated:YES];
         }
     }
 }

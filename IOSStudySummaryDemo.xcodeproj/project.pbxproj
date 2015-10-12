@@ -26,14 +26,15 @@
 		647F8B8C1B8B032400DF3A4F /* UIView+ZCSAssociatedObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 647F8B801B8B032400DF3A4F /* UIView+ZCSAssociatedObjc.m */; };
 		647F8B8D1B8B032400DF3A4F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 647F8B821B8B032400DF3A4F /* ViewController.m */; };
 		647F8B941B8B07B800DF3A4F /* secondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 647F8B931B8B07B800DF3A4F /* secondViewController.m */; };
-		648F30AB1BC9014200F1C7BD /* CoreTextUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 648F30AA1BC9014200F1C7BD /* CoreTextUtils.m */; };
 		64A821D21B8588400085B37D /* IOSStudySummaryDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A821D11B8588400085B37D /* IOSStudySummaryDemoTests.m */; };
-		64C63FE91BC7A07400ACF83A /* CoreTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C63FE81BC7A07400ACF83A /* CoreTextViewController.m */; };
-		64C63FEC1BC7A0E300ACF83A /* CTFrameParserConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C63FEB1BC7A0E300ACF83A /* CTFrameParserConfig.m */; };
+		64BE4EAB1BCB92770085FBA3 /* CoreTextData.m in Sources */ = {isa = PBXBuildFile; fileRef = 64BE4E9E1BCB92770085FBA3 /* CoreTextData.m */; };
+		64BE4EAC1BCB92770085FBA3 /* CoreTextUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 64BE4EA01BCB92770085FBA3 /* CoreTextUtils.m */; };
+		64BE4EAD1BCB92770085FBA3 /* CoreTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64BE4EA21BCB92770085FBA3 /* CoreTextViewController.m */; };
+		64BE4EAE1BCB92770085FBA3 /* CTDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64BE4EA41BCB92770085FBA3 /* CTDisplayView.m */; };
+		64BE4EAF1BCB92770085FBA3 /* CTFrameParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 64BE4EA61BCB92770085FBA3 /* CTFrameParser.m */; };
+		64BE4EB01BCB92770085FBA3 /* CTFrameParserConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 64BE4EA81BCB92770085FBA3 /* CTFrameParserConfig.m */; };
+		64BE4EB11BCB92770085FBA3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64BE4EAA1BCB92770085FBA3 /* WebViewController.m */; };
 		64C63FEF1BC7A2AE00ACF83A /* UIView+frameAdjust.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C63FEE1BC7A2AE00ACF83A /* UIView+frameAdjust.m */; };
-		64C63FF21BC7A6D000ACF83A /* CTFrameParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C63FF11BC7A6D000ACF83A /* CTFrameParser.m */; };
-		64C63FF51BC7A71F00ACF83A /* CoreTextData.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C63FF41BC7A71F00ACF83A /* CoreTextData.m */; };
-		64C63FFA1BC7AB8300ACF83A /* CTDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C63FF91BC7AB8300ACF83A /* CTDisplayView.m */; };
 		64C63FFC1BC7C46400ACF83A /* content.json in Resources */ = {isa = PBXBuildFile; fileRef = 64C63FFB1BC7C46400ACF83A /* content.json */; };
 		64D072CD1B94290100108C45 /* MCFireworksButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D072CA1B94290100108C45 /* MCFireworksButton.m */; };
 		64D072CE1B94290100108C45 /* MCFireworksView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D072CC1B94290100108C45 /* MCFireworksView.m */; };
@@ -115,24 +116,26 @@
 		647F8B831B8B032400DF3A4F /* ZCSViewCallBackProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCSViewCallBackProtocol.h; sourceTree = "<group>"; };
 		647F8B921B8B07B800DF3A4F /* secondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = secondViewController.h; sourceTree = "<group>"; };
 		647F8B931B8B07B800DF3A4F /* secondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = secondViewController.m; sourceTree = "<group>"; };
-		648F30A91BC9014200F1C7BD /* CoreTextUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTextUtils.h; sourceTree = "<group>"; };
-		648F30AA1BC9014200F1C7BD /* CoreTextUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextUtils.m; sourceTree = "<group>"; };
 		64A821B21B85883F0085B37D /* IOSStudySummaryDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSStudySummaryDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A821CB1B8588400085B37D /* IOSStudySummaryDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IOSStudySummaryDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A821D01B8588400085B37D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64A821D11B8588400085B37D /* IOSStudySummaryDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IOSStudySummaryDemoTests.m; sourceTree = "<group>"; };
-		64C63FE71BC7A07400ACF83A /* CoreTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTextViewController.h; sourceTree = "<group>"; };
-		64C63FE81BC7A07400ACF83A /* CoreTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextViewController.m; sourceTree = "<group>"; };
-		64C63FEA1BC7A0E300ACF83A /* CTFrameParserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTFrameParserConfig.h; sourceTree = "<group>"; };
-		64C63FEB1BC7A0E300ACF83A /* CTFrameParserConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTFrameParserConfig.m; sourceTree = "<group>"; };
+		64BE4E9D1BCB92770085FBA3 /* CoreTextData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTextData.h; sourceTree = "<group>"; };
+		64BE4E9E1BCB92770085FBA3 /* CoreTextData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextData.m; sourceTree = "<group>"; };
+		64BE4E9F1BCB92770085FBA3 /* CoreTextUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTextUtils.h; sourceTree = "<group>"; };
+		64BE4EA01BCB92770085FBA3 /* CoreTextUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextUtils.m; sourceTree = "<group>"; };
+		64BE4EA11BCB92770085FBA3 /* CoreTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTextViewController.h; sourceTree = "<group>"; };
+		64BE4EA21BCB92770085FBA3 /* CoreTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextViewController.m; sourceTree = "<group>"; };
+		64BE4EA31BCB92770085FBA3 /* CTDisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDisplayView.h; sourceTree = "<group>"; };
+		64BE4EA41BCB92770085FBA3 /* CTDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDisplayView.m; sourceTree = "<group>"; };
+		64BE4EA51BCB92770085FBA3 /* CTFrameParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTFrameParser.h; sourceTree = "<group>"; };
+		64BE4EA61BCB92770085FBA3 /* CTFrameParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTFrameParser.m; sourceTree = "<group>"; };
+		64BE4EA71BCB92770085FBA3 /* CTFrameParserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTFrameParserConfig.h; sourceTree = "<group>"; };
+		64BE4EA81BCB92770085FBA3 /* CTFrameParserConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTFrameParserConfig.m; sourceTree = "<group>"; };
+		64BE4EA91BCB92770085FBA3 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		64BE4EAA1BCB92770085FBA3 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		64C63FED1BC7A2AE00ACF83A /* UIView+frameAdjust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+frameAdjust.h"; sourceTree = "<group>"; };
 		64C63FEE1BC7A2AE00ACF83A /* UIView+frameAdjust.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+frameAdjust.m"; sourceTree = "<group>"; };
-		64C63FF01BC7A6D000ACF83A /* CTFrameParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTFrameParser.h; sourceTree = "<group>"; };
-		64C63FF11BC7A6D000ACF83A /* CTFrameParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTFrameParser.m; sourceTree = "<group>"; };
-		64C63FF31BC7A71F00ACF83A /* CoreTextData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTextData.h; sourceTree = "<group>"; };
-		64C63FF41BC7A71F00ACF83A /* CoreTextData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextData.m; sourceTree = "<group>"; };
-		64C63FF81BC7AB8300ACF83A /* CTDisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDisplayView.h; sourceTree = "<group>"; };
-		64C63FF91BC7AB8300ACF83A /* CTDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDisplayView.m; sourceTree = "<group>"; };
 		64C63FFB1BC7C46400ACF83A /* content.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = content.json; sourceTree = "<group>"; };
 		64D072C91B94290100108C45 /* MCFireworksButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFireworksButton.h; sourceTree = "<group>"; };
 		64D072CA1B94290100108C45 /* MCFireworksButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFireworksButton.m; sourceTree = "<group>"; };
@@ -251,7 +254,7 @@
 				647F8B811B8B032400DF3A4F /* ViewController.h */,
 				647F8B821B8B032400DF3A4F /* ViewController.m */,
 				64D869F11BB23FDF002E8799 /* Animation */,
-				64C63FE61BC79CF800ACF83A /* CoreText */,
+				64BE4E9C1BCB92770085FBA3 /* CoreText */,
 				64D86A051BB2403C002E8799 /* NetWorkTransfer */,
 				64D86A011BB24023002E8799 /* PhotoShow */,
 			);
@@ -329,23 +332,25 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		64C63FE61BC79CF800ACF83A /* CoreText */ = {
+		64BE4E9C1BCB92770085FBA3 /* CoreText */ = {
 			isa = PBXGroup;
 			children = (
-				64C63FE71BC7A07400ACF83A /* CoreTextViewController.h */,
-				64C63FE81BC7A07400ACF83A /* CoreTextViewController.m */,
-				64C63FEA1BC7A0E300ACF83A /* CTFrameParserConfig.h */,
-				64C63FEB1BC7A0E300ACF83A /* CTFrameParserConfig.m */,
-				64C63FF01BC7A6D000ACF83A /* CTFrameParser.h */,
-				64C63FF11BC7A6D000ACF83A /* CTFrameParser.m */,
-				64C63FF31BC7A71F00ACF83A /* CoreTextData.h */,
-				64C63FF41BC7A71F00ACF83A /* CoreTextData.m */,
-				64C63FF81BC7AB8300ACF83A /* CTDisplayView.h */,
-				64C63FF91BC7AB8300ACF83A /* CTDisplayView.m */,
-				648F30A91BC9014200F1C7BD /* CoreTextUtils.h */,
-				648F30AA1BC9014200F1C7BD /* CoreTextUtils.m */,
+				64BE4E9D1BCB92770085FBA3 /* CoreTextData.h */,
+				64BE4E9E1BCB92770085FBA3 /* CoreTextData.m */,
+				64BE4E9F1BCB92770085FBA3 /* CoreTextUtils.h */,
+				64BE4EA01BCB92770085FBA3 /* CoreTextUtils.m */,
+				64BE4EA11BCB92770085FBA3 /* CoreTextViewController.h */,
+				64BE4EA21BCB92770085FBA3 /* CoreTextViewController.m */,
+				64BE4EA31BCB92770085FBA3 /* CTDisplayView.h */,
+				64BE4EA41BCB92770085FBA3 /* CTDisplayView.m */,
+				64BE4EA51BCB92770085FBA3 /* CTFrameParser.h */,
+				64BE4EA61BCB92770085FBA3 /* CTFrameParser.m */,
+				64BE4EA71BCB92770085FBA3 /* CTFrameParserConfig.h */,
+				64BE4EA81BCB92770085FBA3 /* CTFrameParserConfig.m */,
+				64BE4EA91BCB92770085FBA3 /* WebViewController.h */,
+				64BE4EAA1BCB92770085FBA3 /* WebViewController.m */,
 			);
-			name = CoreText;
+			path = CoreText;
 			sourceTree = "<group>";
 		};
 		64D072C81B94290100108C45 /* MCFireworksButton */ = {
@@ -588,33 +593,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				64D072DA1B9429BF00108C45 /* DCPathButton.m in Sources */,
+				64BE4EAC1BCB92770085FBA3 /* CoreTextUtils.m in Sources */,
 				64C63FEF1BC7A2AE00ACF83A /* UIView+frameAdjust.m in Sources */,
 				647F8B8D1B8B032400DF3A4F /* ViewController.m in Sources */,
-				64C63FEC1BC7A0E300ACF83A /* CTFrameParserConfig.m in Sources */,
 				64D869FC1BB23FDF002E8799 /* BaseAnimationViewController.m in Sources */,
-				64C63FF51BC7A71F00ACF83A /* CoreTextData.m in Sources */,
 				64D869FE1BB23FDF002E8799 /* GroupAnimationViewController.m in Sources */,
-				64C63FF21BC7A6D000ACF83A /* CTFrameParser.m in Sources */,
+				64BE4EAF1BCB92770085FBA3 /* CTFrameParser.m in Sources */,
+				64BE4EAB1BCB92770085FBA3 /* CoreTextData.m in Sources */,
 				64FF767F1B8C45EC0017E09F /* ZCSAnimatorTransitioning.m in Sources */,
-				648F30AB1BC9014200F1C7BD /* CoreTextUtils.m in Sources */,
 				647F8B841B8B032400DF3A4F /* AppDelegate.m in Sources */,
 				1A7343EB1BC3A0C500988302 /* PictureCollectionViewCell.m in Sources */,
 				647F8B941B8B07B800DF3A4F /* secondViewController.m in Sources */,
 				64D869FF1BB23FDF002E8799 /* KeyFrameAnimationViewController.m in Sources */,
+				64BE4EB11BCB92770085FBA3 /* WebViewController.m in Sources */,
 				647F8B8C1B8B032400DF3A4F /* UIView+ZCSAssociatedObjc.m in Sources */,
 				64D86A041BB24023002E8799 /* PhotoBrowserController.m in Sources */,
 				64765D361BB52FB2000AD9E1 /* ZCSPhotoShowView.m in Sources */,
-				64C63FE91BC7A07400ACF83A /* CoreTextViewController.m in Sources */,
 				1A8F167C1BBF8501006B17E1 /* PictureShowController.m in Sources */,
+				64BE4EAE1BCB92770085FBA3 /* CTDisplayView.m in Sources */,
 				64D86A081BB2403C002E8799 /* DownloadViewController.m in Sources */,
 				64D25EF01B9599B700C05F15 /* myAnnotation.m in Sources */,
 				647F8B881B8B032400DF3A4F /* firstViewController.m in Sources */,
+				64BE4EB01BCB92770085FBA3 /* CTFrameParserConfig.m in Sources */,
 				647F8B8B1B8B032400DF3A4F /* main.m in Sources */,
 				64D86A001BB23FDF002E8799 /* TransitionAnimationViewController.m in Sources */,
 				64D072D21B94295C00108C45 /* DWBubbleMenuButton.m in Sources */,
-				64C63FFA1BC7AB8300ACF83A /* CTDisplayView.m in Sources */,
 				64D072CE1B94290100108C45 /* MCFireworksView.m in Sources */,
 				64D072CD1B94290100108C45 /* MCFireworksButton.m in Sources */,
+				64BE4EAD1BCB92770085FBA3 /* CoreTextViewController.m in Sources */,
 				64D072DC1B9429BF00108C45 /* DCPathItemButton.m in Sources */,
 				64D869FD1BB23FDF002E8799 /* ComprehensiveCaseViewController.m in Sources */,
 				64D072DB1B9429BF00108C45 /* DCPathCenterButton.m in Sources */,
