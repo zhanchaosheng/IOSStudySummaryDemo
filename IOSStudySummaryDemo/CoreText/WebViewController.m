@@ -28,20 +28,35 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"基于UIWebView的混合编程";
     
+    //返回按钮
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    backBtn.frame = CGRectMake(1, 70, 20, 40);
+    [backBtn setTitle:@"《 " forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(backBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backBtn];
+    
+    //前进按钮
+    UIButton *forwardBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    forwardBtn.frame = CGRectMake(22, 70, 20, 40);
+    [forwardBtn setTitle:@"》" forState:UIControlStateNormal];
+    [forwardBtn addTarget:self action:@selector(forwardBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:forwardBtn];
+    
     //网址输入框
-    _textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH-50, 50)];
+    _textField = [[UITextField alloc] initWithFrame:CGRectMake(43, 70, SCREEN_WIDTH-88, 40)];
+    _textField.borderStyle = UITextBorderStyleRoundedRect;
     _textField.delegate = self;
     [self.view addSubview:_textField];
     
     //go按钮
     UIButton *goBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    goBtn.frame = CGRectMake(SCREEN_WIDTH-50, 64, 50, 50);
+    goBtn.frame = CGRectMake(SCREEN_WIDTH-45, 70, 45, 40);
     [goBtn setTitle:@"Go" forState:UIControlStateNormal];
     [goBtn addTarget:self action:@selector(goBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:goBtn];
     
     //UIWebView
-    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT-114)];
+    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 115, SCREEN_WIDTH, SCREEN_HEIGHT-115)];
     _webView.scalesPageToFit = YES;
     _webView.delegate = self;
     [self.view addSubview:_webView];
@@ -63,7 +78,7 @@
 {
     [self.textField resignFirstResponder];
     NSString *webUrl = self.textField.text;
-    if (webUrl && ![webUrl isEqualToString:@""])
+    if (webUrl && webUrl.length > 0)
     {
         NSURL *url = [NSURL URLWithString:webUrl];
         NSURLRequest *request = [NSURLRequest requestWithURL:url
@@ -71,6 +86,16 @@
                                              timeoutInterval:30];
         [self.webView loadRequest:request];
     }
+}
+
+- (void)backBtnClicked:(UIButton *)sender
+{
+    [self.webView goBack];
+}
+
+- (void)forwardBtnClicked:(UIButton *)sender
+{
+    [self.webView goForward];
 }
 
 //通过模板渲染加载HTML网页，得到我们想要的排版布局和内容并显示出来
