@@ -12,6 +12,7 @@
 		1A8F167C1BBF8501006B17E1 /* PictureShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8F167B1BBF8501006B17E1 /* PictureShowController.m */; };
 		1AC886ED1BA86A9800DE373A /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC886EC1BA86A9800DE373A /* start.png */; };
 		1AC886EF1BA86AAC00DE373A /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC886EE1BA86AAC00DE373A /* pause.png */; };
+		640EC6A81BDA34F1003D15E9 /* fanye.gif in Resources */ = {isa = PBXBuildFile; fileRef = 640EC6A71BDA34F1003D15E9 /* fanye.gif */; };
 		643E11611B96D47400925B3C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643E11601B96D47400925B3C /* MapKit.framework */; };
 		643E11631B96D48100925B3C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643E11621B96D48100925B3C /* CoreLocation.framework */; };
 		64765D361BB52FB2000AD9E1 /* ZCSPhotoShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64765D351BB52FB2000AD9E1 /* ZCSPhotoShowView.m */; };
@@ -94,6 +95,7 @@
 		1AA5B9BB1B90A4040021B9D0 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		1AC886EC1BA86A9800DE373A /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 		1AC886EE1BA86AAC00DE373A /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
+		640EC6A71BDA34F1003D15E9 /* fanye.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = fanye.gif; sourceTree = "<group>"; };
 		643E11601B96D47400925B3C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		643E11621B96D48100925B3C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		64765D341BB52FB2000AD9E1 /* ZCSPhotoShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCSPhotoShowView.h; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				647F8B7E1B8B032400DF3A4F /* main.m */,
 				1AA5B9BB1B90A4040021B9D0 /* PrefixHeader.pch */,
 				64C63FFB1BC7C46400ACF83A /* content.json */,
+				640EC6A71BDA34F1003D15E9 /* fanye.gif */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				64C63FFC1BC7C46400ACF83A /* content.json in Resources */,
 				64D072E21B942A1E00108C45 /* fold.caf in Resources */,
 				64D072FF1B942A6500108C45 /* chooser-moment-icon-camera@2x.png in Resources */,
+				640EC6A81BDA34F1003D15E9 /* fanye.gif in Resources */,
 				64D072FB1B942A6500108C45 /* chooser-button-tab@2x.png in Resources */,
 				64D073001B942A6500108C45 /* chooser-moment-icon-music-highlighted@2x.png in Resources */,
 				64D0730A1B942A6500108C45 /* Sparkle.png in Resources */,

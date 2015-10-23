@@ -59,6 +59,11 @@
     _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 115, SCREEN_WIDTH, SCREEN_HEIGHT-115)];
     _webView.scalesPageToFit = YES;
     _webView.delegate = self;
+    _webView.contentMode = UIViewContentModeScaleAspectFit;
+    //先显示一个Gif图片
+    NSString *gifFilePath = [[NSBundle mainBundle] pathForResource:@"fanye" ofType:@"gif"];
+    NSData *gifData = [NSData dataWithContentsOfFile:gifFilePath];
+    [_webView loadData:gifData MIMEType:@"image/gif" textEncodingName:nil baseURL:nil];
     [self.view addSubview:_webView];
     
     //正在加载风火轮
