@@ -73,6 +73,7 @@
 		64D86A001BB23FDF002E8799 /* TransitionAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D869FB1BB23FDF002E8799 /* TransitionAnimationViewController.m */; };
 		64D86A041BB24023002E8799 /* PhotoBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D86A031BB24023002E8799 /* PhotoBrowserController.m */; };
 		64D86A081BB2403C002E8799 /* DownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D86A071BB2403C002E8799 /* DownloadViewController.m */; };
+		64ED04FC1BE36B7400673354 /* ZCSCircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ED04FB1BE36B7400673354 /* ZCSCircleProgressView.m */; };
 		64FF767F1B8C45EC0017E09F /* ZCSAnimatorTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FF767E1B8C45EC0017E09F /* ZCSAnimatorTransitioning.m */; };
 /* End PBXBuildFile section */
 
@@ -189,6 +190,8 @@
 		64D86A031BB24023002E8799 /* PhotoBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserController.m; sourceTree = "<group>"; };
 		64D86A061BB2403C002E8799 /* DownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadViewController.h; sourceTree = "<group>"; };
 		64D86A071BB2403C002E8799 /* DownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadViewController.m; sourceTree = "<group>"; };
+		64ED04FA1BE36B7400673354 /* ZCSCircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCSCircleProgressView.h; sourceTree = "<group>"; };
+		64ED04FB1BE36B7400673354 /* ZCSCircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCSCircleProgressView.m; sourceTree = "<group>"; };
 		64FF767D1B8C45EC0017E09F /* ZCSAnimatorTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCSAnimatorTransitioning.h; sourceTree = "<group>"; };
 		64FF767E1B8C45EC0017E09F /* ZCSAnimatorTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCSAnimatorTransitioning.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -242,6 +245,8 @@
 			children = (
 				647F8B781B8B032400DF3A4F /* customView.h */,
 				647F8B791B8B032400DF3A4F /* customView.m */,
+				64ED04FA1BE36B7400673354 /* ZCSCircleProgressView.h */,
+				64ED04FB1BE36B7400673354 /* ZCSCircleProgressView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -610,6 +615,7 @@
 				647F8B941B8B07B800DF3A4F /* secondViewController.m in Sources */,
 				64D869FF1BB23FDF002E8799 /* KeyFrameAnimationViewController.m in Sources */,
 				64BE4EB11BCB92770085FBA3 /* WebViewController.m in Sources */,
+				64ED04FC1BE36B7400673354 /* ZCSCircleProgressView.m in Sources */,
 				647F8B8C1B8B032400DF3A4F /* UIView+ZCSAssociatedObjc.m in Sources */,
 				64D86A041BB24023002E8799 /* PhotoBrowserController.m in Sources */,
 				64765D361BB52FB2000AD9E1 /* ZCSPhotoShowView.m in Sources */,
