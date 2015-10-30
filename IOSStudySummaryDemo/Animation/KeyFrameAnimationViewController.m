@@ -103,6 +103,10 @@
     animation.path = path.CGPath;
     animation.duration = 2.0f;
     animation.delegate = self;
+    //施加一个恒定速度，不管路径的各个线段有多长。将其设置为 kCAAnimationPaced 将无视所有我们已经设置的 keyTimes
+    animation.calculationMode = kCAAnimationPaced;
+    animation.rotationMode = kCAAnimationRotateAuto;//确保沿着路径旋转
+    //animation.repeatCount = HUGE_VALF;
     [_demoView.layer addAnimation:animation forKey:@"keyFrameAnimation"];
 }
 
