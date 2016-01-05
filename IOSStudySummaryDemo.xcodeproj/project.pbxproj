@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1A1790521BC2BBB900925B96 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A1790511BC2BBB800925B96 /* AssetsLibrary.framework */; };
+		1A1BF1EA1C3C18990033A1B8 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1BF1E71C3C18990033A1B8 /* MGSwipeButton.m */; };
+		1A1BF1EB1C3C18990033A1B8 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1BF1E91C3C18990033A1B8 /* MGSwipeTableCell.m */; };
+		1A1BF1ED1C3C1AE40033A1B8 /* more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A1BF1EC1C3C1AE40033A1B8 /* more@2x.png */; };
 		1A7343EB1BC3A0C500988302 /* PictureCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7343EA1BC3A0C500988302 /* PictureCollectionViewCell.m */; };
 		1A8F167C1BBF8501006B17E1 /* PictureShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8F167B1BBF8501006B17E1 /* PictureShowController.m */; };
 		1AC886ED1BA86A9800DE373A /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC886EC1BA86A9800DE373A /* start.png */; };
@@ -89,6 +92,11 @@
 
 /* Begin PBXFileReference section */
 		1A1790511BC2BBB800925B96 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		1A1BF1E61C3C18990033A1B8 /* MGSwipeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeButton.h; sourceTree = "<group>"; };
+		1A1BF1E71C3C18990033A1B8 /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeButton.m; sourceTree = "<group>"; };
+		1A1BF1E81C3C18990033A1B8 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeTableCell.h; sourceTree = "<group>"; };
+		1A1BF1E91C3C18990033A1B8 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeTableCell.m; sourceTree = "<group>"; };
+		1A1BF1EC1C3C1AE40033A1B8 /* more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@2x.png"; sourceTree = "<group>"; };
 		1A7343E91BC3A0C500988302 /* PictureCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureCollectionViewCell.h; sourceTree = "<group>"; };
 		1A7343EA1BC3A0C500988302 /* PictureCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureCollectionViewCell.m; sourceTree = "<group>"; };
 		1A8F167A1BBF8501006B17E1 /* PictureShowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureShowController.h; sourceTree = "<group>"; };
@@ -227,6 +235,17 @@
 			name = Framework;
 			sourceTree = "<group>";
 		};
+		1A1BF1E51C3C18990033A1B8 /* MGSwipeTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				1A1BF1E61C3C18990033A1B8 /* MGSwipeButton.h */,
+				1A1BF1E71C3C18990033A1B8 /* MGSwipeButton.m */,
+				1A1BF1E81C3C18990033A1B8 /* MGSwipeTableCell.h */,
+				1A1BF1E91C3C18990033A1B8 /* MGSwipeTableCell.m */,
+			);
+			path = MGSwipeTableCell;
+			sourceTree = "<group>";
+		};
 		647F8B711B8B032400DF3A4F /* IOSStudySummaryDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,6 +290,7 @@
 		647F8B901B8B038300DF3A4F /* Ex */ = {
 			isa = PBXGroup;
 			children = (
+				1A1BF1E51C3C18990033A1B8 /* MGSwipeTableCell */,
 				64D072D31B9429BF00108C45 /* DCPathButton */,
 				64D072CF1B94295C00108C45 /* DWBubbleMenuButton */,
 				64D072C81B94290100108C45 /* MCFireworksButton */,
@@ -300,6 +320,7 @@
 				1AA5B9BB1B90A4040021B9D0 /* PrefixHeader.pch */,
 				64C63FFB1BC7C46400ACF83A /* content.json */,
 				640EC6A71BDA34F1003D15E9 /* fanye.gif */,
+				1A1BF1EC1C3C1AE40033A1B8 /* more@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -559,6 +580,7 @@
 				64D072FD1B942A6500108C45 /* chooser-moment-button@2x.png in Resources */,
 				64D073061B942A6500108C45 /* chooser-moment-icon-thought-highlighted@2x.png in Resources */,
 				647F8B891B8B032400DF3A4F /* Images.xcassets in Resources */,
+				1A1BF1ED1C3C1AE40033A1B8 /* more@2x.png in Resources */,
 				64D073091B942A6500108C45 /* Like@2x.png in Resources */,
 				647F8B851B8B032400DF3A4F /* LaunchScreen.xib in Resources */,
 				64D073051B942A6500108C45 /* chooser-moment-icon-sleep@2x.png in Resources */,
@@ -626,8 +648,10 @@
 				647F8B881B8B032400DF3A4F /* firstViewController.m in Sources */,
 				64BE4EB01BCB92770085FBA3 /* CTFrameParserConfig.m in Sources */,
 				647F8B8B1B8B032400DF3A4F /* main.m in Sources */,
+				1A1BF1EB1C3C18990033A1B8 /* MGSwipeTableCell.m in Sources */,
 				64D86A001BB23FDF002E8799 /* TransitionAnimationViewController.m in Sources */,
 				64D072D21B94295C00108C45 /* DWBubbleMenuButton.m in Sources */,
+				1A1BF1EA1C3C18990033A1B8 /* MGSwipeButton.m in Sources */,
 				64D072CE1B94290100108C45 /* MCFireworksView.m in Sources */,
 				64D072CD1B94290100108C45 /* MCFireworksButton.m in Sources */,
 				64BE4EAD1BCB92770085FBA3 /* CoreTextViewController.m in Sources */,

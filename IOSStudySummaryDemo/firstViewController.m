@@ -19,6 +19,7 @@
 #import "PictureShowController.h"
 #import "CoreTextViewController.h"
 #import "WebViewController.h"
+#import "MGSwipeTableCell.h"
 
 @interface firstViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
@@ -294,12 +295,32 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *TABLEVIEW_CELL_ID = @"tableview_cell_id";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TABLEVIEW_CELL_ID];
+    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TABLEVIEW_CELL_ID];
+    MGSwipeTableCell *cell = (MGSwipeTableCell *)[tableView dequeueReusableCellWithIdentifier:TABLEVIEW_CELL_ID];
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:TABLEVIEW_CELL_ID];
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+//                                      reuseIdentifier:TABLEVIEW_CELL_ID];
+        cell = [[MGSwipeTableCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                       reuseIdentifier:TABLEVIEW_CELL_ID];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;//cell右边小箭头
+        //configure left buttons
+        MGSwipeButton *swipeBtn1 = [MGSwipeButton buttonWithTitle:@""
+                                                             icon:[UIImage imageNamed:@"chooser-button-input"]
+                                                  backgroundColor:[UIColor greenColor]
+                                                         callback:^BOOL(MGSwipeTableCell *sender) {
+                                                             NSLog(@"swipeBtn1 Clicked !");
+                                                             return YES;
+                                                         }];
+        MGSwipeButton *swipeBtn2 = [MGSwipeButton buttonWithTitle:@""
+                                                             icon:[UIImage imageNamed:@"chooser-moment-icon-camera"]
+                                                  backgroundColor:[UIColor blueColor]
+                                                         callback:^BOOL(MGSwipeTableCell *sender) {
+                                                             NSLog(@"swipeBtn2 Clicked !");
+                                                             return YES;
+                                                         }];
+        cell.leftButtons = @[swipeBtn1,swipeBtn2];
+        cell.leftSwipeSettings.transition = MGSwipeTransitionStatic;
     }
     NSMutableArray *array = [self.tableGroupType objectAtIndex:indexPath.section];
     cell.textLabel.text = [array objectAtIndex:indexPath.row];
