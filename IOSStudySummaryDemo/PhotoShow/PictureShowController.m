@@ -15,14 +15,19 @@
 
 
 @interface PictureShowController ()
-<UIActionSheetDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate>
-@property (strong,nonatomic) ALAssetsLibrary *assetLibrary;
+<UIActionSheetDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,
+    PHPhotoLibraryChangeObserver>
+
 @property (strong,nonatomic) UICollectionView *collectionView;
-@property (strong,nonatomic) NSMutableArray *assetUrlArray;
-@property (strong,nonatomic) NSMutableArray *assetNameArray;
+
+@property (strong,nonatomic) ALAssetsLibrary *assetLibrary;
+@property (strong,nonatomic) NSMutableArray *alAssets;
+
 @property (assign,nonatomic) BOOL bFetchByPhotoKit;
 @property (strong,nonatomic) PHFetchResult *assetsFetchResults;
-@property (strong,nonatomic) PHImageManager *phImageMgr;
+@property (strong,nonatomic) PHCachingImageManager *phImageMgr;
+@property (assign,nonatomic) CGSize assetThumbnailSize;
+
 @end
 
 @implementation PictureShowController
@@ -39,11 +44,6 @@
     //初始化照片显示界面
     [self initView];
     
-    self.assetUrlArray = [NSMutableArray array];
-    self.assetNameArray = [NSMutableArray array];
-    
-    self.assetLibrary = [[ALAssetsLibrary alloc] init];
-    
     //获取用户对该应用访问相册的授权状态（IOS6.0以上）
     ALAuthorizationStatus authForPhoto = [ALAssetsLibrary authorizationStatus];
     if (authForPhoto == ALAuthorizationStatusDenied)
@@ -59,6 +59,25 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc{
+//    if (_bFetchByPhotoKit) {
+        [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
+//    }
+//    else {
+//        [[NSNotificationCenter defaultCenter] removeObserver:self];
+//    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    CGFloat scale = [UIScreen mainScreen].scale;
+    CGSize cellSize = ((UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout).itemSize;
+    self.assetThumbnailSize = CGSizeMake(cellSize.width * scale, cellSize.height * scale);
+    
 }
 
 - (void)initView
@@ -107,9 +126,19 @@
 //遍历照片
 - (void)enumPictures
 {
+    if (self.alAssets) {
+        [self.alAssets removeAllObjects];
+    }
+    else{
+        self.alAssets = [NSMutableArray array];
+    }
+    if (self.assetLibrary == nil) {
+        self.assetLibrary = [[ALAssetsLibrary alloc] init];
+    }
+    
     NSMutableArray *groupArray = [NSMutableArray arrayWithCapacity:1];
     //获取所有相册，通过ALAssetsLibrary的实例方法得到ALAssetsGroup类数组
-    [self.assetLibrary enumerateGroupsWithTypes:ALAssetsGroupAll
+    [self.assetLibrary enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos//相机胶卷
                                 usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
                                     if (group)
                                     {
@@ -125,11 +154,10 @@
                                             {
                                                 //ALAssetRepresentation类，获取该资源图片的详细资源信息
                                                 ALAssetRepresentation *representation = [result defaultRepresentation];
-                                                NSURL * assetUrl = [representation url];
-                                                [self.assetUrlArray addObject:assetUrl];
+                                                //NSURL * assetUrl = [representation url];
                                                 NSString *assetName = [representation filename];
-                                                [self.assetNameArray addObject:assetName];
-                                                NSLog(@"照片%ld:%@",self.assetUrlArray.count,assetName);
+                                                [self.alAssets addObject:result];
+                                                NSLog(@"照片%ld:%@",self.alAssets.count,assetName);
                                             }
                                         }];
                                     }
@@ -147,33 +175,52 @@
 //设置相册变化通知
 - (void)addAssetsLibraryChangedNotification
 {
-    //通知ALAssetsLibraryChangedNotification在iOS5下面是不能正常工作的，这是iOS5的bug，
-    //可以通过一个方法来修正。做法就是在创建了ALAssetsLibrary的实例之后，立刻执行下面一句
-    if ([[UIDevice currentDevice].systemVersion floatValue] <= 5.0f)
-    {
-        [self.assetLibrary writeImageToSavedPhotosAlbum:nil
-                                          metadata:nil
-                                   completionBlock:^(NSURL *assetURL, NSError *error) {}];
-    }
-    //添加相册变化通知
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(assetsLibraryDidChange:)
-                                                 name:ALAssetsLibraryChangedNotification
-                                               object:self.assetLibrary];
+//    if (self.bFetchByPhotoKit)
+//    {
+        [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
+//    }
+//    else
+//    {
+//        if (self.assetLibrary == nil) {
+//            self.assetLibrary = [[ALAssetsLibrary alloc] init];
+//        }
+//        //通知ALAssetsLibraryChangedNotification在iOS5下面是不能正常工作的，这是iOS5的bug，
+//        //可以通过一个方法来修正。做法就是在创建了ALAssetsLibrary的实例之后，立刻执行下面一句
+//        if ([[UIDevice currentDevice].systemVersion floatValue] <= 5.0f)
+//        {
+//            [self.assetLibrary writeImageToSavedPhotosAlbum:nil
+//                                                   metadata:nil
+//                                            completionBlock:^(NSURL *assetURL, NSError *error) {}];
+//        }
+//        //添加相册变化通知
+//        [[NSNotificationCenter defaultCenter] addObserver:self
+//                                                 selector:@selector(assetsLibraryDidChange:)
+//                                                     name:ALAssetsLibraryChangedNotification
+//                                                   object:self.assetLibrary];
+//    }
 }
 
 - (void)assetsLibraryDidChange:(NSNotification *)notification
 {
-    NSLog(@"本地相册有变化!");
+    NSLog(@"本地相册有变化!(ALAsset)");
 }
 #pragma mark - PhotoKit
 - (void)fetchPictureByPhotoKit
 {
+    if (self.phImageMgr == nil) {
+        self.phImageMgr = [[PHCachingImageManager alloc] init];
+    }
     // 获取所有资源的集合，并按资源的创建时间排序
     PHFetchOptions *options = [[PHFetchOptions alloc] init];
     options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
     self.assetsFetchResults = [PHAsset fetchAssetsWithOptions:options];
     [self.collectionView reloadData];
+}
+
+#pragma mark - PHPhotoLibraryChangeObserver
+- (void)photoLibraryDidChange:(PHChange *)changeInstance
+{
+    NSLog(@"本地相册有变化!(PHAsset)");
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -183,7 +230,7 @@
     {
         return self.assetsFetchResults.count;
     }
-    return self.assetUrlArray.count;
+    return self.alAssets.count;
 }
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -199,36 +246,33 @@
         PHAsset *asset = self.assetsFetchResults[indexPath.row];
         if (asset)
         {
-            PHImageRequestOptions *requestOpt = [[PHImageRequestOptions alloc] init];
-            requestOpt.deliveryMode = PHImageRequestOptionsDeliveryModeFastFormat;
-            if (self.phImageMgr == nil)
-            {
-                self.phImageMgr = [[PHImageManager alloc] init];
-            }
+            myCell.representedAssetIdentifier = asset.localIdentifier;
+            
             [self.phImageMgr requestImageForAsset:asset
-                                       targetSize:PHImageManagerMaximumSize
-                                      contentMode:PHImageContentModeDefault
-                                          options:requestOpt
+                                       targetSize:self.assetThumbnailSize
+                                      contentMode:PHImageContentModeAspectFill
+                                          options:nil
                                     resultHandler:^(UIImage *result, NSDictionary *info) {
-                                        myCell.imageView.image = result;
+                                        if ([myCell.representedAssetIdentifier isEqualToString:asset.localIdentifier])
+                                        {
+                                            myCell.imageView.image = result;
+                                        }
                                     }];
         }
     }
     else
     {
-        NSURL *assetUrl = [self.assetUrlArray objectAtIndex:indexPath.row];
-        NSString *assetName = [self.assetNameArray objectAtIndex:indexPath.row];
-        if (assetUrl && assetName)
-        {
-            //myCell.nameLabel.text = assetName;
+        ALAsset *asset = self.alAssets[indexPath.row];
+        if (asset) {
             //加载图片
-            [self.assetLibrary assetForURL:assetUrl
-                               resultBlock:^(ALAsset *asset) {
-                                   myCell.imageView.image = [UIImage imageWithCGImage:asset.thumbnail];
-                               }
-                              failureBlock:^(NSError *error) {
-                                  NSLog(@"%@",error);
-                              }];
+            myCell.imageView.image = [UIImage imageWithCGImage:asset.thumbnail];
+//            [self.assetLibrary assetForURL:assetUrl
+//                               resultBlock:^(ALAsset *asset) {
+//                                   myCell.imageView.image = [UIImage imageWithCGImage:asset.thumbnail];
+//                               }
+//                              failureBlock:^(NSError *error) {
+//                                  NSLog(@"%@",error);
+//                              }];
         }
     }
     

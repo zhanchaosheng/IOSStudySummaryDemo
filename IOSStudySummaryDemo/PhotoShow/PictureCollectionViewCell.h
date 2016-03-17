@@ -11,4 +11,5 @@
 @interface PictureCollectionViewCell : UICollectionViewCell
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) UILabel *nameLabel;
+@property (strong, nonatomic) NSString *representedAssetIdentifier;
 @end
