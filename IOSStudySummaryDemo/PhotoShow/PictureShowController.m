@@ -15,18 +15,19 @@
 
 
 @interface PictureShowController ()
-<UIActionSheetDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,
-    PHPhotoLibraryChangeObserver>
+<UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,
+    PHPhotoLibraryChangeObserver,UITableViewDelegate,UITableViewDataSource>
 
-@property (strong,nonatomic) UICollectionView *collectionView;
+@property (assign, nonatomic) BOOL bFetchByALAssetsLibrary;
+@property (strong, nonatomic) UICollectionView *collectionView;
+@property (strong, nonatomic) ALAssetsLibrary *assetLibrary;
+@property (strong, nonatomic) NSMutableArray *alAssets;
 
-@property (strong,nonatomic) ALAssetsLibrary *assetLibrary;
-@property (strong,nonatomic) NSMutableArray *alAssets;
-
-@property (assign,nonatomic) BOOL bFetchByPhotoKit;
-@property (strong,nonatomic) PHFetchResult *assetsFetchResults;
-@property (strong,nonatomic) PHCachingImageManager *phImageMgr;
-@property (assign,nonatomic) CGSize assetThumbnailSize;
+@property (assign, nonatomic) BOOL bFetchByPhotoKit;
+@property (assign, nonatomic) CGSize assetThumbnailSize;
+@property (strong, nonatomic) NSArray *sectionFetchResults;
+@property (strong, nonatomic) NSArray *sectionLocalizedTitles;
+@property (strong, nonatomic) UITableView *tableView;
 
 @end
 
@@ -41,9 +42,6 @@
                                                                              target:self
                                                                              action:@selector(libSelectBtnClicked:)];
     
-    //初始化照片显示界面
-    [self initView];
-    
     //获取用户对该应用访问相册的授权状态（IOS6.0以上）
     ALAuthorizationStatus authForPhoto = [ALAssetsLibrary authorizationStatus];
     if (authForPhoto == ALAuthorizationStatusDenied)
@@ -52,8 +50,8 @@
         return;
     }
     
-    //设置相册变化通知
-    [self addAssetsLibraryChangedNotification];
+    [self initViewForALAssetsLibrary];
+    [self initViewForPhotoKit];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,40 +60,50 @@
 }
 
 - (void)dealloc{
-//    if (_bFetchByPhotoKit) {
+    if (_bFetchByPhotoKit) {
         [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
-//    }
-//    else {
-//        [[NSNotificationCenter defaultCenter] removeObserver:self];
-//    }
+    }
+    
+    if (_bFetchByALAssetsLibrary) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+    }
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)initViewForALAssetsLibrary
 {
-    [super viewWillAppear:animated];
-    
-    CGFloat scale = [UIScreen mainScreen].scale;
-    CGSize cellSize = ((UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout).itemSize;
-    self.assetThumbnailSize = CGSizeMake(cellSize.width * scale, cellSize.height * scale);
-    
-}
-
-- (void)initView
-{
+    CGRect rect = self.view.bounds;
     //创建CollectionView
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds
+    self.collectionView = [[UICollectionView alloc] initWithFrame:rect
                                              collectionViewLayout:flowLayout];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.collectionView];
-    
+    self.collectionView.hidden = YES;
     //注册自定义collectionViewCell类
     [self.collectionView registerClass:[PictureCollectionViewCell class]
             forCellWithReuseIdentifier:@"PictureCollectionViewCell"];
+    
+    [self.view addSubview:self.collectionView];
 }
+
+- (void)initViewForPhotoKit
+{
+    CGRect rect = self.view.bounds;
+    rect.origin.y = 64;
+    rect.size.height -= 64;
+    self.tableView = [[UITableView alloc] initWithFrame:rect
+                                                  style:UITableViewStyleGrouped];
+    self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.hidden = YES;
+
+    [self.view addSubview:self.tableView];
+}
+
 - (void)libSelectBtnClicked:(UIBarButtonItem *)sender
 {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"相册框架选择"
@@ -105,21 +113,70 @@
                                                   otherButtonTitles:@"AssetsLibrary",@"PhotoKit",nil];
     [actionSheet showInView:self.view];
 }
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {
         case 0:
             //使用AssetsLibrary获取照片
+            self.bFetchByALAssetsLibrary = YES;
             self.bFetchByPhotoKit = NO;
+            self.navigationItem.rightBarButtonItem.enabled = NO;
+            self.collectionView.hidden = NO;
+            //设置相册变化通知
+            [self addAssetsLibraryChangedNotification];
             [self enumPictures];
             break;
         case 1:
+            //使用PhotoKit获取照片
             self.bFetchByPhotoKit = YES;
+            self.bFetchByALAssetsLibrary = NO;
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                                   target:self
+                                                                                                   action:@selector(addAlbumsAction:)];
+            self.tableView.hidden = NO;
+            //设置相册变化通知
+            [self addAssetsLibraryChangedNotification];
             [self fetchPictureByPhotoKit];
             break;
         default:
             break;
     }
+}
+
+- (void)addAlbumsAction:(UIBarButtonItem *)sender
+{
+    // Prompt user from new album title.
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"新相册" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"新相册名";
+    }];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:NULL]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"创建"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {
+        UITextField *textField = alertController.textFields.firstObject;
+        NSString *title = textField.text;
+        if (title.length == 0) {
+            return;
+        }
+        
+        // Create a new album with the title entered.
+        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+            [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:title];
+        } completionHandler:^(BOOL success, NSError *error) {
+            if (!success) {
+                NSLog(@"Error creating album: %@", error);
+            }
+        }];
+    }]];
+    
+    [self presentViewController:alertController animated:YES completion:NULL];
 }
 
 #pragma mark - AssetsLibrary
@@ -175,29 +232,30 @@
 //设置相册变化通知
 - (void)addAssetsLibraryChangedNotification
 {
-//    if (self.bFetchByPhotoKit)
-//    {
+    if (self.bFetchByPhotoKit)
+    {
         [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
-//    }
-//    else
-//    {
-//        if (self.assetLibrary == nil) {
-//            self.assetLibrary = [[ALAssetsLibrary alloc] init];
-//        }
-//        //通知ALAssetsLibraryChangedNotification在iOS5下面是不能正常工作的，这是iOS5的bug，
-//        //可以通过一个方法来修正。做法就是在创建了ALAssetsLibrary的实例之后，立刻执行下面一句
-//        if ([[UIDevice currentDevice].systemVersion floatValue] <= 5.0f)
-//        {
-//            [self.assetLibrary writeImageToSavedPhotosAlbum:nil
-//                                                   metadata:nil
-//                                            completionBlock:^(NSURL *assetURL, NSError *error) {}];
-//        }
-//        //添加相册变化通知
-//        [[NSNotificationCenter defaultCenter] addObserver:self
-//                                                 selector:@selector(assetsLibraryDidChange:)
-//                                                     name:ALAssetsLibraryChangedNotification
-//                                                   object:self.assetLibrary];
-//    }
+    }
+    
+    if (self.bFetchByALAssetsLibrary)
+    {
+        if (self.assetLibrary == nil) {
+            self.assetLibrary = [[ALAssetsLibrary alloc] init];
+        }
+        //通知ALAssetsLibraryChangedNotification在iOS5下面是不能正常工作的，这是iOS5的bug，
+        //可以通过一个方法来修正。做法就是在创建了ALAssetsLibrary的实例之后，立刻执行下面一句
+        if ([[UIDevice currentDevice].systemVersion floatValue] <= 5.0f)
+        {
+            [self.assetLibrary writeImageToSavedPhotosAlbum:nil
+                                                   metadata:nil
+                                            completionBlock:^(NSURL *assetURL, NSError *error) {}];
+        }
+        //添加相册变化通知
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(assetsLibraryDidChange:)
+                                                     name:ALAssetsLibraryChangedNotification
+                                                   object:self.assetLibrary];
+    }
 }
 
 - (void)assetsLibraryDidChange:(NSNotification *)notification
@@ -207,29 +265,27 @@
 #pragma mark - PhotoKit
 - (void)fetchPictureByPhotoKit
 {
-    if (self.phImageMgr == nil) {
-        self.phImageMgr = [[PHCachingImageManager alloc] init];
-    }
-    // 获取所有资源的集合，并按资源的创建时间排序
-    PHFetchOptions *options = [[PHFetchOptions alloc] init];
-    options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
-    self.assetsFetchResults = [PHAsset fetchAssetsWithOptions:options];
-    [self.collectionView reloadData];
-}
-
-#pragma mark - PHPhotoLibraryChangeObserver
-- (void)photoLibraryDidChange:(PHChange *)changeInstance
-{
-    NSLog(@"本地相册有变化!(PHAsset)");
+    // Create a PHFetchResult object for each section in the table view.
+    PHFetchOptions *allPhotosOptions = [[PHFetchOptions alloc] init];
+    allPhotosOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
+    PHFetchResult *allPhotos = [PHAsset fetchAssetsWithOptions:allPhotosOptions];
+    
+    PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
+                                                                          subtype:PHAssetCollectionSubtypeAlbumRegular
+                                                                          options:nil];
+    
+    PHFetchResult *topLevelUserCollections = [PHCollectionList fetchTopLevelUserCollectionsWithOptions:nil];
+    
+    // Store the PHFetchResult objects and localized titles for each section.
+    self.sectionFetchResults = @[allPhotos, smartAlbums, topLevelUserCollections];
+    self.sectionLocalizedTitles = @[@"", @"Smart Albums", @"Albums"];
+    
+    [self.tableView reloadData];
 }
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if (self.bFetchByPhotoKit)
-    {
-        return self.assetsFetchResults.count;
-    }
     return self.alAssets.count;
 }
 
@@ -241,26 +297,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PictureCollectionViewCell *myCell = (PictureCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"PictureCollectionViewCell" forIndexPath:indexPath];
-    if (self.bFetchByPhotoKit)
-    {
-        PHAsset *asset = self.assetsFetchResults[indexPath.row];
-        if (asset)
-        {
-            myCell.representedAssetIdentifier = asset.localIdentifier;
-            
-            [self.phImageMgr requestImageForAsset:asset
-                                       targetSize:self.assetThumbnailSize
-                                      contentMode:PHImageContentModeAspectFill
-                                          options:nil
-                                    resultHandler:^(UIImage *result, NSDictionary *info) {
-                                        if ([myCell.representedAssetIdentifier isEqualToString:asset.localIdentifier])
-                                        {
-                                            myCell.imageView.image = result;
-                                        }
-                                    }];
-        }
-    }
-    else
+    if (self.bFetchByALAssetsLibrary)
     {
         ALAsset *asset = self.alAssets[indexPath.row];
         if (asset) {
@@ -323,6 +360,87 @@
     return 1;
 }
 
+#pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.sectionFetchResults.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSInteger numberOfRows = 0;
+    
+    if (section == 0) {
+        // The "All Photos" section only ever has a single row.
+        numberOfRows = 1;
+    } else {
+        PHFetchResult *fetchResult = self.sectionFetchResults[section];
+        numberOfRows = fetchResult.count;
+    }
+    
+    return numberOfRows;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString * const AlbumsCellIdentifier = @"AlbumsCellIndentifier";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:AlbumsCellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:AlbumsCellIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
+    if (indexPath.section == 0) {
+        cell.textLabel.text = @"全部照片";
+    } else {
+        PHFetchResult *fetchResult = self.sectionFetchResults[indexPath.section];
+        PHCollection *collection = fetchResult[indexPath.row];
+        cell.textLabel.text = collection.localizedTitle;
+    }
+    
+    return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return self.sectionLocalizedTitles[section];
+}
+
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];//取消选中状态
+}
+
+
+
+#pragma mark - PHPhotoLibraryChangeObserver
+
+- (void)photoLibraryDidChange:(PHChange *)changeInstance {
+    /*
+     Change notifications may be made on a background queue. Re-dispatch to the
+     main queue before acting on the change as we'll be updating the UI.
+     */
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // Loop through the section fetch results, replacing any fetch results that have been updated.
+        NSMutableArray *updatedSectionFetchResults = [self.sectionFetchResults mutableCopy];
+        __block BOOL reloadRequired = NO;
+        
+        [self.sectionFetchResults enumerateObjectsUsingBlock:^(PHFetchResult *collectionsFetchResult, NSUInteger index, BOOL *stop) {
+            PHFetchResultChangeDetails *changeDetails = [changeInstance changeDetailsForFetchResult:collectionsFetchResult];
+            
+            if (changeDetails != nil) {
+                [updatedSectionFetchResults replaceObjectAtIndex:index withObject:[changeDetails fetchResultAfterChanges]];
+                reloadRequired = YES;
+            }
+        }];
+        
+        if (reloadRequired) {
+            self.sectionFetchResults = updatedSectionFetchResults;
+            [self.tableView reloadData];
+        }
+        
+    });
+}
 /*
 #pragma mark - Navigation
 
