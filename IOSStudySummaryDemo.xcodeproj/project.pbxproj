@@ -11,6 +11,14 @@
 		1A1BF1EA1C3C18990033A1B8 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1BF1E71C3C18990033A1B8 /* MGSwipeButton.m */; };
 		1A1BF1EB1C3C18990033A1B8 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1BF1E91C3C18990033A1B8 /* MGSwipeTableCell.m */; };
 		1A1BF1ED1C3C1AE40033A1B8 /* more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A1BF1EC1C3C1AE40033A1B8 /* more@2x.png */; };
+		1A70A5211CA02FFF008BD05A /* AlbumsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A70A5201CA02FFF008BD05A /* AlbumsCollectionViewController.m */; };
+		1A70A52A1CA03027008BD05A /* KTCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A70A5231CA03027008BD05A /* KTCollectionReusableView.m */; };
+		1A70A52B1CA03027008BD05A /* KTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A70A5251CA03027008BD05A /* KTCollectionViewCell.m */; };
+		1A70A52C1CA03027008BD05A /* KTCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A70A5271CA03027008BD05A /* KTCollectionViewFlowLayout.m */; };
+		1A70A52D1CA03027008BD05A /* KTThumbView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A70A5291CA03027008BD05A /* KTThumbView.m */; };
+		1A70A5311CA031C5008BD05A /* batch_default_assert@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A70A52E1CA031C5008BD05A /* batch_default_assert@2x.png */; };
+		1A70A5321CA031C5008BD05A /* batch_unselect_assert@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A70A52F1CA031C5008BD05A /* batch_unselect_assert@2x.png */; };
+		1A70A5331CA031C5008BD05A /* selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A70A5301CA031C5008BD05A /* selected@2x.png */; };
 		1A7343EB1BC3A0C500988302 /* PictureCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7343EA1BC3A0C500988302 /* PictureCollectionViewCell.m */; };
 		1A8F167C1BBF8501006B17E1 /* PictureShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8F167B1BBF8501006B17E1 /* PictureShowController.m */; };
 		1AC886ED1BA86A9800DE373A /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC886EC1BA86A9800DE373A /* start.png */; };
@@ -97,6 +105,19 @@
 		1A1BF1E81C3C18990033A1B8 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeTableCell.h; sourceTree = "<group>"; };
 		1A1BF1E91C3C18990033A1B8 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeTableCell.m; sourceTree = "<group>"; };
 		1A1BF1EC1C3C1AE40033A1B8 /* more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@2x.png"; sourceTree = "<group>"; };
+		1A70A51F1CA02FFF008BD05A /* AlbumsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumsCollectionViewController.h; sourceTree = "<group>"; };
+		1A70A5201CA02FFF008BD05A /* AlbumsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumsCollectionViewController.m; sourceTree = "<group>"; };
+		1A70A5221CA03027008BD05A /* KTCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTCollectionReusableView.h; sourceTree = "<group>"; };
+		1A70A5231CA03027008BD05A /* KTCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTCollectionReusableView.m; sourceTree = "<group>"; };
+		1A70A5241CA03027008BD05A /* KTCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTCollectionViewCell.h; sourceTree = "<group>"; };
+		1A70A5251CA03027008BD05A /* KTCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTCollectionViewCell.m; sourceTree = "<group>"; };
+		1A70A5261CA03027008BD05A /* KTCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		1A70A5271CA03027008BD05A /* KTCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		1A70A5281CA03027008BD05A /* KTThumbView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTThumbView.h; sourceTree = "<group>"; };
+		1A70A5291CA03027008BD05A /* KTThumbView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTThumbView.m; sourceTree = "<group>"; };
+		1A70A52E1CA031C5008BD05A /* batch_default_assert@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "batch_default_assert@2x.png"; sourceTree = "<group>"; };
+		1A70A52F1CA031C5008BD05A /* batch_unselect_assert@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "batch_unselect_assert@2x.png"; sourceTree = "<group>"; };
+		1A70A5301CA031C5008BD05A /* selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selected@2x.png"; sourceTree = "<group>"; };
 		1A7343E91BC3A0C500988302 /* PictureCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureCollectionViewCell.h; sourceTree = "<group>"; };
 		1A7343EA1BC3A0C500988302 /* PictureCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureCollectionViewCell.m; sourceTree = "<group>"; };
 		1A8F167A1BBF8501006B17E1 /* PictureShowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureShowController.h; sourceTree = "<group>"; };
@@ -449,6 +470,9 @@
 				64D072F71B942A6500108C45 /* Sparkle.png */,
 				1AC886EC1BA86A9800DE373A /* start.png */,
 				1AC886EE1BA86AAC00DE373A /* pause.png */,
+				1A70A52E1CA031C5008BD05A /* batch_default_assert@2x.png */,
+				1A70A52F1CA031C5008BD05A /* batch_unselect_assert@2x.png */,
+				1A70A5301CA031C5008BD05A /* selected@2x.png */,
 			);
 			path = image;
 			sourceTree = "<group>";
@@ -481,6 +505,16 @@
 				1A8F167B1BBF8501006B17E1 /* PictureShowController.m */,
 				1A7343E91BC3A0C500988302 /* PictureCollectionViewCell.h */,
 				1A7343EA1BC3A0C500988302 /* PictureCollectionViewCell.m */,
+				1A70A51F1CA02FFF008BD05A /* AlbumsCollectionViewController.h */,
+				1A70A5201CA02FFF008BD05A /* AlbumsCollectionViewController.m */,
+				1A70A5221CA03027008BD05A /* KTCollectionReusableView.h */,
+				1A70A5231CA03027008BD05A /* KTCollectionReusableView.m */,
+				1A70A5241CA03027008BD05A /* KTCollectionViewCell.h */,
+				1A70A5251CA03027008BD05A /* KTCollectionViewCell.m */,
+				1A70A5261CA03027008BD05A /* KTCollectionViewFlowLayout.h */,
+				1A70A5271CA03027008BD05A /* KTCollectionViewFlowLayout.m */,
+				1A70A5281CA03027008BD05A /* KTThumbView.h */,
+				1A70A5291CA03027008BD05A /* KTThumbView.m */,
 			);
 			path = PhotoShow;
 			sourceTree = "<group>";
@@ -576,6 +610,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64D072FA1B942A6500108C45 /* chooser-button-tab-highlighted@2x.png in Resources */,
+				1A70A5331CA031C5008BD05A /* selected@2x.png in Resources */,
 				647F8B8A1B8B032400DF3A4F /* Info.plist in Resources */,
 				64D072FD1B942A6500108C45 /* chooser-moment-button@2x.png in Resources */,
 				64D073061B942A6500108C45 /* chooser-moment-icon-thought-highlighted@2x.png in Resources */,
@@ -590,10 +625,12 @@
 				64D073041B942A6500108C45 /* chooser-moment-icon-sleep-highlighted@2x.png in Resources */,
 				64D072F91B942A6500108C45 /* chooser-button-input@2x.png in Resources */,
 				64D072F81B942A6500108C45 /* chooser-button-input-highlighted@2x.png in Resources */,
+				1A70A5311CA031C5008BD05A /* batch_default_assert@2x.png in Resources */,
 				64D073031B942A6500108C45 /* chooser-moment-icon-place@2x.png in Resources */,
 				64C63FFC1BC7C46400ACF83A /* content.json in Resources */,
 				64D072E21B942A1E00108C45 /* fold.caf in Resources */,
 				64D072FF1B942A6500108C45 /* chooser-moment-icon-camera@2x.png in Resources */,
+				1A70A5321CA031C5008BD05A /* batch_unselect_assert@2x.png in Resources */,
 				640EC6A81BDA34F1003D15E9 /* fanye.gif in Resources */,
 				64D072FB1B942A6500108C45 /* chooser-button-tab@2x.png in Resources */,
 				64D073001B942A6500108C45 /* chooser-moment-icon-music-highlighted@2x.png in Resources */,
@@ -631,10 +668,13 @@
 				64D869FE1BB23FDF002E8799 /* GroupAnimationViewController.m in Sources */,
 				64BE4EAF1BCB92770085FBA3 /* CTFrameParser.m in Sources */,
 				64BE4EAB1BCB92770085FBA3 /* CoreTextData.m in Sources */,
+				1A70A5211CA02FFF008BD05A /* AlbumsCollectionViewController.m in Sources */,
 				64FF767F1B8C45EC0017E09F /* ZCSAnimatorTransitioning.m in Sources */,
 				647F8B841B8B032400DF3A4F /* AppDelegate.m in Sources */,
+				1A70A52B1CA03027008BD05A /* KTCollectionViewCell.m in Sources */,
 				1A7343EB1BC3A0C500988302 /* PictureCollectionViewCell.m in Sources */,
 				647F8B941B8B07B800DF3A4F /* secondViewController.m in Sources */,
+				1A70A52D1CA03027008BD05A /* KTThumbView.m in Sources */,
 				64D869FF1BB23FDF002E8799 /* KeyFrameAnimationViewController.m in Sources */,
 				64BE4EB11BCB92770085FBA3 /* WebViewController.m in Sources */,
 				64ED04FC1BE36B7400673354 /* ZCSCircleProgressView.m in Sources */,
@@ -642,11 +682,13 @@
 				64D86A041BB24023002E8799 /* PhotoBrowserController.m in Sources */,
 				64765D361BB52FB2000AD9E1 /* ZCSPhotoShowView.m in Sources */,
 				1A8F167C1BBF8501006B17E1 /* PictureShowController.m in Sources */,
+				1A70A52A1CA03027008BD05A /* KTCollectionReusableView.m in Sources */,
 				64BE4EAE1BCB92770085FBA3 /* CTDisplayView.m in Sources */,
 				64D86A081BB2403C002E8799 /* DownloadViewController.m in Sources */,
 				64D25EF01B9599B700C05F15 /* myAnnotation.m in Sources */,
 				647F8B881B8B032400DF3A4F /* firstViewController.m in Sources */,
 				64BE4EB01BCB92770085FBA3 /* CTFrameParserConfig.m in Sources */,
+				1A70A52C1CA03027008BD05A /* KTCollectionViewFlowLayout.m in Sources */,
 				647F8B8B1B8B032400DF3A4F /* main.m in Sources */,
 				1A1BF1EB1C3C18990033A1B8 /* MGSwipeTableCell.m in Sources */,
 				64D86A001BB23FDF002E8799 /* TransitionAnimationViewController.m in Sources */,

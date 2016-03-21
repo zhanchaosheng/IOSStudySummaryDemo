@@ -12,6 +12,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "PictureCollectionViewCell.h"
 #import <Photos/Photos.h>
+#import "AlbumsCollectionViewController.h"
 
 
 @interface PictureShowController ()
@@ -409,6 +410,33 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];//取消选中状态
+    
+    AlbumsCollectionViewController *albumsShowController = [[AlbumsCollectionViewController alloc] init];
+    UITableViewCell *sellectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    albumsShowController.title = sellectedCell.textLabel.text;
+    
+    PHFetchResult *fetchResult = self.sectionFetchResults[indexPath.section];
+    
+    if (indexPath.section == 0) {
+        albumsShowController.assetsFetchResults = fetchResult;
+    }
+    else {
+        // Get the PHAssetCollection for the selected row.
+        PHCollection *collection = fetchResult[indexPath.row];
+        if (![collection isKindOfClass:[PHAssetCollection class]]) {
+            return;
+        }
+        
+        // Configure the AAPLAssetGridViewController with the asset collection.
+        PHAssetCollection *assetCollection = (PHAssetCollection *)collection;
+        PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection
+                                                                         options:nil];
+        
+        albumsShowController.assetsFetchResults = assetsFetchResult;
+        albumsShowController.assetCollection = assetCollection;
+    }
+    
+    [self.navigationController pushViewController:albumsShowController animated:YES];
 }
 
 
