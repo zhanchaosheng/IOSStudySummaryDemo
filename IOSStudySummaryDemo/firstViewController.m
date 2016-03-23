@@ -56,7 +56,7 @@
     self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
   
     //定时器总结
-    //[self demoNSTimer];
+    [self demoNSTimer];
     //[self demoCADisplayLink];
     //[self demoGCDTimer];
     
@@ -141,11 +141,11 @@
 - (void)demoNSTimer
 {
     //方式一：主线程中创建scheduledTimer，Timer会自动添加进主线程的runLoop的NSDefaultRunLoopMode中
-//    NSTimer *scheduledTimer = [NSTimer scheduledTimerWithTimeInterval:3.0
-//                                                               target:self
-//                                                             selector:@selector(scheduledTimerHandle:)
-//                                                             userInfo:@"scheduledTimer userInfo ."
-//                                                              repeats:YES];
+    NSTimer *scheduledTimer = [NSTimer scheduledTimerWithTimeInterval:3.0
+                                                               target:self
+                                                             selector:@selector(scheduledTimerHandle:)
+                                                             userInfo:@"scheduledTimer userInfo ."
+                                                              repeats:YES];
     
     //方式二：下面这种方式创建Timer需要手动添加进主线程RunLoop,否则不会调用Timer的处理函数
 //    NSTimer *timer = [NSTimer timerWithTimeInterval:3.0
@@ -169,9 +169,9 @@
 //                           withObject:@"new thread start run !"];
     
     //第三种
-    [self performSelectorOnMainThread:@selector(newThreadProc:)
-                           withObject:@"performSelectorOnMainThread running !"
-                        waitUntilDone:NO];
+//    [self performSelectorOnMainThread:@selector(newThreadProc:)
+//                           withObject:@"performSelectorOnMainThread running !"
+//                        waitUntilDone:NO];
 }
 
 - (void)demoCADisplayLink
@@ -214,7 +214,7 @@
 - (void)scheduledTimerHandle:(NSTimer *)timer
 {
     NSLog(@"%@",timer.userInfo);
-    [timer invalidate];//解除定时器
+    //[timer invalidate];//解除定时器
 }
 
 - (void)newThreadProc:(id)object

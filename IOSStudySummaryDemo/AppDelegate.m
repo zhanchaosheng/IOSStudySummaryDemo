@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "firstViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface AppDelegate ()
 
@@ -20,6 +21,16 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    //配置应用后台运行
+    if ([UIDevice currentDevice].multitaskingSupported)//该设备是否支持多任务
+    {
+        NSError *setError = nil;
+        NSError *activeError = nil;
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&setError];
+        [[AVAudioSession sharedInstance] setActive:YES error:&activeError];
+    }
+    
     
     UINavigationController *rootController = [[UINavigationController alloc] initWithRootViewController:[[firstViewController alloc] init]];
     //是否启用滑动返回功能
@@ -42,6 +53,14 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    //设置永久后台运行
+    __block UIBackgroundTaskIdentifier backgrouondTaskId;
+    backgrouondTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        if (backgrouondTaskId != UIBackgroundTaskInvalid) {
+            backgrouondTaskId = UIBackgroundTaskInvalid;
+        }
+    }];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
