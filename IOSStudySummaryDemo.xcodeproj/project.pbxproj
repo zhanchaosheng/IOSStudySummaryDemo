@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		119876161CBB82DD00205F6E /* UITableView+SDAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 119876131CBB82DD00205F6E /* UITableView+SDAutoTableViewCellHeight.m */; };
+		119876171CBB82DD00205F6E /* UIView+SDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 119876151CBB82DD00205F6E /* UIView+SDAutoLayout.m */; };
 		1A1790521BC2BBB900925B96 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A1790511BC2BBB800925B96 /* AssetsLibrary.framework */; };
 		1A1BF1EA1C3C18990033A1B8 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1BF1E71C3C18990033A1B8 /* MGSwipeButton.m */; };
 		1A1BF1EB1C3C18990033A1B8 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1BF1E91C3C18990033A1B8 /* MGSwipeTableCell.m */; };
@@ -99,6 +101,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		119876121CBB82DD00205F6E /* UITableView+SDAutoTableViewCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+SDAutoTableViewCellHeight.h"; sourceTree = "<group>"; };
+		119876131CBB82DD00205F6E /* UITableView+SDAutoTableViewCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+SDAutoTableViewCellHeight.m"; sourceTree = "<group>"; };
+		119876141CBB82DD00205F6E /* UIView+SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDAutoLayout.h"; sourceTree = "<group>"; };
+		119876151CBB82DD00205F6E /* UIView+SDAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDAutoLayout.m"; sourceTree = "<group>"; };
 		1A1790511BC2BBB800925B96 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		1A1BF1E61C3C18990033A1B8 /* MGSwipeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeButton.h; sourceTree = "<group>"; };
 		1A1BF1E71C3C18990033A1B8 /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeButton.m; sourceTree = "<group>"; };
@@ -246,6 +252,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		119876111CBB82DD00205F6E /* SDAutoLayout */ = {
+			isa = PBXGroup;
+			children = (
+				119876121CBB82DD00205F6E /* UITableView+SDAutoTableViewCellHeight.h */,
+				119876131CBB82DD00205F6E /* UITableView+SDAutoTableViewCellHeight.m */,
+				119876141CBB82DD00205F6E /* UIView+SDAutoLayout.h */,
+				119876151CBB82DD00205F6E /* UIView+SDAutoLayout.m */,
+			);
+			path = SDAutoLayout;
+			sourceTree = "<group>";
+		};
 		1A1790531BC2BBD100925B96 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,6 +328,7 @@
 		647F8B901B8B038300DF3A4F /* Ex */ = {
 			isa = PBXGroup;
 			children = (
+				119876111CBB82DD00205F6E /* SDAutoLayout */,
 				1A1BF1E51C3C18990033A1B8 /* MGSwipeTableCell */,
 				64D072D31B9429BF00108C45 /* DCPathButton */,
 				64D072CF1B94295C00108C45 /* DWBubbleMenuButton */,
@@ -663,6 +681,7 @@
 				64D072DA1B9429BF00108C45 /* DCPathButton.m in Sources */,
 				64BE4EAC1BCB92770085FBA3 /* CoreTextUtils.m in Sources */,
 				64C63FEF1BC7A2AE00ACF83A /* UIView+frameAdjust.m in Sources */,
+				119876171CBB82DD00205F6E /* UIView+SDAutoLayout.m in Sources */,
 				647F8B8D1B8B032400DF3A4F /* ViewController.m in Sources */,
 				64D869FC1BB23FDF002E8799 /* BaseAnimationViewController.m in Sources */,
 				64D869FE1BB23FDF002E8799 /* GroupAnimationViewController.m in Sources */,
@@ -688,6 +707,7 @@
 				64D25EF01B9599B700C05F15 /* myAnnotation.m in Sources */,
 				647F8B881B8B032400DF3A4F /* firstViewController.m in Sources */,
 				64BE4EB01BCB92770085FBA3 /* CTFrameParserConfig.m in Sources */,
+				119876161CBB82DD00205F6E /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				1A70A52C1CA03027008BD05A /* KTCollectionViewFlowLayout.m in Sources */,
 				647F8B8B1B8B032400DF3A4F /* main.m in Sources */,
 				1A1BF1EB1C3C18990033A1B8 /* MGSwipeTableCell.m in Sources */,

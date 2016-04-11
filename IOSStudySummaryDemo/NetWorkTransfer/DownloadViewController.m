@@ -7,6 +7,7 @@
 //
 
 #import "DownloadViewController.h"
+#import "UIView+SDAutoLayout.h"
 
 
 @interface DownloadViewController ()<NSURLConnectionDataDelegate,NSURLSessionDownloadDelegate>
@@ -15,6 +16,7 @@
 @property(nonatomic, strong) UIProgressView *downloadProgress; //下载进度条
 @property(nonatomic, strong) UILabel *downloadPercent; //下载进度百分比
 @property(nonatomic, strong) UIButton *downlaodButton; //开始/暂停下载按钮
+@property(nonatomic, strong) UISegmentedControl *segmentedCtrl;
 @property(nonatomic, assign) BOOL bDownloadType; //下载方式：YES - NSURLConnection、NO - NSURLSession
 
 @property(nonatomic, strong) NSURLConnection *connection;
@@ -32,23 +34,26 @@
 - (void)initView
 {
     //图片显示
-    self.headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 250)];
+    //self.headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 250)];
+    self.headImageView = [[UIImageView alloc] init];
     self.headImageView.backgroundColor = [UIColor grayColor];
     [self.view addSubview:self.headImageView];
     
     //下载进度条
-    self.downloadProgress = [[UIProgressView alloc] initWithFrame:CGRectMake(75, 400, 200, 6)];
+    //self.downloadProgress = [[UIProgressView alloc] initWithFrame:CGRectMake(75, 400, 200, 6)];
+    self.downloadProgress = [[UIProgressView alloc] init];
     self.downloadProgress.progress = 0.0;
     [self.view addSubview:self.downloadProgress];
     
     //下载进度百分比
-    self.downloadPercent = [[UILabel alloc] initWithFrame:CGRectMake(295, 390, 50, 20)];
+    //self.downloadPercent = [[UILabel alloc] initWithFrame:CGRectMake(295, 390, 50, 20)];
+    self.downloadPercent = [[UILabel alloc] init];
     self.downloadPercent.text = @"0%";
     [self.view addSubview:self.downloadPercent];
     
     //开始、暂停 (下载大文件的断点续传)
     self.downlaodButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _downlaodButton.frame = CGRectMake(SCREEN_WIDTH/2-50, 450, 100, 100);
+    //_downlaodButton.frame = CGRectMake(SCREEN_WIDTH/2-50, 450, 100, 100);
     [_downlaodButton setImage:[UIImage imageNamed:@"start.png"] forState:UIControlStateNormal];
     [_downlaodButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateSelected];
     [_downlaodButton addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -56,14 +61,47 @@
     
     //下载方式选择
     NSArray *btnArray = [NSArray arrayWithObjects:@"NSURLConnection",@"NSURLSession",nil];
-    UISegmentedControl *segmentedCtrl = [[UISegmentedControl alloc] initWithItems:btnArray];
-    segmentedCtrl.frame = CGRectMake(5, SCREEN_HEIGHT - 55, SCREEN_WIDTH - 10, 50);
+    _segmentedCtrl = [[UISegmentedControl alloc] initWithItems:btnArray];
+    //segmentedCtrl.frame = CGRectMake(5, SCREEN_HEIGHT - 55, SCREEN_WIDTH - 10, 50);
     //segmentedCtrl.momentary = YES;//设置点击后是否恢复原样
-    segmentedCtrl.selectedSegmentIndex = 0;
-    [segmentedCtrl addTarget:self
+    _segmentedCtrl.selectedSegmentIndex = 0;
+    [_segmentedCtrl addTarget:self
                       action:@selector(segmentCtrlHandle:)
             forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:segmentedCtrl];
+    [self.view addSubview:_segmentedCtrl];
+    
+    //使用SDAutoLayout自动布局
+    self.headImageView.sd_layout
+    .leftSpaceToView(self.view,0)
+    .rightSpaceToView(self.view,0)
+    .topSpaceToView(self.view,64)
+    .heightIs(250);
+    
+    self.downloadProgress.sd_layout
+    .widthIs(200)
+    .heightIs(6)
+    .topSpaceToView(self.headImageView,20)
+    .centerXEqualToView(self.view);
+    
+    self.downloadPercent.sd_layout
+    .widthIs(50)
+    .heightIs(20)
+    .leftSpaceToView(self.downloadProgress,10)
+    .centerYEqualToView(self.downloadProgress);
+    
+    self.segmentedCtrl.sd_layout
+    .leftSpaceToView(self.view,5)
+    .rightSpaceToView(self.view,5)
+    .bottomSpaceToView(self.view,5)
+    .heightIs(40);
+    
+    self.downlaodButton.sd_layout
+    .widthIs(100)
+    .heightIs(100)
+    .bottomSpaceToView(self.segmentedCtrl,20)
+    .centerXEqualToView(self.view);
+    
+    
     self.bDownloadType = YES;
 }
 

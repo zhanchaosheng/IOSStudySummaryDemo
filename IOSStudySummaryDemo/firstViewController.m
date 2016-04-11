@@ -214,7 +214,7 @@
 - (void)scheduledTimerHandle:(NSTimer *)timer
 {
     NSLog(@"%@",timer.userInfo);
-    //[timer invalidate];//解除定时器
+    [timer invalidate];//解除定时器
 }
 
 - (void)newThreadProc:(id)object
