@@ -13,11 +13,12 @@
 #import "PictureCollectionViewCell.h"
 #import <Photos/Photos.h>
 #import "AlbumsCollectionViewController.h"
+#import "ZCSPhotoBrowserView.h"
 
 
 @interface PictureShowController ()
 <UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,
-    PHPhotoLibraryChangeObserver,UITableViewDelegate,UITableViewDataSource>
+    PHPhotoLibraryChangeObserver,UITableViewDelegate,UITableViewDataSource,ZCSPhotoBrowserViewDelegate>
 
 @property (assign, nonatomic) BOOL bFetchByALAssetsLibrary;
 @property (strong, nonatomic) UICollectionView *collectionView;
@@ -320,14 +321,18 @@
 #pragma mark - UICollectionViewDelegate
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *msg = [NSString stringWithFormat:@"Select Item At %ld ",(long)indexPath.row];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                    message:msg
-                                                   delegate:nil
-                                          cancelButtonTitle:@"yes,I do"
-                                          otherButtonTitles:nil];
-    [alert show];
-    return;
+//    NSString *msg = [NSString stringWithFormat:@"Select Item At %ld ",(long)indexPath.row];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+//                                                    message:msg
+//                                                   delegate:nil
+//                                          cancelButtonTitle:@"yes,I do"
+//                                          otherButtonTitles:nil];
+//    [alert show];
+    ZCSPhotoBrowserView *photoBrowser = [[ZCSPhotoBrowserView alloc] init];
+    photoBrowser.imageCount = self.alAssets.count;
+    photoBrowser.currentImageIndex = indexPath.row;
+    photoBrowser.delegate = self;
+    [photoBrowser show];
 }
 
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -468,6 +473,18 @@
         }
         
     });
+}
+
+#pragma mark - ZCSPhotoBrowserViewDelegate
+// 获取默认图
+- (UIImage *)placeholderImageWithIndex:(NSInteger)index
+                       forPhotoBrowser:(ZCSPhotoBrowserView *)browser {
+    ALAsset *asset = self.alAssets[index];
+    if (asset) {
+        //加载图片
+        return [UIImage imageWithCGImage:asset.thumbnail];
+    }
+    return nil;
 }
 /*
 #pragma mark - Navigation

@@ -56,6 +56,14 @@
         // 单击图片
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoClick:)];
         [imageShowView addGestureRecognizer:singleTap];
+        
+        // 双击图片
+        UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoDoubleClick:)];
+        doubleTap.numberOfTapsRequired = 2;
+        [imageShowView addGestureRecognizer:doubleTap];
+        
+        [singleTap requireGestureRecognizerToFail:doubleTap];
+        
         [_photoBrowser addSubview:imageShowView];
     }
     
@@ -182,6 +190,15 @@
     }];
 }
 
+- (void)photoDoubleClick:(UITapGestureRecognizer *)recognizer {
+    ZCSPhotoShowView *currentImageView = (ZCSPhotoShowView *)recognizer.view;
+    if ([currentImageView isKindOfClass:[ZCSPhotoShowView class]])
+    {
+        CGPoint location = [recognizer locationInView:currentImageView];
+        [currentImageView zoomToLocation:location];
+    }
+}
+
 - (void)showFirstImage
 {
     UIView *sourceView = [self sourceImageViewWihtIndex:self.currentImageIndex];
@@ -240,20 +257,17 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     int index = (scrollView.contentOffset.x + _photoBrowser.bounds.size.width * 0.5) / _photoBrowser.bounds.size.width;
-    
-    // 有过缩放的图片在拖动一定距离后清除缩放
-    CGFloat margin = 150;
-    CGFloat x = scrollView.contentOffset.x;
-    if ((x - index * self.bounds.size.width) > margin || (x - index * self.bounds.size.width) < - margin) {
-        ZCSPhotoShowView *imageView = [_photoBrowser.subviews objectAtIndex:index];
-        if (imageView) {
-            [imageView turnOffZoom];
-        }
-    }
-    
+   
     if (!self.willDisappear) {
         _indexLabel.text = [NSString stringWithFormat:@"%d/%ld", index + 1, (long)self.imageCount];
+        if (index != self.currentImageIndex) {
+            ZCSPhotoShowView *imageView = [_photoBrowser.subviews objectAtIndex:self.currentImageIndex];
+            if (imageView) {
+                [imageView turnOffZoom];
+            }
+        }
     }
     [self loadImageOfPhotoShowViewWithIndex:index];
 }
+
 @end

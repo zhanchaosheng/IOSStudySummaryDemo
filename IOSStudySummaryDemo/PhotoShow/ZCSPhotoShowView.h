@@ -14,6 +14,9 @@
 
 - (BOOL)isZoomed;
 - (void)turnOffZoom;
+- (void)zoomToLocation:(CGPoint)location;
+
 - (void)setImage:(UIImage *)newImage;
 - (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder;
+
 @end

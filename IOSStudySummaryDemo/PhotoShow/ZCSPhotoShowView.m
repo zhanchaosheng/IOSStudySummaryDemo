@@ -17,7 +17,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setDelegate:self];
-        [self setMaximumZoomScale:5.0];
+        [self setMaximumZoomScale:3.0];
         [self setShowsHorizontalScrollIndicator:NO];
         [self setShowsVerticalScrollIndicator:NO];
         _imageView = [[UIImageView alloc] initWithFrame:frame];
@@ -95,14 +95,6 @@
     }
 }
 
-//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//    UITouch *touch = [touches anyObject];
-//    
-//    if ([touch view] == self && [touch tapCount] == 1)
-//    {
-//    }
-//}
 
 #pragma mark UIScrollViewDelegate Methods
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
@@ -117,7 +109,8 @@
 }
 
 - (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder {
-    
+    self.imageView.image = placeholder;
+    //通过URL获取高清图
 }
 
 @end
