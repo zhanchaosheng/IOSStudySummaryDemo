@@ -10,6 +10,10 @@
 
 @interface ZCSPhotoShowView : UIScrollView
 
-- (void)setImage:(UIImage *)newImage;
+@property (strong, nonatomic) UIImageView *imageView;
 
+- (BOOL)isZoomed;
+- (void)turnOffZoom;
+- (void)setImage:(UIImage *)newImage;
+- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder;
 @end

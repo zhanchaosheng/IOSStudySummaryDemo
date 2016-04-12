@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		119876161CBB82DD00205F6E /* UITableView+SDAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 119876131CBB82DD00205F6E /* UITableView+SDAutoTableViewCellHeight.m */; };
 		119876171CBB82DD00205F6E /* UIView+SDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 119876151CBB82DD00205F6E /* UIView+SDAutoLayout.m */; };
+		11A81D371CBC9F4D008CC70D /* ZCSPhotoBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11A81D361CBC9F4D008CC70D /* ZCSPhotoBrowserView.m */; };
 		1A1790521BC2BBB900925B96 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A1790511BC2BBB800925B96 /* AssetsLibrary.framework */; };
 		1A1BF1EA1C3C18990033A1B8 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1BF1E71C3C18990033A1B8 /* MGSwipeButton.m */; };
 		1A1BF1EB1C3C18990033A1B8 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1BF1E91C3C18990033A1B8 /* MGSwipeTableCell.m */; };
@@ -105,6 +106,8 @@
 		119876131CBB82DD00205F6E /* UITableView+SDAutoTableViewCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+SDAutoTableViewCellHeight.m"; sourceTree = "<group>"; };
 		119876141CBB82DD00205F6E /* UIView+SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDAutoLayout.h"; sourceTree = "<group>"; };
 		119876151CBB82DD00205F6E /* UIView+SDAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDAutoLayout.m"; sourceTree = "<group>"; };
+		11A81D351CBC9F4D008CC70D /* ZCSPhotoBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCSPhotoBrowserView.h; sourceTree = "<group>"; };
+		11A81D361CBC9F4D008CC70D /* ZCSPhotoBrowserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCSPhotoBrowserView.m; sourceTree = "<group>"; };
 		1A1790511BC2BBB800925B96 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		1A1BF1E61C3C18990033A1B8 /* MGSwipeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeButton.h; sourceTree = "<group>"; };
 		1A1BF1E71C3C18990033A1B8 /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeButton.m; sourceTree = "<group>"; };
@@ -519,6 +522,8 @@
 				64D86A031BB24023002E8799 /* PhotoBrowserController.m */,
 				64765D341BB52FB2000AD9E1 /* ZCSPhotoShowView.h */,
 				64765D351BB52FB2000AD9E1 /* ZCSPhotoShowView.m */,
+				11A81D351CBC9F4D008CC70D /* ZCSPhotoBrowserView.h */,
+				11A81D361CBC9F4D008CC70D /* ZCSPhotoBrowserView.m */,
 				1A8F167A1BBF8501006B17E1 /* PictureShowController.h */,
 				1A8F167B1BBF8501006B17E1 /* PictureShowController.m */,
 				1A7343E91BC3A0C500988302 /* PictureCollectionViewCell.h */,
@@ -712,6 +717,7 @@
 				647F8B8B1B8B032400DF3A4F /* main.m in Sources */,
 				1A1BF1EB1C3C18990033A1B8 /* MGSwipeTableCell.m in Sources */,
 				64D86A001BB23FDF002E8799 /* TransitionAnimationViewController.m in Sources */,
+				11A81D371CBC9F4D008CC70D /* ZCSPhotoBrowserView.m in Sources */,
 				64D072D21B94295C00108C45 /* DWBubbleMenuButton.m in Sources */,
 				1A1BF1EA1C3C18990033A1B8 /* MGSwipeButton.m in Sources */,
 				64D072CE1B94290100108C45 /* MCFireworksView.m in Sources */,

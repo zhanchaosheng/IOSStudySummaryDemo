@@ -9,7 +9,6 @@
 #import "ZCSPhotoShowView.h"
 
 @interface ZCSPhotoShowView ()<UIScrollViewDelegate>
-@property (strong, nonatomic) UIImageView *imageView;
 @end
 
 @implementation ZCSPhotoShowView
@@ -36,11 +35,6 @@
     {
         [_imageView setFrame:[self bounds]];
     }
-}
-
-- (void)setImage:(UIImage *)newImage
-{
-    self.imageView.image = newImage;
 }
 
 - (BOOL)isZoomed
@@ -115,12 +109,15 @@
 {
     return self.imageView;
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+
+#pragma mark - public func
+- (void)setImage:(UIImage *)image
+{
+    self.imageView.image = image;
 }
-*/
+
+- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder {
+    
+}
 
 @end
