@@ -45,12 +45,19 @@
 
 - (void)setProgress
 {
+//    self.progressPath = [UIBezierPath bezierPathWithArcCenter:self.center
+//                                                   radius:(self.bounds.size.width - self.progressWidth)/ 2
+//                                               startAngle:- M_PI_2
+//                                                 endAngle:(M_PI * 2) * self.progress - M_PI_2
+//                                                clockwise:YES];
     self.progressPath = [UIBezierPath bezierPathWithArcCenter:self.center
-                                                   radius:(self.bounds.size.width - self.progressWidth)/ 2
-                                               startAngle:- M_PI_2
-                                                 endAngle:(M_PI * 2) * self.progress - M_PI_2
-                                                clockwise:YES];
+                                                       radius:(self.bounds.size.width - self.progressWidth)/ 2
+                                                   startAngle:-M_PI
+                                                     endAngle:M_PI
+                                                    clockwise:YES];
+    
     self.progressLayer.path = self.progressPath.CGPath;
+    self.progressLayer.strokeEnd = 0.f;
 }
 
 
@@ -76,22 +83,40 @@
 
 - (void)setProgress:(float)progress
 {
-    _progress = progress;
-    
-    [self setProgress];
+    _progress = progress;    
+//    [self setProgress];
+    self.progressLayer.strokeEnd = progress;
 }
 
 - (void)setProgress:(float)progress animated:(BOOL)animated
 {
-    self.progress = progress;
+    //self.progress = progress;
+    if (animated) {
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+        animation.fromValue = @(self.progressLayer.strokeEnd);
+        animation.toValue = @(progress);
+        animation.duration = 1.f;
+        animation.autoreverses = NO;
+        animation.delegate = self;
+        animation.fillMode = kCAFillModeForwards;
+        animation.removedOnCompletion = NO;
+        [self.progressLayer addAnimation:animation forKey:nil];
+    }
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+#pragma mark - CAAnimation Delegate
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    if (flag)
+    {
+        if ([anim isKindOfClass:[CABasicAnimation class]])
+        {
+            CABasicAnimation *basicAnimation = (CABasicAnimation *)anim;
+            self.progress = [basicAnimation.toValue floatValue];
+        }
+    }
 }
-*/
+
 
 @end

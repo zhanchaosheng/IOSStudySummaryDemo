@@ -46,7 +46,7 @@
     _progress = [[ZCSCircleProgressView alloc] initWithFrame:CGRectMake(5, 69, 100, 100)];
     _progress.trackColor = [UIColor grayColor];
     _progress.progressColor = [UIColor orangeColor];
-    _progress.progress = 0.7f;
+    _progress.progress = 0.f;
     //_progress.progressWidth = 10;
     [self.view addSubview:_progress];
 }
