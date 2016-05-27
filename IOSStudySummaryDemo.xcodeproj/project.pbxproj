@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		116D98241CF7E8EA00A080A9 /* ZCSRotationArrowRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 116D98231CF7E8EA00A080A9 /* ZCSRotationArrowRefreshView.m */; };
+		116D98271CF825BD00A080A9 /* ZCSWaterWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 116D98261CF825BD00A080A9 /* ZCSWaterWaveView.m */; };
 		119876161CBB82DD00205F6E /* UITableView+SDAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 119876131CBB82DD00205F6E /* UITableView+SDAutoTableViewCellHeight.m */; };
 		119876171CBB82DD00205F6E /* UIView+SDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 119876151CBB82DD00205F6E /* UIView+SDAutoLayout.m */; };
 		11A81D371CBC9F4D008CC70D /* ZCSPhotoBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11A81D361CBC9F4D008CC70D /* ZCSPhotoBrowserView.m */; };
@@ -102,6 +104,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		116D98221CF7E8EA00A080A9 /* ZCSRotationArrowRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCSRotationArrowRefreshView.h; sourceTree = "<group>"; };
+		116D98231CF7E8EA00A080A9 /* ZCSRotationArrowRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCSRotationArrowRefreshView.m; sourceTree = "<group>"; };
+		116D98251CF825BD00A080A9 /* ZCSWaterWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCSWaterWaveView.h; sourceTree = "<group>"; };
+		116D98261CF825BD00A080A9 /* ZCSWaterWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCSWaterWaveView.m; sourceTree = "<group>"; };
 		119876121CBB82DD00205F6E /* UITableView+SDAutoTableViewCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+SDAutoTableViewCellHeight.h"; sourceTree = "<group>"; };
 		119876131CBB82DD00205F6E /* UITableView+SDAutoTableViewCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+SDAutoTableViewCellHeight.m"; sourceTree = "<group>"; };
 		119876141CBB82DD00205F6E /* UIView+SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDAutoLayout.h"; sourceTree = "<group>"; };
@@ -255,6 +261,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		116D98211CF7E81800A080A9 /* AnimationView */ = {
+			isa = PBXGroup;
+			children = (
+				116D98221CF7E8EA00A080A9 /* ZCSRotationArrowRefreshView.h */,
+				116D98231CF7E8EA00A080A9 /* ZCSRotationArrowRefreshView.m */,
+				116D98251CF825BD00A080A9 /* ZCSWaterWaveView.h */,
+				116D98261CF825BD00A080A9 /* ZCSWaterWaveView.m */,
+			);
+			name = AnimationView;
+			sourceTree = "<group>";
+		};
 		119876111CBB82DD00205F6E /* SDAutoLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,6 +320,7 @@
 		647F8B8E1B8B035400DF3A4F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				116D98211CF7E81800A080A9 /* AnimationView */,
 				647F8B781B8B032400DF3A4F /* customView.h */,
 				647F8B791B8B032400DF3A4F /* customView.m */,
 				64ED04FA1BE36B7400673354 /* ZCSCircleProgressView.h */,
@@ -702,6 +720,7 @@
 				64D869FF1BB23FDF002E8799 /* KeyFrameAnimationViewController.m in Sources */,
 				64BE4EB11BCB92770085FBA3 /* WebViewController.m in Sources */,
 				64ED04FC1BE36B7400673354 /* ZCSCircleProgressView.m in Sources */,
+				116D98241CF7E8EA00A080A9 /* ZCSRotationArrowRefreshView.m in Sources */,
 				647F8B8C1B8B032400DF3A4F /* UIView+ZCSAssociatedObjc.m in Sources */,
 				64D86A041BB24023002E8799 /* PhotoBrowserController.m in Sources */,
 				64765D361BB52FB2000AD9E1 /* ZCSPhotoShowView.m in Sources */,
@@ -716,6 +735,7 @@
 				1A70A52C1CA03027008BD05A /* KTCollectionViewFlowLayout.m in Sources */,
 				647F8B8B1B8B032400DF3A4F /* main.m in Sources */,
 				1A1BF1EB1C3C18990033A1B8 /* MGSwipeTableCell.m in Sources */,
+				116D98271CF825BD00A080A9 /* ZCSWaterWaveView.m in Sources */,
 				64D86A001BB23FDF002E8799 /* TransitionAnimationViewController.m in Sources */,
 				11A81D371CBC9F4D008CC70D /* ZCSPhotoBrowserView.m in Sources */,
 				64D072D21B94295C00108C45 /* DWBubbleMenuButton.m in Sources */,

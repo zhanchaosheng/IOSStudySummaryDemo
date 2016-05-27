@@ -11,6 +11,8 @@
 #import "DWBubbleMenuButton.h"
 #import "MCFireworksButton.h"
 #import "ZCSCircleProgressView.h"
+#import "ZCSRotationArrowRefreshView.h"
+#import "ZCSWaterWaveView.h"
 
 @interface ComprehensiveCaseViewController ()<DCPathButtonDelegate>
 
@@ -49,6 +51,24 @@
     _progress.progress = 0.f;
     //_progress.progressWidth = 10;
     [self.view addSubview:_progress];
+    
+    //旋转箭头刷新视图
+    ZCSRotationArrowRefreshView *refreshView = [[ZCSRotationArrowRefreshView alloc]
+                                                initWithFrame:CGRectMake(150, 69, 100, 100)];
+    [refreshView beginAnimation];
+    [self.view addSubview:refreshView];
+    
+    //水波动画视图
+    ZCSWaterWaveView *waveView = [[ZCSWaterWaveView alloc] initWithFrame:CGRectMake(150, 180, 200, 200)];
+    waveView.backgroundColor = [UIColor colorWithRed:(CGFloat)1/255 green:(CGFloat)122/255 blue:(CGFloat)233/255 alpha:1];
+    waveView.layer.borderWidth = 5;
+    waveView.layer.borderColor = [UIColor grayColor].CGColor;
+    waveView.waveSpeed = 6.0f;
+    waveView.waveAmplitude = 6.0f;
+    waveView.waterWaveHeightRatio = 0.8;
+    waveView.waveColor = [UIColor colorWithRed:(CGFloat)255/255 green:(CGFloat)79/255 blue:(CGFloat)47/255 alpha:1];
+    [waveView wave];
+    [self.view addSubview:waveView];
 }
 
 - (void)didReceiveMemoryWarning {
