@@ -13,6 +13,7 @@
 #import "ZCSCircleProgressView.h"
 #import "ZCSRotationArrowRefreshView.h"
 #import "ZCSWaterWaveView.h"
+#import "UIView+SDAutoLayout.h"
 
 @interface ComprehensiveCaseViewController ()<DCPathButtonDelegate>
 
@@ -22,6 +23,8 @@
 @property (nonatomic , assign) BOOL selected;
 
 @property (nonatomic , strong) ZCSCircleProgressView *progress;
+@property (nonatomic, strong) ZCSWaterWaveView *waveView;
+@property (nonatomic, strong) UISlider *slider;
 
 @end
 
@@ -59,16 +62,28 @@
     [self.view addSubview:refreshView];
     
     //水波动画视图
-    ZCSWaterWaveView *waveView = [[ZCSWaterWaveView alloc] initWithFrame:CGRectMake(150, 180, 200, 200)];
-    waveView.backgroundColor = [UIColor colorWithRed:(CGFloat)1/255 green:(CGFloat)122/255 blue:(CGFloat)233/255 alpha:1];
-    waveView.layer.borderWidth = 5;
-    waveView.layer.borderColor = [UIColor grayColor].CGColor;
-    waveView.waveSpeed = 6.0f;
-    waveView.waveAmplitude = 6.0f;
-    waveView.waterWaveHeightRatio = 0.8;
-    waveView.waveColor = [UIColor colorWithRed:(CGFloat)255/255 green:(CGFloat)79/255 blue:(CGFloat)47/255 alpha:1];
-    [waveView wave];
-    [self.view addSubview:waveView];
+    _waveView = [[ZCSWaterWaveView alloc] initWithFrame:CGRectMake(150, 180, 200, 200)];
+    _waveView.backgroundColor = [UIColor colorWithRed:(CGFloat)1/255 green:(CGFloat)122/255 blue:(CGFloat)233/255 alpha:1];
+    _waveView.layer.borderWidth = 5;
+    _waveView.layer.borderColor = [UIColor grayColor].CGColor;
+    _waveView.waveSpeed = 6.0f;
+    _waveView.waveAmplitude = 6.0f;
+    _waveView.waterWaveHeightRatio = 0.8;
+    _waveView.waveColor = [UIColor colorWithRed:(CGFloat)255/255 green:(CGFloat)79/255 blue:(CGFloat)47/255 alpha:1];
+    [_waveView wave];
+    [self.view addSubview:_waveView];
+    
+    _slider = [UISlider new];
+    _slider.minimumValue = 0.0f;
+    _slider.maximumValue = 1.0f;
+    _slider.value = 0.0;
+    [_slider addTarget:self
+                action:@selector(sliderValueChange:)
+      forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:_slider];
+    _slider.sd_layout
+    .bottomSpaceToView(segmentedCtrl, 10).leftEqualToView(segmentedCtrl)
+    .rightEqualToView(segmentedCtrl).heightIs(20);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,6 +106,12 @@
         default:
             break;
     }
+}
+
+- (void)sliderValueChange:(UISlider *)slider
+{
+    CGFloat value = slider.value;
+    self.waveView.waterWaveHeightRatio = value;
 }
 
 #pragma mark - 仿Path 菜单动画

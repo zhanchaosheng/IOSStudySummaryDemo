@@ -26,6 +26,7 @@
 		1A70A5331CA031C5008BD05A /* selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A70A5301CA031C5008BD05A /* selected@2x.png */; };
 		1A7343EB1BC3A0C500988302 /* PictureCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7343EA1BC3A0C500988302 /* PictureCollectionViewCell.m */; };
 		1A8F167C1BBF8501006B17E1 /* PictureShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8F167B1BBF8501006B17E1 /* PictureShowController.m */; };
+		1AAC1ACE1CF98CD500BFC2A7 /* UIGestureRecognizer+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC1ACD1CF98CD500BFC2A7 /* UIGestureRecognizer+Block.m */; };
 		1AC886ED1BA86A9800DE373A /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC886EC1BA86A9800DE373A /* start.png */; };
 		1AC886EF1BA86AAC00DE373A /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC886EE1BA86AAC00DE373A /* pause.png */; };
 		640EC6A81BDA34F1003D15E9 /* fanye.gif in Resources */ = {isa = PBXBuildFile; fileRef = 640EC6A71BDA34F1003D15E9 /* fanye.gif */; };
@@ -138,6 +139,8 @@
 		1A8F167A1BBF8501006B17E1 /* PictureShowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureShowController.h; sourceTree = "<group>"; };
 		1A8F167B1BBF8501006B17E1 /* PictureShowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureShowController.m; sourceTree = "<group>"; };
 		1AA5B9BB1B90A4040021B9D0 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		1AAC1ACC1CF98CD500BFC2A7 /* UIGestureRecognizer+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Block.h"; sourceTree = "<group>"; };
+		1AAC1ACD1CF98CD500BFC2A7 /* UIGestureRecognizer+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Block.m"; sourceTree = "<group>"; };
 		1AC886EC1BA86A9800DE373A /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 		1AC886EE1BA86AAC00DE373A /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		640EC6A71BDA34F1003D15E9 /* fanye.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = fanye.gif; sourceTree = "<group>"; };
@@ -304,9 +307,19 @@
 			path = MGSwipeTableCell;
 			sourceTree = "<group>";
 		};
+		1AAC1ACB1CF98BE400BFC2A7 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				1AAC1ACC1CF98CD500BFC2A7 /* UIGestureRecognizer+Block.h */,
+				1AAC1ACD1CF98CD500BFC2A7 /* UIGestureRecognizer+Block.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		647F8B711B8B032400DF3A4F /* IOSStudySummaryDemo */ = {
 			isa = PBXGroup;
 			children = (
+				1AAC1ACB1CF98BE400BFC2A7 /* Category */,
 				647F8B721B8B032400DF3A4F /* AppDelegate.h */,
 				647F8B731B8B032400DF3A4F /* AppDelegate.m */,
 				647F8B8F1B8B035E00DF3A4F /* Controller */,
@@ -704,6 +717,7 @@
 				64D072DA1B9429BF00108C45 /* DCPathButton.m in Sources */,
 				64BE4EAC1BCB92770085FBA3 /* CoreTextUtils.m in Sources */,
 				64C63FEF1BC7A2AE00ACF83A /* UIView+frameAdjust.m in Sources */,
+				1AAC1ACE1CF98CD500BFC2A7 /* UIGestureRecognizer+Block.m in Sources */,
 				119876171CBB82DD00205F6E /* UIView+SDAutoLayout.m in Sources */,
 				647F8B8D1B8B032400DF3A4F /* ViewController.m in Sources */,
 				64D869FC1BB23FDF002E8799 /* BaseAnimationViewController.m in Sources */,

@@ -8,7 +8,6 @@
 
 #import "ZCSWaterWaveView.h"
 
-#define pathPadding 30
 
 @interface ZCSWaterWaveView()
 
