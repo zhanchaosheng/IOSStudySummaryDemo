@@ -38,4 +38,8 @@
  */
 -(void)stop;
 
+/**
+ *  设置进度
+ */
+- (void)setProgress:(CGFloat)progress animated:(BOOL)animated;
 @end
