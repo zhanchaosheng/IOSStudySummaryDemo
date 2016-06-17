@@ -29,6 +29,7 @@
 @property (nonatomic, assign) NSInteger rotateIndex; //旋转时记住当前节点位置
 @property (nonatomic, assign) NSInteger numberOfImages;
 @property (nonatomic, assign) BOOL notAllowScrollInRotate;//旋转过程中不允许滚动
+@property (nonatomic, getter=isShowAtFullScrean) BOOL showAtFullScrean; //全屏展示
 
 @end
 
@@ -62,6 +63,15 @@
     [self setTitleForIndex:self.currentIndex];
     [self setImageForIndex:self.currentIndex];
     [self scrollToIndex:self.currentIndex];
+    _showAtFullScrean = YES;
+    self.topStatusBarview.alpha = 0;
+    self.topBar.alpha = 0;
+    self.toolBar.alpha = 0;
+    if ([[UIApplication sharedApplication]
+         respondsToSelector:@selector(setStatusBarHidden:withAnimation:)]) {
+        [[UIApplication sharedApplication] setStatusBarHidden:YES
+                                                withAnimation:UIStatusBarAnimationFade];
+    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(statusBarOrientationChange:)
@@ -172,7 +182,6 @@
     _imageTitle.lineBreakMode = NSLineBreakByTruncatingMiddle;
     _imageTitle.backgroundColor = [UIColor clearColor];
     [_imageTitle setTextColor:[UIColor whiteColor]];
-    _imageTitle.text = @"Photo_01";
     [_topBar addSubview:_imageTitle];
     
     //返回按钮
@@ -237,10 +246,44 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)photoSingleClick:(UITapGestureRecognizer *)recognizer {
+    //显示或隐藏状态栏和工具栏
+    if (self.isShowAtFullScrean) {
+        self.showAtFullScrean = NO;
+        
+    }
+    else {
+        self.showAtFullScrean = YES;
+    }
+}
+
+- (void)photoDoubleClick:(UITapGestureRecognizer *)recognizer {
+    ZCSPhotoShowView *currentImageView = (ZCSPhotoShowView *)recognizer.view;
+    if ([currentImageView isKindOfClass:[ZCSPhotoShowView class]])
+    {
+        CGPoint location = [recognizer locationInView:currentImageView];
+        [currentImageView zoomToLocation:location];
+    }
+}
+
+- (void)setShowAtFullScrean:(BOOL)showAtFullScrean {
+    _showAtFullScrean = showAtFullScrean;
+    CGFloat alpha = showAtFullScrean ? 0.0 : 1.0;
+    [UIView animateWithDuration:0.2 animations:^{
+        if ([[UIApplication sharedApplication]
+             respondsToSelector:@selector(setStatusBarHidden:withAnimation:)]) {
+            [[UIApplication sharedApplication] setStatusBarHidden:showAtFullScrean
+                                                    withAnimation:UIStatusBarAnimationFade];
+        }
+        self.topStatusBarview.alpha = alpha;
+        self.topBar.alpha = alpha;
+        self.toolBar.alpha = alpha;
+    }];
+}
+
 #pragma mark - 转屏调整
 - (BOOL)shouldAutorotate
 {
-    //return self.bShouldAutoRotate;
     return YES;
 }
 
@@ -264,6 +307,8 @@
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                 duration:(NSTimeInterval)duration {
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    self.notAllowScrollInRotate = YES;
+    self.rotateIndex = self.currentIndex;
 }
 
 - (void)viewWillLayoutSubviews
@@ -433,6 +478,14 @@
 }
 
 - (void)setImageForIndex:(NSInteger)index {
+    NSInteger unloadIndex = -1;
+    if (self.currentIndex > index) {
+        unloadIndex = _currentIndex + 4;
+    }
+    else if (self.currentIndex < index){
+        unloadIndex = _currentIndex - 4;
+    }
+    
     self.currentIndex = index;
     self.rotateIndex = index;
     [self loadImageWithIndex:_currentIndex];
@@ -442,6 +495,8 @@
     [self loadImageWithIndex:_currentIndex + 2];
     [self loadImageWithIndex:_currentIndex - 3];
     [self loadImageWithIndex:_currentIndex + 3];
+    
+    [self unloadImageWithIndex:unloadIndex];
 }
 
 - (void)loadImageWithIndex:(NSInteger)index {
@@ -469,10 +524,33 @@
             }
             if (thumbnailUrl) {
                 [photoShowView setImageWithURL:[NSURL URLWithString:thumbnailUrl] placeholderImage:nil];
+                //单击
+                UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                            action:@selector(photoSingleClick:)];
+                [photoShowView addGestureRecognizer:singleTap];
+                //双击
+                UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                            action:@selector(photoDoubleClick:)];
+                doubleTap.numberOfTapsRequired = 2;
+                [photoShowView addGestureRecognizer:doubleTap];
+                [singleTap requireGestureRecognizerToFail:doubleTap];
+                
                 [self.scrollView addSubview:photoShowView];
                 [self.photoShowViewArray replaceObjectAtIndex:index withObject:photoShowView];
             }
         }
+    }
+}
+
+- (void)unloadImageWithIndex:(NSInteger)index {
+    if (index < 0 || index >= self.numberOfImages) {
+        return;
+    }
+    id showView = [self.photoShowViewArray objectAtIndex:index];
+    if ([showView isKindOfClass:[ZCSPhotoShowView class]]) {
+        ZCSPhotoShowView *photoShowView = (ZCSPhotoShowView *)showView;
+        [photoShowView removeFromSuperview];
+        [self.photoShowViewArray replaceObjectAtIndex:index withObject:[NSNull null]];
     }
 }
 @end
