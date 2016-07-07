@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 177
+/svn/AS_RCS_E_SVN/!svn/ver/204710/trunk/Code/52.139%20%E5%BD%A9%E4%BA%91/02.IOS/mCloud/mCloudSDCard/trunk/mCloudSDCard_iPhone/mCloudSDCard_iPhone/Classes/UI/MCloud/View/MovieSDK
+END
+XBBackBtnView.h
+K 25
+svn:wc:ra_dav:version-url
+V 193
+/svn/AS_RCS_E_SVN/!svn/ver/204710/trunk/Code/52.139%20%E5%BD%A9%E4%BA%91/02.IOS/mCloud/mCloudSDCard/trunk/mCloudSDCard_iPhone/mCloudSDCard_iPhone/Classes/UI/MCloud/View/MovieSDK/XBBackBtnView.h
+END
+CaiyunFileFunctionDelegate.h
+K 25
+svn:wc:ra_dav:version-url
+V 206
+/svn/AS_RCS_E_SVN/!svn/ver/204710/trunk/Code/52.139%20%E5%BD%A9%E4%BA%91/02.IOS/mCloud/mCloudSDCard/trunk/mCloudSDCard_iPhone/mCloudSDCard_iPhone/Classes/UI/MCloud/View/MovieSDK/CaiyunFileFunctionDelegate.h
+END
+CaiyunMusicViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 205
+/svn/AS_RCS_E_SVN/!svn/ver/204710/trunk/Code/52.139%20%E5%BD%A9%E4%BA%91/02.IOS/mCloud/mCloudSDCard/trunk/mCloudSDCard_iPhone/mCloudSDCard_iPhone/Classes/UI/MCloud/View/MovieSDK/CaiyunMusicViewController.m
+END
+XBPlayBtnView.h
+K 25
+svn:wc:ra_dav:version-url
+V 193
+/svn/AS_RCS_E_SVN/!svn/ver/204710/trunk/Code/52.139%20%E5%BD%A9%E4%BA%91/02.IOS/mCloud/mCloudSDCard/trunk/mCloudSDCard_iPhone/mCloudSDCard_iPhone/Classes/UI/MCloud/View/MovieSDK/XBPlayBtnView.h
+END
+XBBackBtnView.m
+K 25
+svn:wc:ra_dav:version-url
+V 193
+/svn/AS_RCS_E_SVN/!svn/ver/204710/trunk/Code/52.139%20%E5%BD%A9%E4%BA%91/02.IOS/mCloud/mCloudSDCard/trunk/mCloudSDCard_iPhone/mCloudSDCard_iPhone/Classes/UI/MCloud/View/MovieSDK/XBBackBtnView.m
+END
+XBPlayBtnView.m
+K 25
+svn:wc:ra_dav:version-url
+V 193
+/svn/AS_RCS_E_SVN/!svn/ver/204710/trunk/Code/52.139%20%E5%BD%A9%E4%BA%91/02.IOS/mCloud/mCloudSDCard/trunk/mCloudSDCard_iPhone/mCloudSDCard_iPhone/Classes/UI/MCloud/View/MovieSDK/XBPlayBtnView.m
+END
+XBMusicFile.h
+K 25
+svn:wc:ra_dav:version-url
+V 191
+/svn/AS_RCS_E_SVN/!svn/ver/204710/trunk/Code/52.139%20%E5%BD%A9%E4%BA%91/02.IOS/mCloud/mCloudSDCard/trunk/mCloudSDCard_iPhone/mCloudSDCard_iPhone/Classes/UI/MCloud/View/MovieSDK/XBMusicFile.h
+END
+CaiyunVideoViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 205
+/svn/AS_RCS_E_SVN/!svn/ver/204710/trunk/Code/52.139%20%E5%BD%A9%E4%BA%91/02.IOS/mCloud/mCloudSDCard/trunk/mCloudSDCard_iPhone/mCloudSDCard_iPhone/Classes/UI/MCloud/View/MovieSDK/CaiyunVideoViewController.h
+END
+XBMusicFile.m
+K 25
+svn:wc:ra_dav:version-url
+V 191
+/svn/AS_RCS_E_SVN/!svn/ver/204710/trunk/Code/52.139%20%E5%BD%A9%E4%BA%91/02.IOS/mCloud/mCloudSDCard/trunk/mCloudSDCard_iPhone/mCloudSDCard_iPhone/Classes/UI/MCloud/View/MovieSDK/XBMusicFile.m
+END
+XBArrowView.h
+K 25
+svn:wc:ra_dav:version-url
+V 191
+/svn/AS_RCS_E_SVN/!svn/ver/204710/trunk/Code/52.139%20%E5%BD%A9%E4%BA%91/02.IOS/mCloud/mCloudSDCard/trunk/mCloudSDCard_iPhone/mCloudSDCard_iPhone/Classes/UI/MCloud/View/MovieSDK/XBArrowView.h
+END
+XBSpeakerView.h
+K 25
+svn:wc:ra_dav:version-url
+V 193
+/svn/AS_RCS_E_SVN/!svn/ver/204710/trunk/Code/52.139%20%E5%BD%A9%E4%BA%91/02.IOS/mCloud/mCloudSDCard/trunk/mCloudSDCard_iPhone/mCloudSDCard_iPhone/Classes/UI/MCloud/View/MovieSDK/XBSpeakerView.h
+END
+XBQualityBtnView.h
+K 25
+svn:wc:ra_dav:version-url
+V 196
+/svn/AS_RCS_E_SVN/!svn/ver/204710/trunk/Code/52.139%20%E5%BD%A9%E4%BA%91/02.IOS/mCloud/mCloudSDCard/trunk/mCloudSDCard_iPhone/mCloudSDCard_iPhone/Classes/UI/MCloud/View/MovieSDK/XBQualityBtnView.h
+END
+CaiyunVideoViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 205
+/svn/AS_RCS_E_SVN/!svn/ver/204710/trunk/Code/52.139%20%E5%BD%A9%E4%BA%91/02.IOS/mCloud/mCloudSDCard/trunk/mCloudSDCard_iPhone/mCloudSDCard_iPhone/Classes/UI/MCloud/View/MovieSDK/CaiyunVideoViewController.m
+END
+XBArrowView.m
+K 25
+svn:wc:ra_dav:version-url
+V 191
+/svn/AS_RCS_E_SVN/!svn/ver/204710/trunk/Code/52.139%20%E5%BD%A9%E4%BA%91/02.IOS/mCloud/mCloudSDCard/trunk/mCloudSDCard_iPhone/mCloudSDCard_iPhone/Classes/UI/MCloud/View/MovieSDK/XBArrowView.m
+END
+XBSpeakerView.m
+K 25
+svn:wc:ra_dav:version-url
+V 193
+/svn/AS_RCS_E_SVN/!svn/ver/204710/trunk/Code/52.139%20%E5%BD%A9%E4%BA%91/02.IOS/mCloud/mCloudSDCard/trunk/mCloudSDCard_iPhone/mCloudSDCard_iPhone/Classes/UI/MCloud/View/MovieSDK/XBSpeakerView.m
+END
+XBQualityBtnView.m
+K 25
+svn:wc:ra_dav:version-url
+V 196
+/svn/AS_RCS_E_SVN/!svn/ver/204710/trunk/Code/52.139%20%E5%BD%A9%E4%BA%91/02.IOS/mCloud/mCloudSDCard/trunk/mCloudSDCard_iPhone/mCloudSDCard_iPhone/Classes/UI/MCloud/View/MovieSDK/XBQualityBtnView.m
+END
+CaiyunMusicViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 205
+/svn/AS_RCS_E_SVN/!svn/ver/204710/trunk/Code/52.139%20%E5%BD%A9%E4%BA%91/02.IOS/mCloud/mCloudSDCard/trunk/mCloudSDCard_iPhone/mCloudSDCard_iPhone/Classes/UI/MCloud/View/MovieSDK/CaiyunMusicViewController.h
+END

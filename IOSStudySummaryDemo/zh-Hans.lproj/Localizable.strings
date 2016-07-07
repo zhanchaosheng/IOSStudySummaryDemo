@@ -1,0 +1,28 @@
+/* 
+  Localizable.strings
+  IOSStudySummaryDemo
+
+  Created by Cusen on 16/7/7.
+  Copyright © 2016年 huawei. All rights reserved.
+*/
+
+"video_set_network_or_loacl_url" = "请设置网络或本地的视频URL地址";
+"video_know" = "知道了";
+"video_standard_def" = "标清";
+"video_fluent" = "流畅";
+"video_high_def" = "高清";
+"video_info" = "信息";
+"video_network_may_interrupt" = "网络可能中断";
+"video_play_pause" = "播放暂停";
+"video_play_finish" = "播放完成";
+"video_do_not_support_or_file_damaged" = "不支持的视频格式或者该文件损坏";
+"video_file_did_not_exist" = "文件不存在";
+"video_error_for_url_or_network" = "播放地址或网络错误";
+"video_unavailable_network" = "网络不可用";
+"video_cancel_offline_will_stop_playing" = "取消收藏会停止当前文件播放，确实要取消收藏吗？";
+"video_in_handling_data" = "数据处理中...";
+"common_can_not_share_in_offline" = "该文件不是来自云盘，请转存至云盘后再分享";
+"common_fail_to_get_url" = "播放地址获取失败";
+"common_operation_retry" = "重试";
+"video_name_unknow" = "未知";
+"video_not_exit_and_can_not_play_in_local" = "本地播放器不支持该类型文件播放";
