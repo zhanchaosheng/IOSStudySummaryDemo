@@ -33,6 +33,7 @@
 		1A7343EB1BC3A0C500988302 /* PictureCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7343EA1BC3A0C500988302 /* PictureCollectionViewCell.m */; };
 		1A8F167C1BBF8501006B17E1 /* PictureShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8F167B1BBF8501006B17E1 /* PictureShowController.m */; };
 		1A9591C21CFDF4A60024ADDD /* UINavigationBar+BackgroundAlpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9591C11CFDF4A60024ADDD /* UINavigationBar+BackgroundAlpha.m */; };
+		1AA4FE951D3D1B340036B375 /* ZCSHeap.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA4FE941D3D1B340036B375 /* ZCSHeap.m */; };
 		1AAC1ACE1CF98CD500BFC2A7 /* UIGestureRecognizer+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC1ACD1CF98CD500BFC2A7 /* UIGestureRecognizer+Block.m */; };
 		1AC886ED1BA86A9800DE373A /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC886EC1BA86A9800DE373A /* start.png */; };
 		1AC886EF1BA86AAC00DE373A /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC886EE1BA86AAC00DE373A /* pause.png */; };
@@ -231,6 +232,8 @@
 		1A8F167B1BBF8501006B17E1 /* PictureShowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureShowController.m; sourceTree = "<group>"; };
 		1A9591C01CFDF4A60024ADDD /* UINavigationBar+BackgroundAlpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+BackgroundAlpha.h"; sourceTree = "<group>"; };
 		1A9591C11CFDF4A60024ADDD /* UINavigationBar+BackgroundAlpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+BackgroundAlpha.m"; sourceTree = "<group>"; };
+		1AA4FE931D3D1B340036B375 /* ZCSHeap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCSHeap.h; sourceTree = "<group>"; };
+		1AA4FE941D3D1B340036B375 /* ZCSHeap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCSHeap.m; sourceTree = "<group>"; };
 		1AA5B9BB1B90A4040021B9D0 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		1AAC1ACC1CF98CD500BFC2A7 /* UIGestureRecognizer+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Block.h"; sourceTree = "<group>"; };
 		1AAC1ACD1CF98CD500BFC2A7 /* UIGestureRecognizer+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Block.m"; sourceTree = "<group>"; };
@@ -504,6 +507,8 @@
 			children = (
 				1AC9EF051D09390B004E081B /* ZCSReadWriteLock.h */,
 				1AC9EF061D09390B004E081B /* ZCSReadWriteLock.m */,
+				1AA4FE931D3D1B340036B375 /* ZCSHeap.h */,
+				1AA4FE941D3D1B340036B375 /* ZCSHeap.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1146,6 +1151,7 @@
 				1AE209681D2EAD6200AE6357 /* XBQualityBtnView.m in Sources */,
 				64D869FD1BB23FDF002E8799 /* ComprehensiveCaseViewController.m in Sources */,
 				64D072DB1B9429BF00108C45 /* DCPathCenterButton.m in Sources */,
+				1AA4FE951D3D1B340036B375 /* ZCSHeap.m in Sources */,
 				647F8B871B8B032400DF3A4F /* customView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
