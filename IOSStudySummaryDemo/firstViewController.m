@@ -20,6 +20,7 @@
 #import "CoreTextViewController.h"
 #import "WebViewController.h"
 #import "MGSwipeTableCell.h"
+#import "ZCSHeap.h"
 
 @interface firstViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
@@ -66,6 +67,8 @@
     //创建tableView
     [self initTableViewData];
     [self initTableView];
+    
+    //[self heapTest];
 }
 
 
@@ -497,14 +500,31 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
         }
     }
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - heap
+
+- (void)heapTest {
+    ZCSHeapComparator comparator = ^NSInteger(id objc1, id objc2) {
+        NSUInteger value1 = [objc1 unsignedIntegerValue];
+        NSUInteger value2 = [objc2 unsignedIntegerValue];
+        if (value1 > value2) {
+            return 1;
+        }
+        else if (value1 == value2) {
+            return 0;
+        }
+        else {
+            return -1;
+        }
+    };
+    ZCSHeap *heap = [[ZCSHeap alloc] initWithHeapData:@[@(2),@(9),@(5),@(42),@(7),@(3)]
+                                           comparator:comparator];
+    id min = [heap fetchObjectAtIndexOfLeast:3];
+    id max = [heap fetchObjectAtIndexOfLargest:5];
+    NSArray *ret = [heap heapSortWithOption:ZCSHeapSortOptionAsc];
+    ret = [heap heapSortWithOption:ZCSHeapSortOptionDesc];
+    NSLog(@"min:%@, max:%@, sort:%@",min,max,ret);
 }
-*/
+
 
 @end
