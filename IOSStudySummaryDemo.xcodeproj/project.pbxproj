@@ -16,6 +16,7 @@
 		117EDEB11D13D55D00CC7A26 /* cm_arrow_back_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 117EDEAC1D13D55D00CC7A26 /* cm_arrow_back_white.png */; };
 		117EDEB21D13D55D00CC7A26 /* cm_arrow_back_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 117EDEAD1D13D55D00CC7A26 /* cm_arrow_back_white@2x.png */; };
 		117EDEB31D13D55D00CC7A26 /* cm_arrow_back_white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 117EDEAE1D13D55D00CC7A26 /* cm_arrow_back_white@3x.png */; };
+		1195DF361D4B641400687D18 /* NSObject+XWAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 1195DF351D4B641400687D18 /* NSObject+XWAdd.m */; };
 		119876161CBB82DD00205F6E /* UITableView+SDAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 119876131CBB82DD00205F6E /* UITableView+SDAutoTableViewCellHeight.m */; };
 		119876171CBB82DD00205F6E /* UIView+SDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 119876151CBB82DD00205F6E /* UIView+SDAutoLayout.m */; };
 		11A81D371CBC9F4D008CC70D /* ZCSPhotoBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11A81D361CBC9F4D008CC70D /* ZCSPhotoBrowserView.m */; };
@@ -206,6 +207,8 @@
 		117EDEAC1D13D55D00CC7A26 /* cm_arrow_back_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cm_arrow_back_white.png; sourceTree = "<group>"; };
 		117EDEAD1D13D55D00CC7A26 /* cm_arrow_back_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cm_arrow_back_white@2x.png"; sourceTree = "<group>"; };
 		117EDEAE1D13D55D00CC7A26 /* cm_arrow_back_white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cm_arrow_back_white@3x.png"; sourceTree = "<group>"; };
+		1195DF341D4B641400687D18 /* NSObject+XWAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+XWAdd.h"; sourceTree = "<group>"; };
+		1195DF351D4B641400687D18 /* NSObject+XWAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+XWAdd.m"; sourceTree = "<group>"; };
 		119876121CBB82DD00205F6E /* UITableView+SDAutoTableViewCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+SDAutoTableViewCellHeight.h"; sourceTree = "<group>"; };
 		119876131CBB82DD00205F6E /* UITableView+SDAutoTableViewCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+SDAutoTableViewCellHeight.m"; sourceTree = "<group>"; };
 		119876141CBB82DD00205F6E /* UIView+SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDAutoLayout.h"; sourceTree = "<group>"; };
@@ -524,6 +527,8 @@
 				1AAC1ACD1CF98CD500BFC2A7 /* UIGestureRecognizer+Block.m */,
 				1A9591C01CFDF4A60024ADDD /* UINavigationBar+BackgroundAlpha.h */,
 				1A9591C11CFDF4A60024ADDD /* UINavigationBar+BackgroundAlpha.m */,
+				1195DF341D4B641400687D18 /* NSObject+XWAdd.h */,
+				1195DF351D4B641400687D18 /* NSObject+XWAdd.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1170,6 +1175,7 @@
 				116D98271CF825BD00A080A9 /* ZCSWaterWaveView.m in Sources */,
 				64D86A001BB23FDF002E8799 /* TransitionAnimationViewController.m in Sources */,
 				1152C1251D3F742B00C4E036 /* XJScrollerHiddenBarViewController.m in Sources */,
+				1195DF361D4B641400687D18 /* NSObject+XWAdd.m in Sources */,
 				1AE209631D2EAD6200AE6357 /* CaiyunVideoViewController.m in Sources */,
 				11A81D371CBC9F4D008CC70D /* ZCSPhotoBrowserView.m in Sources */,
 				64D072D21B94295C00108C45 /* DWBubbleMenuButton.m in Sources */,
