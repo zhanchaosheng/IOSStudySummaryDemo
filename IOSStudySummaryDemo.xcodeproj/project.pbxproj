@@ -23,6 +23,10 @@
 		11A81D371CBC9F4D008CC70D /* ZCSPhotoBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11A81D361CBC9F4D008CC70D /* ZCSPhotoBrowserView.m */; };
 		11DA36EA1D12577500652DAE /* ZCSPhotoBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA36E91D12577500652DAE /* ZCSPhotoBrowserViewController.m */; };
 		1A1790521BC2BBB900925B96 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A1790511BC2BBB800925B96 /* AssetsLibrary.framework */; };
+		1A1B132F1D536B9900FDFDC4 /* CTMediator+CTMediatorModuleAActions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1B13261D536B9900FDFDC4 /* CTMediator+CTMediatorModuleAActions.m */; };
+		1A1B13301D536B9900FDFDC4 /* CTMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1B13281D536B9900FDFDC4 /* CTMediator.m */; };
+		1A1B13311D536B9900FDFDC4 /* Target_A.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1B132C1D536B9900FDFDC4 /* Target_A.m */; };
+		1A1B13321D536B9900FDFDC4 /* DemoModuleADetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1B132E1D536B9900FDFDC4 /* DemoModuleADetailViewController.m */; };
 		1A1BF1EA1C3C18990033A1B8 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1BF1E71C3C18990033A1B8 /* MGSwipeButton.m */; };
 		1A1BF1EB1C3C18990033A1B8 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1BF1E91C3C18990033A1B8 /* MGSwipeTableCell.m */; };
 		1A1BF1ED1C3C1AE40033A1B8 /* more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A1BF1EC1C3C1AE40033A1B8 /* more@2x.png */; };
@@ -221,6 +225,14 @@
 		11DA36E81D12577500652DAE /* ZCSPhotoBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCSPhotoBrowserViewController.h; sourceTree = "<group>"; };
 		11DA36E91D12577500652DAE /* ZCSPhotoBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCSPhotoBrowserViewController.m; sourceTree = "<group>"; };
 		1A1790511BC2BBB800925B96 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		1A1B13251D536B9900FDFDC4 /* CTMediator+CTMediatorModuleAActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CTMediator+CTMediatorModuleAActions.h"; sourceTree = "<group>"; };
+		1A1B13261D536B9900FDFDC4 /* CTMediator+CTMediatorModuleAActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CTMediator+CTMediatorModuleAActions.m"; sourceTree = "<group>"; };
+		1A1B13271D536B9900FDFDC4 /* CTMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTMediator.h; sourceTree = "<group>"; };
+		1A1B13281D536B9900FDFDC4 /* CTMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTMediator.m; sourceTree = "<group>"; };
+		1A1B132B1D536B9900FDFDC4 /* Target_A.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Target_A.h; sourceTree = "<group>"; };
+		1A1B132C1D536B9900FDFDC4 /* Target_A.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Target_A.m; sourceTree = "<group>"; };
+		1A1B132D1D536B9900FDFDC4 /* DemoModuleADetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoModuleADetailViewController.h; sourceTree = "<group>"; };
+		1A1B132E1D536B9900FDFDC4 /* DemoModuleADetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoModuleADetailViewController.m; sourceTree = "<group>"; };
 		1A1BF1E61C3C18990033A1B8 /* MGSwipeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeButton.h; sourceTree = "<group>"; };
 		1A1BF1E71C3C18990033A1B8 /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeButton.m; sourceTree = "<group>"; };
 		1A1BF1E81C3C18990033A1B8 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeTableCell.h; sourceTree = "<group>"; };
@@ -512,6 +524,61 @@
 			name = Framework;
 			sourceTree = "<group>";
 		};
+		1A1B13211D536B5900FDFDC4 /* ComponentArchitecture */ = {
+			isa = PBXGroup;
+			children = (
+				1A1B13221D536B9900FDFDC4 /* CTMediator */,
+				1A1B13291D536B9900FDFDC4 /* DemoModule */,
+			);
+			path = ComponentArchitecture;
+			sourceTree = "<group>";
+		};
+		1A1B13221D536B9900FDFDC4 /* CTMediator */ = {
+			isa = PBXGroup;
+			children = (
+				1A1B13271D536B9900FDFDC4 /* CTMediator.h */,
+				1A1B13281D536B9900FDFDC4 /* CTMediator.m */,
+				1A1B13231D536B9900FDFDC4 /* Categories */,
+			);
+			path = CTMediator;
+			sourceTree = "<group>";
+		};
+		1A1B13231D536B9900FDFDC4 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				1A1B13241D536B9900FDFDC4 /* ModuleA */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		1A1B13241D536B9900FDFDC4 /* ModuleA */ = {
+			isa = PBXGroup;
+			children = (
+				1A1B13251D536B9900FDFDC4 /* CTMediator+CTMediatorModuleAActions.h */,
+				1A1B13261D536B9900FDFDC4 /* CTMediator+CTMediatorModuleAActions.m */,
+			);
+			path = ModuleA;
+			sourceTree = "<group>";
+		};
+		1A1B13291D536B9900FDFDC4 /* DemoModule */ = {
+			isa = PBXGroup;
+			children = (
+				1A1B132A1D536B9900FDFDC4 /* Actions */,
+				1A1B132D1D536B9900FDFDC4 /* DemoModuleADetailViewController.h */,
+				1A1B132E1D536B9900FDFDC4 /* DemoModuleADetailViewController.m */,
+			);
+			path = DemoModule;
+			sourceTree = "<group>";
+		};
+		1A1B132A1D536B9900FDFDC4 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				1A1B132B1D536B9900FDFDC4 /* Target_A.h */,
+				1A1B132C1D536B9900FDFDC4 /* Target_A.m */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
 		1A1BF1E51C3C18990033A1B8 /* MGSwipeTableCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -695,6 +762,7 @@
 		647F8B901B8B038300DF3A4F /* Ex */ = {
 			isa = PBXGroup;
 			children = (
+				1A1B13211D536B5900FDFDC4 /* ComponentArchitecture */,
 				1152C1221D3F742B00C4E036 /* XJScrollerHiddenBar */,
 				1152C1131D3F667A00C4E036 /* AMScrollingNavbar */,
 				119876111CBB82DD00205F6E /* SDAutoLayout */,
@@ -1159,6 +1227,8 @@
 				64BE4EB11BCB92770085FBA3 /* WebViewController.m in Sources */,
 				64ED04FC1BE36B7400673354 /* ZCSCircleProgressView.m in Sources */,
 				116D98241CF7E8EA00A080A9 /* ZCSRotationArrowRefreshView.m in Sources */,
+				1A1B132F1D536B9900FDFDC4 /* CTMediator+CTMediatorModuleAActions.m in Sources */,
+				1A1B13311D536B9900FDFDC4 /* Target_A.m in Sources */,
 				1167B24E1D533E1500364645 /* UIView+LayoutMethods.m in Sources */,
 				647F8B8C1B8B032400DF3A4F /* UIView+ZCSAssociatedObjc.m in Sources */,
 				1AE209651D2EAD6200AE6357 /* XBBackBtnView.m in Sources */,
@@ -1183,10 +1253,12 @@
 				1152C1251D3F742B00C4E036 /* XJScrollerHiddenBarViewController.m in Sources */,
 				1195DF361D4B641400687D18 /* NSObject+XWAdd.m in Sources */,
 				1AE209631D2EAD6200AE6357 /* CaiyunVideoViewController.m in Sources */,
+				1A1B13321D536B9900FDFDC4 /* DemoModuleADetailViewController.m in Sources */,
 				11A81D371CBC9F4D008CC70D /* ZCSPhotoBrowserView.m in Sources */,
 				64D072D21B94295C00108C45 /* DWBubbleMenuButton.m in Sources */,
 				1A1BF1EA1C3C18990033A1B8 /* MGSwipeButton.m in Sources */,
 				64D072CE1B94290100108C45 /* MCFireworksView.m in Sources */,
+				1A1B13301D536B9900FDFDC4 /* CTMediator.m in Sources */,
 				64D072CD1B94290100108C45 /* MCFireworksButton.m in Sources */,
 				64BE4EAD1BCB92770085FBA3 /* CoreTextViewController.m in Sources */,
 				64D072DC1B9429BF00108C45 /* DCPathItemButton.m in Sources */,

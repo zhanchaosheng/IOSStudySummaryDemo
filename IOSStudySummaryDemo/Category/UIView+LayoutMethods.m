@@ -110,6 +110,14 @@
     self.center = center;
 }
 
+- (void)centerEqualToView:(UIView *)view
+{
+    UIView *superView = view.superview ? view.superview : view;
+    CGPoint viewCenterPoint = [superView convertPoint:view.center toView:self.topSuperView];
+    CGPoint centerPoint = [self.topSuperView convertPoint:viewCenterPoint toView:self.superview];
+    self.center = centerPoint;
+}
+
 - (void)centerXEqualToView:(UIView *)view
 {
     UIView *superView = view.superview ? view.superview : view;

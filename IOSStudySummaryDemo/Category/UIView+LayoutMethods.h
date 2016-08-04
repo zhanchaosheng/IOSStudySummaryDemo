@@ -42,6 +42,7 @@
 // center
 - (void)setCenterX:(CGFloat)centerX;
 - (void)setCenterY:(CGFloat)centerY;
+- (void)centerEqualToView:(UIView *)view;
 - (void)centerXEqualToView:(UIView *)view;
 - (void)centerYEqualToView:(UIView *)view;
 
