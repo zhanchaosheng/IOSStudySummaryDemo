@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1152C1171D3F667A00C4E036 /* UIViewController+ScrollingNavbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1152C1161D3F667A00C4E036 /* UIViewController+ScrollingNavbar.m */; };
 		1152C1251D3F742B00C4E036 /* XJScrollerHiddenBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1152C1241D3F742B00C4E036 /* XJScrollerHiddenBarViewController.m */; };
+		1167B24E1D533E1500364645 /* UIView+LayoutMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 1167B24D1D533E1500364645 /* UIView+LayoutMethods.m */; };
 		116D98241CF7E8EA00A080A9 /* ZCSRotationArrowRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 116D98231CF7E8EA00A080A9 /* ZCSRotationArrowRefreshView.m */; };
 		116D98271CF825BD00A080A9 /* ZCSWaterWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 116D98261CF825BD00A080A9 /* ZCSWaterWaveView.m */; };
 		117EDEAF1D13D55D00CC7A26 /* CloudFileFoldManagerV_OutLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 117EDEAA1D13D55D00CC7A26 /* CloudFileFoldManagerV_OutLine@2x.png */; };
@@ -198,6 +199,8 @@
 		1152C1161D3F667A00C4E036 /* UIViewController+ScrollingNavbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ScrollingNavbar.m"; sourceTree = "<group>"; };
 		1152C1231D3F742B00C4E036 /* XJScrollerHiddenBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJScrollerHiddenBarViewController.h; sourceTree = "<group>"; };
 		1152C1241D3F742B00C4E036 /* XJScrollerHiddenBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJScrollerHiddenBarViewController.m; sourceTree = "<group>"; };
+		1167B24C1D533E1500364645 /* UIView+LayoutMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LayoutMethods.h"; sourceTree = "<group>"; };
+		1167B24D1D533E1500364645 /* UIView+LayoutMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LayoutMethods.m"; sourceTree = "<group>"; };
 		116D98221CF7E8EA00A080A9 /* ZCSRotationArrowRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCSRotationArrowRefreshView.h; sourceTree = "<group>"; };
 		116D98231CF7E8EA00A080A9 /* ZCSRotationArrowRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCSRotationArrowRefreshView.m; sourceTree = "<group>"; };
 		116D98251CF825BD00A080A9 /* ZCSWaterWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCSWaterWaveView.h; sourceTree = "<group>"; };
@@ -529,6 +532,8 @@
 				1A9591C11CFDF4A60024ADDD /* UINavigationBar+BackgroundAlpha.m */,
 				1195DF341D4B641400687D18 /* NSObject+XWAdd.h */,
 				1195DF351D4B641400687D18 /* NSObject+XWAdd.m */,
+				1167B24C1D533E1500364645 /* UIView+LayoutMethods.h */,
+				1167B24D1D533E1500364645 /* UIView+LayoutMethods.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1154,6 +1159,7 @@
 				64BE4EB11BCB92770085FBA3 /* WebViewController.m in Sources */,
 				64ED04FC1BE36B7400673354 /* ZCSCircleProgressView.m in Sources */,
 				116D98241CF7E8EA00A080A9 /* ZCSRotationArrowRefreshView.m in Sources */,
+				1167B24E1D533E1500364645 /* UIView+LayoutMethods.m in Sources */,
 				647F8B8C1B8B032400DF3A4F /* UIView+ZCSAssociatedObjc.m in Sources */,
 				1AE209651D2EAD6200AE6357 /* XBBackBtnView.m in Sources */,
 				64D86A041BB24023002E8799 /* PhotoBrowserController.m in Sources */,
