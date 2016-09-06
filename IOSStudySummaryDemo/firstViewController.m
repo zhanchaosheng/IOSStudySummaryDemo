@@ -21,13 +21,15 @@
 #import "WebViewController.h"
 #import "MGSwipeTableCell.h"
 #import "ZCSHeap.h"
+#import "ParallaxHeaderView.h"
 
-@interface firstViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
+@interface firstViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,ParallaxHeaderViewDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *tableGroupType;
 @property (strong, nonatomic) NSArray *tableGroupName;
 @property (strong, nonatomic) UIActivityIndicatorView *refreshView;
+@property (strong, nonatomic) ParallaxHeaderView *parallaxView;
 
 @end
 
@@ -69,6 +71,8 @@
     [self initTableView];
     
     //[self heapTest];
+    
+    [self setupParallaxHeaderView];
 }
 
 
@@ -124,7 +128,7 @@
     //_tableView.separatorColor = [UIColor blueColor];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    [self initRefreshView];
+    //[self initRefreshView];
     [self.view addSubview:_tableView];
 }
 
@@ -254,11 +258,17 @@
 }
 
 #pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    [self.parallaxView layoutHeaderViewForScrollViewOffset:scrollView.contentOffset];
+}
+
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     if (scrollView.contentOffset.y < -95)
     {
-        if (![self.refreshView isAnimating])
+        if (self.refreshView && ![self.refreshView isAnimating])
         {
             self.tableView.contentInset = UIEdgeInsetsMake(95, 0, 0, 0);
             [self.refreshView startAnimating];
@@ -526,5 +536,20 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
     NSLog(@"min:%@, max:%@, sort:%@",min,max,ret);
 }
 
+#pragma mark - ParallaxHeaderView
 
+- (void)setupParallaxHeaderView {
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 154)];
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.image = [UIImage imageNamed:@"test4"];
+    self.parallaxView = [ParallaxHeaderView parallaxHeaderViewWithSubView:imageView
+                                                                  forSize:CGSizeMake(self.tableView.frame.size.width, 154)];
+    self.parallaxView.delegate = self;
+    
+    self.tableView.tableHeaderView = self.parallaxView;
+}
+
+- (void)lockDirection {
+    //NSLog(@"lockDirection");
+}
 @end

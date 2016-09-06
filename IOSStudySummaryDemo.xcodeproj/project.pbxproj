@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1122C5591D7E6B2000A3E6B7 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 1122C5581D7E6B2000A3E6B7 /* UIImage+ImageEffects.m */; };
+		1122C55C1D7E6BB000A3E6B7 /* ParallaxHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1122C55B1D7E6BB000A3E6B7 /* ParallaxHeaderView.m */; };
 		1152C1171D3F667A00C4E036 /* UIViewController+ScrollingNavbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1152C1161D3F667A00C4E036 /* UIViewController+ScrollingNavbar.m */; };
 		1152C1251D3F742B00C4E036 /* XJScrollerHiddenBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1152C1241D3F742B00C4E036 /* XJScrollerHiddenBarViewController.m */; };
 		1167B24E1D533E1500364645 /* UIView+LayoutMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 1167B24D1D533E1500364645 /* UIView+LayoutMethods.m */; };
@@ -198,6 +200,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1122C5571D7E6B2000A3E6B7 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		1122C5581D7E6B2000A3E6B7 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		1122C55A1D7E6BB000A3E6B7 /* ParallaxHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallaxHeaderView.h; sourceTree = "<group>"; };
+		1122C55B1D7E6BB000A3E6B7 /* ParallaxHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParallaxHeaderView.m; sourceTree = "<group>"; };
 		1152C1141D3F667A00C4E036 /* AMScrollingNavbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMScrollingNavbar.h; sourceTree = "<group>"; };
 		1152C1151D3F667A00C4E036 /* UIViewController+ScrollingNavbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ScrollingNavbar.h"; sourceTree = "<group>"; };
 		1152C1161D3F667A00C4E036 /* UIViewController+ScrollingNavbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ScrollingNavbar.m"; sourceTree = "<group>"; };
@@ -601,6 +607,8 @@
 				1195DF351D4B641400687D18 /* NSObject+XWAdd.m */,
 				1167B24C1D533E1500364645 /* UIView+LayoutMethods.h */,
 				1167B24D1D533E1500364645 /* UIView+LayoutMethods.m */,
+				1122C5571D7E6B2000A3E6B7 /* UIImage+ImageEffects.h */,
+				1122C5581D7E6B2000A3E6B7 /* UIImage+ImageEffects.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -779,6 +787,8 @@
 				64D25EEF1B9599B700C05F15 /* myAnnotation.m */,
 				64C63FED1BC7A2AE00ACF83A /* UIView+frameAdjust.h */,
 				64C63FEE1BC7A2AE00ACF83A /* UIView+frameAdjust.m */,
+				1122C55A1D7E6BB000A3E6B7 /* ParallaxHeaderView.h */,
+				1122C55B1D7E6BB000A3E6B7 /* ParallaxHeaderView.m */,
 			);
 			name = Ex;
 			sourceTree = "<group>";
@@ -1209,6 +1219,7 @@
 				1AAC1ACE1CF98CD500BFC2A7 /* UIGestureRecognizer+Block.m in Sources */,
 				119876171CBB82DD00205F6E /* UIView+SDAutoLayout.m in Sources */,
 				647F8B8D1B8B032400DF3A4F /* ViewController.m in Sources */,
+				1122C55C1D7E6BB000A3E6B7 /* ParallaxHeaderView.m in Sources */,
 				64D869FC1BB23FDF002E8799 /* BaseAnimationViewController.m in Sources */,
 				64D869FE1BB23FDF002E8799 /* GroupAnimationViewController.m in Sources */,
 				64BE4EAF1BCB92770085FBA3 /* CTFrameParser.m in Sources */,
@@ -1216,6 +1227,7 @@
 				1A70A5211CA02FFF008BD05A /* AlbumsCollectionViewController.m in Sources */,
 				64FF767F1B8C45EC0017E09F /* ZCSAnimatorTransitioning.m in Sources */,
 				1AE209641D2EAD6200AE6357 /* XBArrowView.m in Sources */,
+				1122C5591D7E6B2000A3E6B7 /* UIImage+ImageEffects.m in Sources */,
 				647F8B841B8B032400DF3A4F /* AppDelegate.m in Sources */,
 				1AE209671D2EAD6200AE6357 /* XBPlayBtnView.m in Sources */,
 				1A70A52B1CA03027008BD05A /* KTCollectionViewCell.m in Sources */,
