@@ -13,11 +13,37 @@
 
 #import "WebViewController.h"
 
-@interface WebViewController ()<UIWebViewDelegate,UITextFieldDelegate>
+static NSString* const kTouchJavaScriptString =
+@"document.ontouchstart=function(event){\
+x=event.targetTouches[0].clientX;\
+y=event.targetTouches[0].clientY;\
+document.location=\"myweb:touch:start:\"+x+\":\"+y;};\
+document.ontouchmove=function(event){\
+x=event.targetTouches[0].clientX;\
+y=event.targetTouches[0].clientY;\
+document.location=\"myweb:touch:move:\"+x+\":\"+y;};\
+document.ontouchcancel=function(event){\
+document.location=\"myweb:touch:cancel\";};\
+document.ontouchend=function(event){\
+document.location=\"myweb:touch:end\";};";
+
+typedef NS_ENUM(NSInteger, GESTURE_STATE) {
+    GESTURE_STATE_NONE = 0,
+    GESTURE_STATE_START = 1,
+    GESTURE_STATE_MOVE = 2,
+    GESTURE_STATE_CANCEL = 3,
+    GESTURE_STATE_END = 4,
+};
+
+@interface WebViewController ()<UIWebViewDelegate,UITextFieldDelegate,UIActionSheetDelegate>
 
 @property (strong, nonatomic) UIWebView *webView;
 @property (strong, nonatomic) UITextField *textField;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
+
+@property (strong, nonatomic) NSString *imgURL;
+@property (assign, nonatomic) GESTURE_STATE gesState;
+@property (strong, nonatomic) NSTimer *timer;
 
 @end
 
@@ -127,16 +153,71 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request
  navigationType:(UIWebViewNavigationType)navigationType
 {
-    NSURL *url = [request URL];
-    NSLog(@"%@",url);
-    //javascript调objective-c，是在UIWebView中发起一次特殊的网络请求(例如以gap://开头的地址)，触发调用delegate函数，如本函数
-    if ([[url scheme] isEqualToString:@"gap:"])//这里识别出是特殊网络请求
-    {
-        //这里做javascript调objective-c的事情
-        //...
-        //做完后调用以下方法调回javascript,该方法是让webView同步执行一段javascript代码，然后得到执行结果返回
-        NSString *ret = [webView stringByEvaluatingJavaScriptFromString:@"alert('done')"];
-        NSLog(@"%@",ret);
+//    NSURL *url = [request URL];
+//    NSLog(@"%@",url);
+//    //javascript调objective-c，是在UIWebView中发起一次特殊的网络请求(例如以gap://开头的地址)，触发调用delegate函数，如本函数
+//    if ([[url scheme] isEqualToString:@"gap:"])//这里识别出是特殊网络请求
+//    {
+//        //这里做javascript调objective-c的事情
+//        //...
+//        //做完后调用以下方法调回javascript,该方法是让webView同步执行一段javascript代码，然后得到执行结果返回
+//        NSString *ret = [webView stringByEvaluatingJavaScriptFromString:@"alert('done')"];
+//        NSLog(@"%@",ret);
+//        return NO;
+//    }
+//    return YES;
+    
+    NSString *requestString = [[request URL] absoluteString];
+    NSArray *components = [requestString componentsSeparatedByString:@":"];
+    
+    if ([components count] > 1 &&
+        [(NSString *)[components objectAtIndex:0] isEqualToString:@"myweb"]) {
+        
+        if([(NSString *)[components objectAtIndex:1] isEqualToString:@"touch"])
+        {
+            //NSLog(@"you are touching!");
+            //NSTimeInterval delaytime = Delaytime;
+            if ([(NSString *)[components objectAtIndex:2] isEqualToString:@"start"])
+            {
+                /*
+                 @需延时判断是否响应页面内的js...
+                 */
+                self.gesState = GESTURE_STATE_START;
+                NSLog(@"touch start!");
+                
+                float ptX = [[components objectAtIndex:3]floatValue];
+                float ptY = [[components objectAtIndex:4]floatValue];
+                NSLog(@"touch point (%f, %f)", ptX, ptY);
+                
+                NSString *js = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).tagName", ptX, ptY];
+                NSString * tagName = [self.webView stringByEvaluatingJavaScriptFromString:js];
+                self.imgURL = nil;
+                if ([tagName isEqualToString:@"IMG"]) {
+                    self.imgURL = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).src", ptX, ptY];
+                }
+                if (self.imgURL) {
+                    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleLongTouch) userInfo:nil repeats:NO];
+                }
+            }
+            else if ([(NSString *)[components objectAtIndex:2] isEqualToString:@"move"])
+            {
+                //**如果touch动作是滑动，则取消hanleLongTouch动作**//
+                self.gesState = GESTURE_STATE_MOVE;
+                NSLog(@"you are move");
+            }
+            else if ([(NSString*)[components objectAtIndex:2] isEqualToString:@"cancel"]) {
+                [self.timer invalidate];
+                self.timer = nil;
+                self.gesState = GESTURE_STATE_CANCEL;
+                NSLog(@"touch cancel");
+            }
+            else if ([(NSString*)[components objectAtIndex:2] isEqualToString:@"end"]) {
+                [self.timer invalidate];
+                self.timer = nil;
+                self.gesState = GESTURE_STATE_END;
+                NSLog(@"touch end");
+            }
+        }
         return NO;
     }
     return YES;
@@ -152,6 +233,9 @@
 {
     //加载结束
     [self.activityIndicatorView stopAnimating];
+    
+    //加载js注入，主要用于响应touch事件，以及获得点击的坐标位置，
+    [self.webView stringByEvaluatingJavaScriptFromString:kTouchJavaScriptString];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
@@ -170,6 +254,50 @@
     }
 }
 
+
+//如果点击的是图片，并且按住的时间超过1s，执行handleLongTouch函数，处理图片的保存操作。
+- (void)handleLongTouch {
+    NSLog(@"%@", self.imgURL);
+    if (self.imgURL && self.gesState == GESTURE_STATE_START) {
+        UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存图片", nil];
+        sheet.cancelButtonIndex = sheet.numberOfButtons - 1;
+        [sheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (actionSheet.numberOfButtons - 1 == buttonIndex) {
+        return;
+    }
+    
+    NSString* title = [actionSheet buttonTitleAtIndex:buttonIndex];
+    
+    if ([title isEqualToString:@"保存图片"]) {
+        
+        if (self.imgURL) {
+            NSLog(@"imgurl = %@", _imgURL);
+        }
+        NSString *urlToSave = [self.webView stringByEvaluatingJavaScriptFromString:self.imgURL];
+        NSLog(@"image url=%@", urlToSave);
+        
+        NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlToSave]];
+        UIImage* image = [UIImage imageWithData:data];
+        
+        //UIImageWriteToSavedPhotosAlbum(image, nil, nil,nil);
+        UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    }
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo
+{
+    if (error){
+        NSLog(@"Error");
+        
+    }else {
+        NSLog(@"OK");
+    }
+}
 /*
 #pragma mark - Navigation
 
