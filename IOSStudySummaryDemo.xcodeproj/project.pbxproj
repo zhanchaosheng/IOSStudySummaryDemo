@@ -36,6 +36,7 @@
 		1A1BF1EA1C3C18990033A1B8 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1BF1E71C3C18990033A1B8 /* MGSwipeButton.m */; };
 		1A1BF1EB1C3C18990033A1B8 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1BF1E91C3C18990033A1B8 /* MGSwipeTableCell.m */; };
 		1A1BF1ED1C3C1AE40033A1B8 /* more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A1BF1EC1C3C1AE40033A1B8 /* more@2x.png */; };
+		1A232FB61E096CCA00350B0C /* ZCRunLoopManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A232FB51E096CCA00350B0C /* ZCRunLoopManager.m */; };
 		1A70A5211CA02FFF008BD05A /* AlbumsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A70A5201CA02FFF008BD05A /* AlbumsCollectionViewController.m */; };
 		1A70A52A1CA03027008BD05A /* KTCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A70A5231CA03027008BD05A /* KTCollectionReusableView.m */; };
 		1A70A52B1CA03027008BD05A /* KTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A70A5251CA03027008BD05A /* KTCollectionViewCell.m */; };
@@ -256,6 +257,8 @@
 		1A1BF1E81C3C18990033A1B8 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeTableCell.h; sourceTree = "<group>"; };
 		1A1BF1E91C3C18990033A1B8 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeTableCell.m; sourceTree = "<group>"; };
 		1A1BF1EC1C3C1AE40033A1B8 /* more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@2x.png"; sourceTree = "<group>"; };
+		1A232FB41E096CCA00350B0C /* ZCRunLoopManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCRunLoopManager.h; sourceTree = "<group>"; };
+		1A232FB51E096CCA00350B0C /* ZCRunLoopManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCRunLoopManager.m; sourceTree = "<group>"; };
 		1A70A51F1CA02FFF008BD05A /* AlbumsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumsCollectionViewController.h; sourceTree = "<group>"; };
 		1A70A5201CA02FFF008BD05A /* AlbumsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumsCollectionViewController.m; sourceTree = "<group>"; };
 		1A70A5221CA03027008BD05A /* KTCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTCollectionReusableView.h; sourceTree = "<group>"; };
@@ -817,6 +820,8 @@
 				64C63FEE1BC7A2AE00ACF83A /* UIView+frameAdjust.m */,
 				1122C55A1D7E6BB000A3E6B7 /* ParallaxHeaderView.h */,
 				1122C55B1D7E6BB000A3E6B7 /* ParallaxHeaderView.m */,
+				1A232FB41E096CCA00350B0C /* ZCRunLoopManager.h */,
+				1A232FB51E096CCA00350B0C /* ZCRunLoopManager.m */,
 			);
 			name = Ex;
 			sourceTree = "<group>";
@@ -1306,6 +1311,7 @@
 				64D072CD1B94290100108C45 /* MCFireworksButton.m in Sources */,
 				64BE4EAD1BCB92770085FBA3 /* CoreTextViewController.m in Sources */,
 				64D072DC1B9429BF00108C45 /* DCPathItemButton.m in Sources */,
+				1A232FB61E096CCA00350B0C /* ZCRunLoopManager.m in Sources */,
 				1AE209681D2EAD6200AE6357 /* XBQualityBtnView.m in Sources */,
 				64D869FD1BB23FDF002E8799 /* ComprehensiveCaseViewController.m in Sources */,
 				64D072DB1B9429BF00108C45 /* DCPathCenterButton.m in Sources */,
