@@ -48,7 +48,7 @@
     [self pathAnimation];
     
     //创建时钟进度视图
-    _progress = [[ZCSCircleProgressView alloc] initWithFrame:CGRectMake(5, 69, 100, 100)];
+    _progress = [[ZCSCircleProgressView alloc] initWithFrame:CGRectMake(5, 69, 220, 220)];
     _progress.trackColor = [UIColor grayColor];
     _progress.progressColor = [UIColor orangeColor];
     _progress.progress = 0.f;
@@ -62,7 +62,7 @@
     [self.view addSubview:refreshView];
     
     //水波动画视图
-    _waveView = [[ZCSWaterWaveView alloc] initWithFrame:CGRectMake(150, 180, 200, 200)];
+    _waveView = [[ZCSWaterWaveView alloc] initWithFrame:CGRectMake(150, 200, 200, 200)];
     _waveView.backgroundColor = [UIColor colorWithRed:(CGFloat)1/255 green:(CGFloat)122/255 blue:(CGFloat)233/255 alpha:1];
     _waveView.layer.borderWidth = 5;
     _waveView.layer.borderColor = [UIColor grayColor].CGColor;
@@ -72,6 +72,8 @@
     _waveView.waveColor = [UIColor colorWithRed:(CGFloat)255/255 green:(CGFloat)79/255 blue:(CGFloat)47/255 alpha:1];
     [_waveView wave];
     [self.view addSubview:_waveView];
+    
+    _progress.center = _waveView.center;
     
     _slider = [UISlider new];
     _slider.minimumValue = 0.0f;
@@ -112,6 +114,8 @@
 {
     CGFloat value = slider.value;
     self.waveView.waterWaveHeightRatio = value;
+    
+    self.progress.progress = value;
 }
 
 #pragma mark - 仿Path 菜单动画

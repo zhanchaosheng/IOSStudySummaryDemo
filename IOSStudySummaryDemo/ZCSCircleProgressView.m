@@ -8,6 +8,10 @@
 
 #import "ZCSCircleProgressView.h"
 
+@interface ZCSCircleProgressView ()<CAAnimationDelegate>
+
+@end
+
 @implementation ZCSCircleProgressView
 
 - (id)initWithFrame:(CGRect)frame
@@ -15,16 +19,19 @@
     self = [super initWithFrame:frame];
     if (self)
     {
+        self.backgroundColor = [UIColor clearColor];
         // Initialization code
         _trackLayer = [[CAShapeLayer alloc] init];
         _trackLayer.fillColor = nil;
         _trackLayer.frame = self.bounds;
+        _trackLayer.contentsScale = [UIScreen mainScreen].scale;
         [self.layer addSublayer:_trackLayer];
         
         _progressLayer = [[CAShapeLayer alloc] init];
         _progressLayer.fillColor = nil;
         _progressLayer.lineCap = kCALineCapRound;
         _progressLayer.frame = self.bounds;
+        _progressLayer.contentsScale = [UIScreen mainScreen].scale;
         [self.layer addSublayer:_progressLayer];
         
         //默认5
@@ -33,9 +40,14 @@
     return self;
 }
 
+- (void)layoutSubviews {
+    _trackLayer.frame = self.bounds;
+    _progressLayer.frame = self.bounds;
+}
+
 - (void)setTrack
 {
-    self.trackPath = [UIBezierPath bezierPathWithArcCenter:self.center
+    self.trackPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0)
                                                 radius:(self.bounds.size.width - self.progressWidth) / 2
                                             startAngle:0
                                               endAngle:M_PI * 2
@@ -50,10 +62,10 @@
 //                                               startAngle:- M_PI_2
 //                                                 endAngle:(M_PI * 2) * self.progress - M_PI_2
 //                                                clockwise:YES];
-    self.progressPath = [UIBezierPath bezierPathWithArcCenter:self.center
+    self.progressPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0)
                                                        radius:(self.bounds.size.width - self.progressWidth)/ 2
-                                                   startAngle:-M_PI
-                                                     endAngle:M_PI
+                                                   startAngle:- M_PI_2
+                                                     endAngle:- M_PI_2 + M_PI * 2
                                                     clockwise:YES];
     
     self.progressLayer.path = self.progressPath.CGPath;
